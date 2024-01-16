@@ -1,6 +1,6 @@
 import { createRoot } from "react-dom/client";
 import Pet from "./Pet";
-import AffirmationParams from "./AffirmationParams";
+import AffirmationParams from "./components/AffirmationParams";
 
 const App = () => {
   return (
