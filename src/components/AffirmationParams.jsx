@@ -50,7 +50,7 @@ const AffirmationParams = () => {
 
   return (
     <>
-      <div className="search-params">
+      <div className="d-flex flex-column search-params">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -79,7 +79,7 @@ const AffirmationParams = () => {
             </select>
           </label>
         </form>
-        <ul>
+        <ul className="list-group cards">
           <AffirmationListResults affirmationsList={affirmationsList} />
         </ul>
       </div>

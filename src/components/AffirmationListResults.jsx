@@ -1,6 +1,23 @@
 import { AiFillEdit } from "react-icons/ai";
+import Button from "react-bootstrap/Button";
+// import { useNavigate } from "react-router-dom";
 
 const AffirmationListResults = ({ affirmationsList }) => {
+  // const navigate = useNavigate();
+
+  const handleEditAffirmationClick = (event) => {
+    let editEl = event.target.closest("li");
+    let editId = editEl.getAttribute("id");
+    console.log("editId is:");
+    console.log(editId);
+    // navigate("/edit", {
+    //   state: {
+    //     affirmation_id: editId,
+    //     currentGroupAffirmations: currentGroupAffirmations,
+    //   },
+    // }); // Pass optional second argument
+  };
+
   return (
     <>
       {!affirmationsList.length ? (
@@ -8,24 +25,25 @@ const AffirmationListResults = ({ affirmationsList }) => {
       ) : (
         affirmationsList.map((affirmations) => (
           <li
-            id={affirmations.affirmation}
-            key={affirmations.affirmation}
-            className="splide__slide__EDIT"
+            style={{ listStyleType: "none" }}
+            id={affirmations.id}
+            key={affirmations.id}
+            className="list-group-flush splide__slide__EDIT"
           >
-            <div className="currentCard">
-              <div className="card grid">
-                <p className="theme-switcher card-body">
+            <div className="card">
+              <div className="card-body d-flex flex-row">
+                <p className="theme-switcher text-center">
                   {affirmations.affirmation}
                 </p>
-                <button
+                <Button
                   onClick={(e) => {
-                    // handleEditAffirmationClick(e);
-                    console.log("click");
+                    handleEditAffirmationClick(e);
+                    // console.log("click");
                   }}
                   className="theme-switcher edit"
                 >
                   <AiFillEdit size={20} className="reactIcons" />
-                </button>
+                </Button>
               </div>
             </div>
           </li>
