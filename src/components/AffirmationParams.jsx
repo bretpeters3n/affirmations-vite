@@ -1,22 +1,33 @@
 import { useEffect, useState } from "react";
 import Pet from "../Pet";
-import defaultAffirmations from "../db/defaultAffirmations";
+// import defaultAffirmations from "../db/stockAffirmations";
+import DefineGetSetAffirmationsArray from "./DefineGetSetAffirmationsArray";
 
 const AffirmationParams = () => {
-  const [currentGroup, setCurrentGroup] = useState(
-    defaultAffirmations[0].currentGroup
-    // "Default Affirmations"
+  // variable holding the localStorage data
+  const [affirmationsData, setAffirmationsData] = useState(
+    DefineGetSetAffirmationsArray()
   );
+
+  const [currentGroup, setCurrentGroup] = useState(
+    affirmationsData[0].currentGroup
+  );
+
+  let affirmationGroups = affirmationsData[0].groups;
+  // console.log("affirmationGroups is:");
+  // console.log(affirmationGroups);
 
   const [affirmationsList, setAffirmationList] = useState([]);
 
-  let affirmationGroups = defaultAffirmations[0].groups;
-  console.log("affirmationGroups is:");
-  console.log(affirmationGroups);
+  // const [availableGroups, setAvailableGroups] = useState();
 
   useEffect(() => {
-    requestAffirmations();
+    getAffirmations();
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    setAffirmations();
+  }, []);
 
   //   async function requestAffirmations() {
   //     const res = await fetch(
@@ -37,51 +48,33 @@ const AffirmationParams = () => {
   //   });
   // };
 
-  function requestAffirmations() {
-    // affirmationsArray[0].currentGroup = currentGroup;
-    // console.log(affirmationsArray);
+  function getAffirmations() {
+    // console.log("affirmationsData is:");
+    // console.log(affirmationsData);
+    const newAffirmationsData = affirmationsData;
+    newAffirmationsData[0].currentGroup = currentGroup;
+    console.log("newAffirmationsData is:");
+    console.log(newAffirmationsData);
+    setAffirmationsData(DefineGetSetAffirmationsArray(newAffirmationsData));
 
-    // const res = defaultAffirmations;
-
-    console.log("defaultAffirmations is:");
-    console.log(defaultAffirmations);
+    // console.log("defaultAffirmations is:");
+    // console.log(defaultAffirmations);
 
     // define var for key of affirmation group we are attempting to display
     let groupKey;
     // assign the wanted key to the var
     Object.entries(affirmationGroups).forEach((entry) => {
       const [key, value] = entry;
-      // if (value.group === currentGroup) {
-      //   groupKey = key;
-      // }
-      if (value.group === "Default Affirmations") {
+      if (value.group === currentGroup) {
         groupKey = key;
       }
     });
 
-    // assign var with array of affirmations we are attempting to display
     setAffirmationList(affirmationGroups[groupKey].affirmations);
-    console.log("affirmationsList is:");
-    console.log(affirmationsList);
+  }
 
-    // let affirmationList = JSON.stringify(defaultAffirmations);
-    // console.log("res is:");
-    // console.log(JSON.stringify(res));
-    // console.log("affirmationList is:");
-    // console.log(JSON.stringify(affirmationList));
-    // console.log("affirmationList[0] is:");
-    // console.log(affirmationList[0]);
-    // console.log("defaultAffirmations is:");
-    // console.log(defaultAffirmations);
-    // console.log(iterate(affirmationList));
-    // setAffirmationList(affirmationList);
-
-    // const index = affirmationList.findIndex((object) => {
-    //   // return object.id === "b";
-    //   return object.id === "Default Affirmations";
-    // });
-
-    // console.log(index);
+  function setAffirmations() {
+    console.log("setAffirmations");
   }
 
   return (
@@ -90,44 +83,25 @@ const AffirmationParams = () => {
         <label htmlFor="group">
           Group
           <select
-            id="currentGroup"
+            id={currentGroup}
             value={currentGroup}
             onChange={(e) => {
-              setCurrentGroup("Default Affirmations");
-              console.log("e.target.value is:");
-              console.log(e.target.value);
-              //   updateBreed("");
+              let tempTarget = e.target.value;
+              setCurrentGroup(tempTarget);
             }}
           >
-            <option />
-            {/* Figure out how to map this array */}
-            {console.log("affirmationGroups[0] is: ")}
-            {console.log(affirmationGroups[0])}
+            {/* <option /> */}
             {affirmationGroups.map((groups) => (
-              <option key={groups} value={groups}>
+              <option id={groups.group} value={groups.group}>
                 {groups.group}
               </option>
             ))}
-            {/* {fetchResultExample.map((group) => (
-              <option key={group} value={group}>
-                {group}
-              </option>
-            ))} */}
           </select>
         </label>
-        <button>Submit</button>
+        <button>Update localStorage</button>
       </form>
-      {/* {affirmationGroups[0].map((group) => (
-        <option key={group} value={group}>
-          {group}
-        </option>
-      ))} */}
-      {console.log("affirmationsList is: ")}
-      {console.log(affirmationsList)}
       {affirmationsList.map((affirmation) => (
-        <div affirmation={affirmation} key={affirmation}>
-          {affirmation.affirmation}
-        </div>
+        <div affirmation={affirmation}>{affirmation.affirmation}</div>
       ))}
     </div>
   );

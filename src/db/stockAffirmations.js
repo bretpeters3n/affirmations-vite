@@ -1,4 +1,4 @@
-const defaultAffirmations = [
+const stockAffirmations = [
   {
     id: 1,
     currentGroup: "Default Affirmations",
@@ -63,7 +63,7 @@ const defaultAffirmations = [
   },
 ];
 
-export default defaultAffirmations;
+export default stockAffirmations;
 
 // Original example of one DOG:
 // {
