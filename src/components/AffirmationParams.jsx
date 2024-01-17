@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Pet from "../Pet";
 // import defaultAffirmations from "../db/stockAffirmations";
 import DefineGetSetAffirmationsArray from "./DefineGetSetAffirmationsArray";
+import stockAffirmationsArray from "../db/stockAffirmations";
 
 const AffirmationParams = () => {
   // variable holding the localStorage data
@@ -27,7 +28,7 @@ const AffirmationParams = () => {
 
   useEffect(() => {
     setAffirmations();
-  }, []);
+  }, [currentGroup]);
 
   //   async function requestAffirmations() {
   //     const res = await fetch(
@@ -55,7 +56,7 @@ const AffirmationParams = () => {
     newAffirmationsData[0].currentGroup = currentGroup;
     console.log("newAffirmationsData is:");
     console.log(newAffirmationsData);
-    setAffirmationsData(DefineGetSetAffirmationsArray(newAffirmationsData));
+    // setAffirmationsData(DefineGetSetAffirmationsArray(newAffirmationsData));
 
     // console.log("defaultAffirmations is:");
     // console.log(defaultAffirmations);
@@ -75,11 +76,19 @@ const AffirmationParams = () => {
 
   function setAffirmations() {
     console.log("setAffirmations");
+    localStorage.setItem(
+      "affirmationsUnique",
+      JSON.stringify(affirmationsData)
+    );
   }
 
   return (
     <div className="search-params">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <label htmlFor="group">
           Group
           <select
@@ -98,7 +107,15 @@ const AffirmationParams = () => {
             ))}
           </select>
         </label>
-        <button>Update localStorage</button>
+        <button
+          onClick={() => {
+            console.log("click");
+            console.log("affirmationsData is:");
+            console.log(affirmationsData);
+          }}
+        >
+          Update localStorage
+        </button>
       </form>
       {affirmationsList.map((affirmation) => (
         <div affirmation={affirmation}>{affirmation.affirmation}</div>
