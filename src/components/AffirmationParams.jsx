@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
-import Pet from "../Pet";
-import DefineGetSetAffirmationsArray from "./DefineGetSetAffirmationsArray";
+import AffirmationListResults from "./AffirmationListResults";
+import stockAffirmationsArray from "../db/stockAffirmations";
 
 const AffirmationParams = () => {
   // variable holding the localStorage data
   const [affirmationsData, setAffirmationsData] = useState(
-    DefineGetSetAffirmationsArray()
+    localStorage.getItem("affirmationsUnique")
+      ? JSON.parse(localStorage.getItem("affirmationsUnique"))
+      : stockAffirmationsArray
   );
 
   const [currentGroup, setCurrentGroup] = useState(
     affirmationsData[0].currentGroup
   );
 
-  let affirmationGroups = affirmationsData[0].groups;
-
   const [affirmationsList, setAffirmationList] = useState([]);
 
-  // const [availableGroups, setAvailableGroups] = useState();
-
   useEffect(() => {
-    getAffirmations();
+    getCurrentGroupAffirmations();
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setAffirmations();
-  }, [currentGroup]);
+  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  function getAffirmations() {
-    // const newAffirmationsData = affirmationsData;
+  let affirmationGroups = affirmationsData[0].groups;
+  function getCurrentGroupAffirmations() {
     affirmationsData[0].currentGroup = currentGroup;
 
     // define var for key of affirmation group we are attempting to display
@@ -51,35 +49,41 @@ const AffirmationParams = () => {
   }
 
   return (
-    <div className="search-params">
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <label htmlFor="group">
-          Group
-          <select
-            id={currentGroup}
-            value={currentGroup}
-            onChange={(e) => {
-              let tempTarget = e.target.value;
-              setCurrentGroup(tempTarget);
-            }}
-          >
-            {/* <option /> */}
-            {affirmationGroups.map((groups) => (
-              <option id={groups.group} value={groups.group}>
-                {groups.group}
-              </option>
-            ))}
-          </select>
-        </label>
-      </form>
-      {affirmationsList.map((affirmation) => (
-        <div affirmation={affirmation}>{affirmation.affirmation}</div>
-      ))}
-    </div>
+    <>
+      <div className="search-params">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <label htmlFor="group">
+            Group
+            <select
+              id={currentGroup}
+              key={currentGroup}
+              value={currentGroup}
+              onChange={(e) => {
+                let tempTarget = e.target.value;
+                setCurrentGroup(tempTarget);
+              }}
+            >
+              {affirmationGroups.map((groups) => (
+                <option
+                  id={groups.group}
+                  key={groups.group}
+                  value={groups.group}
+                >
+                  {groups.group}
+                </option>
+              ))}
+            </select>
+          </label>
+        </form>
+        <ul>
+          <AffirmationListResults affirmationsList={affirmationsList} />
+        </ul>
+      </div>
+    </>
   );
 };
 
