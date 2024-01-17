@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import Pet from "../Pet";
-// import useBreedList from "./hooks/useBreedList";
-// import AFFIRMATIONS from "./db/affirmations";
 import defaultAffirmations from "../db/defaultAffirmations";
 
 const AffirmationParams = () => {
-  const [location, setLocation] = useState("");
-  const [group, setGroup] = useState("Default Affirmations");
-  //   const [breed, setBreed] = useState("");
-  //   const [breeds] = useBreedList(affirmation);
+  const [currentGroup, setCurrentGroup] = useState(
+    defaultAffirmations[0].currentGroup
+    // "Default Affirmations"
+  );
+
   const [affirmationsList, setAffirmationList] = useState([]);
+
+  let affirmationGroups = defaultAffirmations[0].groups;
+  console.log("affirmationGroups is:");
+  console.log(affirmationGroups);
 
   useEffect(() => {
     requestAffirmations();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
   //   async function requestAffirmations() {
   //     const res = await fetch(
@@ -24,71 +27,83 @@ const AffirmationParams = () => {
   //     console.log("json.pets is: " + JSON.stringify(json.pets));
   //   }
 
-  const iterate = (obj) => {
-    Object.keys(obj).forEach((key) => {
-      console.log(`key: ${key}, value: ${obj[key]}`);
+  // const iterate = (obj) => {
+  //   Object.keys(obj).forEach((key) => {
+  //     console.log(`key: ${key}, value: ${obj[key]}`);
 
-      if (typeof obj[key] === "object" && obj[key] !== null) {
-        iterate(obj[key]);
-      }
-    });
-  };
+  //     if (typeof obj[key] === "object" && obj[key] !== null) {
+  //       iterate(obj[key]);
+  //     }
+  //   });
+  // };
 
   function requestAffirmations() {
-    const res = defaultAffirmations;
-    console.log(
-      "JSON.stringify(fetchResultExample) is: " +
-        JSON.stringify(defaultAffirmations)
-    );
-    let currentGroup = "Default Affirmations";
-    console.log("currentGroup is: " + JSON.stringify(currentGroup));
+    // affirmationsArray[0].currentGroup = currentGroup;
+    // console.log(affirmationsArray);
 
-    let affirmationList = defaultAffirmations[0].affirmations;
-    // let affirmationList = JSON.stringify(defaultAffirmations);
-    console.log("res is:");
-    console.log(JSON.stringify(res));
-    console.log("affirmationList is:");
-    console.log(JSON.stringify(affirmationList));
-    console.log("affirmationList[0] is:");
-    console.log(affirmationList[0]);
+    // const res = defaultAffirmations;
+
     console.log("defaultAffirmations is:");
     console.log(defaultAffirmations);
+
+    // define var for key of affirmation group we are attempting to display
+    let groupKey;
+    // assign the wanted key to the var
+    Object.entries(affirmationGroups).forEach((entry) => {
+      const [key, value] = entry;
+      // if (value.group === currentGroup) {
+      //   groupKey = key;
+      // }
+      if (value.group === "Default Affirmations") {
+        groupKey = key;
+      }
+    });
+
+    // assign var with array of affirmations we are attempting to display
+    setAffirmationList(affirmationGroups[groupKey].affirmations);
+    console.log("affirmationsList is:");
+    console.log(affirmationsList);
+
+    // let affirmationList = JSON.stringify(defaultAffirmations);
+    // console.log("res is:");
+    // console.log(JSON.stringify(res));
+    // console.log("affirmationList is:");
+    // console.log(JSON.stringify(affirmationList));
+    // console.log("affirmationList[0] is:");
+    // console.log(affirmationList[0]);
+    // console.log("defaultAffirmations is:");
+    // console.log(defaultAffirmations);
     // console.log(iterate(affirmationList));
     // setAffirmationList(affirmationList);
 
-    const index = affirmationList.findIndex((object) => {
-      // return object.id === "b";
-      return object.id === "Default Affirmations";
-    });
+    // const index = affirmationList.findIndex((object) => {
+    //   // return object.id === "b";
+    //   return object.id === "Default Affirmations";
+    // });
 
-    console.log(index);
+    // console.log(index);
   }
 
   return (
     <div className="search-params">
       <form>
-        <label htmlFor="location">
-          Location
-          <input
-            id="location"
-            value={location}
-            placeholder="Location"
-            onChange={(e) => setLocation(e.target.value)}
-          />
-        </label>
         <label htmlFor="group">
           Group
           <select
-            id="group"
-            value={group}
+            id="currentGroup"
+            value={currentGroup}
             onChange={(e) => {
-              setGroup(e.target.value);
+              setCurrentGroup("Default Affirmations");
+              console.log("e.target.value is:");
+              console.log(e.target.value);
               //   updateBreed("");
             }}
           >
             <option />
             {/* Figure out how to map this array */}
-            {defaultAffirmations.map((groups) => (
+            {console.log("affirmationGroups[0] is: ")}
+            {console.log(affirmationGroups[0])}
+            {affirmationGroups.map((groups) => (
               <option key={groups} value={groups}>
                 {groups.group}
               </option>
@@ -102,12 +117,18 @@ const AffirmationParams = () => {
         </label>
         <button>Submit</button>
       </form>
-      {/* {affirmationList.map((group) => (
-        <Pet
-          affirmation={group.affirmation}
-          key={group.id}
-        />
+      {/* {affirmationGroups[0].map((group) => (
+        <option key={group} value={group}>
+          {group}
+        </option>
       ))} */}
+      {console.log("affirmationsList is: ")}
+      {console.log(affirmationsList)}
+      {affirmationsList.map((affirmation) => (
+        <div affirmation={affirmation} key={affirmation}>
+          {affirmation.affirmation}
+        </div>
+      ))}
     </div>
   );
 };

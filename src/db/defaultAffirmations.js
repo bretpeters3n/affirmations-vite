@@ -1,57 +1,63 @@
 const defaultAffirmations = [
   {
     id: 1,
-    group: "Default Affirmations",
-    affirmations: [
+    currentGroup: "Default Affirmations",
+    groups: [
       {
         id: 1,
-        affirmation: "You got this",
+        group: "Default Affirmations",
+        affirmations: [
+          {
+            id: 1,
+            affirmation: "You got this",
+          },
+          {
+            id: 2,
+            affirmation: "You’ll figure it out",
+          },
+          {
+            id: 3,
+            affirmation: "You’re a smart cookie",
+          },
+          {
+            id: 4,
+            affirmation: "I believe in you",
+          },
+          {
+            id: 5,
+            affirmation:
+              "Sucking at something is the first step towards being good at something",
+          },
+        ],
       },
       {
         id: 2,
-        affirmation: "You’ll figure it out",
+        group: "Share Affirmations",
+        affirmations: [
+          {
+            id: 1,
+            affirmation: "Struggling is part of learning",
+          },
+          {
+            id: 2,
+            affirmation: "Everything has cracks - that’s how the light gets in",
+          },
+        ],
       },
       {
         id: 3,
-        affirmation: "You’re a smart cookie",
-      },
-      {
-        id: 4,
-        affirmation: "I believe in you",
-      },
-      {
-        id: 5,
-        affirmation:
-          "Sucking at something is the first step towards being good at something",
-      },
-    ],
-  },
-  {
-    id: 2,
-    group: "Share Affirmations",
-    affirmations: [
-      {
-        id: 1,
-        affirmation: "Struggling is part of learning",
-      },
-      {
-        id: 2,
-        affirmation: "Everything has cracks - that’s how the light gets in",
-      },
-    ],
-  },
-  {
-    id: 3,
-    group: "Coding Affirmations",
-    affirmations: [
-      {
-        id: 1,
-        affirmation: "10x engineers are a myth",
-      },
-      {
-        id: 2,
-        affirmation:
-          "When you sit down to code you first draw from your experience. Keep practicing to build that experience up!",
+        group: "Coding Affirmations",
+        affirmations: [
+          {
+            id: 1,
+            affirmation: "10x engineers are a myth",
+          },
+          {
+            id: 2,
+            affirmation:
+              "When you sit down to code you first draw from your experience. Keep practicing to build that experience up!",
+          },
+        ],
       },
     ],
   },
