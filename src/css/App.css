@@ -226,6 +226,7 @@ li {
   margin-bottom: 0;
   font-weight: 200;
   padding-right: 44px;
+  width: 100%;
 }
 .card.grid {
   display: grid;
@@ -239,9 +240,7 @@ li {
   border-radius: 0 4px 4px 0;
   border: unset;
   padding: 0.2rem 0.2rem;
-  /* font-size: .75rem;
-  font-weight: 500;
-  font-family: inherit; */
+  margin: -1rem 0 0 0;
   background-color: var(--secondaryColor);
   cursor: pointer;
   transition: border-color 0.25s;

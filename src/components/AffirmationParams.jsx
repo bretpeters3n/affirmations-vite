@@ -25,6 +25,7 @@ const AffirmationParams = () => {
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
   let affirmationGroups = affirmationsData[0].groups;
+
   function getCurrentGroupAffirmations() {
     affirmationsData[0].currentGroup = currentGroup;
 
