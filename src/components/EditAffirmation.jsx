@@ -1,42 +1,49 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import {
+  postAffirmationsData,
+  getCurrentGroupKey,
+} from "../utils/PullPostGetSet";
 // import useConfirm from "./UseConfirm";
 
 const EditAffirmation = () => {
   const navigate = useNavigate();
 
-  // get array
-  // let affirmationsArray = DefineGetSetAffirmationsArray();
-
-  // const currentGroup = affirmationsArray[0].currentGroup;
-  // console.log("currentGroup is: " + currentGroup);
-
-  // grab ID from previous page. ID of array element we want to edit
   const location = useLocation();
-  let affirmationIDToEdit = location.state.affirmation_id;
-  let affirmationsList = location.state.affirmationsList;
-  console.log("affirmationIDToEdit: ");
-  console.log(affirmationIDToEdit);
-  console.log("affirmationsList: ");
-  console.log(affirmationsList);
-  let affirmationTextToEdit = affirmationsList[affirmationIDToEdit].affirmation;
 
-  // // grab affirmation User wishes to edit
-  // let currentGroupAffirmations = affirmationsArray[0].groups[1].affirmations;
+  let affirmationsData = location.state.affirmationsData;
+  let currentGroup = location.state.currentGroup;
+  let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
+
+  // let affirmationsList = location.state.affirmationsList;
+  let affirmationId = location.state.affirmation_id;
+  // let affirmationTextToEdit = affirmationsList[affirmationId].affirmation;
+  let affirmationTextToEdit =
+    affirmationsData[0].groups[groupKey].affirmations[affirmationId]
+      .affirmation;
 
   const handleConfirmDeleteAffirmationClick = () => {
-    console.log("clicked");
     console.log("handleConfirmDeleteAffirmationClick clicked");
     navigate("/current");
   };
 
   function handleConfirmEditAffirmationClick(e) {
-    // e.preventDefault();
-    console.log("handleConfirmEditAffirmationClick clicked");
+    let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
+    // let pathToEditAffirmation =
+    //   affirmationsData[0].groups[groupKey].affirmations[affirmationId]
+    //     .affirmation;
+    let updatedAffirmation = document.getElementById("affirmationText").value;
+    affirmationsData[0].groups[groupKey].affirmations[
+      affirmationId
+    ].affirmation = updatedAffirmation;
+    console.log(affirmationsData[0]);
+    console.log(affirmationsData[0]);
+    postAffirmationsData(affirmationsData);
     navigate("/current");
   }
 
   function handleCancelEditAffirmationClick(e) {
+    // this one is done until you add MODAL or TOAST
     console.log("handleCancelEditAffirmationClick clicked");
     navigate("/current");
   }

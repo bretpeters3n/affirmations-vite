@@ -2,7 +2,11 @@ import { AiFillEdit } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 
-const AffirmationListResults = ({ affirmationsList }) => {
+const AffirmationListResults = ({
+  currentGroup,
+  affirmationsData,
+  affirmationsList,
+}) => {
   const navigate = useNavigate();
 
   const handleEditAffirmationClick = (event) => {
@@ -16,12 +20,17 @@ const AffirmationListResults = ({ affirmationsList }) => {
       state: {
         affirmation_id: editId - 1,
         affirmationsList: affirmationsList,
+        currentGroup: currentGroup,
+        affirmationsData: affirmationsData,
       },
     }); // Pass optional second argument
   };
 
   return (
     <>
+      <div>
+        <p>List of affirmations</p>
+      </div>
       {!affirmationsList.length ? (
         <h1>No Affirmations present</h1>
       ) : (

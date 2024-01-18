@@ -59,6 +59,11 @@ const stockAffirmations = [
           },
         ],
       },
+      {
+        id: 4,
+        group: "Empty Affirmations",
+        affirmations: [],
+      },
     ],
   },
 ];

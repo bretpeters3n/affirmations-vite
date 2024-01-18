@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import AffirmationListResults from "./AffirmationListResults";
 import stockAffirmationsArray from "../db/stockAffirmations";
+import {
+  postAffirmationsData,
+  getCurrentGroupAffirmations,
+} from "../utils/PullPostGetSet";
 
 const AffirmationParams = () => {
   // variable holding the localStorage data
@@ -16,49 +20,37 @@ const AffirmationParams = () => {
 
   const [affirmationsList, setAffirmationList] = useState([]);
 
-  useEffect(() => {
-    getCurrentGroupAffirmations();
-  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  useEffect(() => {
-    setAffirmations();
-  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  let affirmationGroups = affirmationsData[0].groups;
-
-  function getCurrentGroupAffirmations() {
-    affirmationsData[0].currentGroup = currentGroup;
-
-    // define var for key of affirmation group we are attempting to display
-    let groupKey;
-    // assign the wanted key to the var
-    Object.entries(affirmationGroups).forEach((entry) => {
-      const [key, value] = entry;
-      if (value.group === currentGroup) {
-        groupKey = key;
-      }
-    });
-
-    setAffirmationList(affirmationGroups[groupKey].affirmations);
-  }
-
-  function setAffirmations() {
-    localStorage.setItem(
-      "affirmationsUnique",
-      JSON.stringify(affirmationsData)
+  //Remove this out from useEffect
+  const runGetCurrentGroupAffirmations = async () => {
+    const data = await getCurrentGroupAffirmations(
+      affirmationsData,
+      currentGroup
     );
-  }
+    setAffirmationList(data);
+  };
+
+  useEffect(() => {
+    runGetCurrentGroupAffirmations();
+  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    postAffirmationsData(affirmationsData);
+  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // PSUEDO CODE
+  // figure out what actions need to happen on each page. Separate those actions into functions. Store in one file. Access as needed.
 
   return (
     <>
-      <div className="d-flex flex-column search-params">
+      <div className="search-params">
         <form
+          className="card"
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
           <label htmlFor="group">
-            Group
+            Select affirmation group:
             <select
               id={currentGroup}
               key={currentGroup}
@@ -68,7 +60,7 @@ const AffirmationParams = () => {
                 setCurrentGroup(tempTarget);
               }}
             >
-              {affirmationGroups.map((groups) => (
+              {affirmationsData[0].groups.map((groups) => (
                 <option
                   id={groups.group}
                   key={groups.group}
@@ -81,8 +73,13 @@ const AffirmationParams = () => {
           </label>
         </form>
         <ul className="list-group cards">
-          <AffirmationListResults affirmationsList={affirmationsList} />
+          <AffirmationListResults
+            currentGroup={currentGroup}
+            affirmationsData={affirmationsData}
+            affirmationsList={affirmationsList}
+          />
         </ul>
+        <p>End of list</p>
       </div>
     </>
   );
