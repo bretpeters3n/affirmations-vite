@@ -11,7 +11,7 @@ import {
   postAffirmationsData,
   getCurrentGroupKey,
 } from "../utils/PullPostGetSet";
-import Affirmation from "../utils/Classes"; // Affirmation class
+import Affirmation from "../utils/affirmationClass"; // Affirmation class
 
 const AddAffirmation = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const AddAffirmation = () => {
       console.log(id);
       const newAffirmation = new Affirmation(affirmation, id);
 
-      // // newAffirmation.calcLength();
+      // add new affirmation
       affirmationsData[0].groups[groupKey].affirmations.push({
         id: newAffirmation.id,
         affirmation: newAffirmation.affirmation,

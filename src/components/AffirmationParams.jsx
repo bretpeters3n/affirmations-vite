@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import AffirmationListResults from "./AffirmationListResults";
+import Modal from "./Modal";
 import stockAffirmationsArray from "../db/stockAffirmations";
 import {
   postAffirmationsData,
   getCurrentGroupAffirmations,
 } from "../utils/PullPostGetSet";
+import Group from "../utils/groupClass"; // Group class
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
@@ -17,12 +19,17 @@ const AffirmationParams = () => {
       ? JSON.parse(localStorage.getItem("affirmationsUnique"))
       : stockAffirmationsArray
   );
+  // console.log(affirmationsData);
 
   const [currentGroup, setCurrentGroup] = useState(
     affirmationsData[0].currentGroup
   );
 
   const [affirmationsList, setAffirmationList] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const addNewGroupMessaging = "+ Create new group";
 
   //Remove this out from useEffect
   const runGetCurrentGroupAffirmations = async () => {
@@ -52,8 +59,43 @@ const AffirmationParams = () => {
     postAffirmationsData(affirmationsData);
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  const handleCreateNewGroup = () => {
+    // const data = await getCurrentGroupAffirmations(
+    //   affirmationsData,
+    //   currentGroup
+    // );
+    // const affirmationsData = data.affirmationsData;
+    // const currentGroup = data.currentGroup;
+    console.log(affirmationsData);
+    // console.log(currentGroup);
+    const newGroupName = document.getElementById("name").value;
+    if (!newGroupName) {
+      alert(
+        "You have not entered any text. Please name your group to continue creating it."
+      );
+    } else {
+      // create new Group class that follows structure of object
+      const id = affirmationsData[0].groups.length + 1;
+      console.log(id);
+      // create/run it
+      const newGroup = new Group(newGroupName, id);
+      console.log(newGroup);
+      // deconstruct new object into three vars
+      // add reconstructed object to affirmationsData
+      // add new group
+      affirmationsData[0].groups.push({
+        id: newGroup.id,
+        group: newGroup.group,
+        affirmations: newGroup.affirmations,
+      });
+      postAffirmationsData(affirmationsData);
+      setShowModal(false);
+      navigate("/current");
+    }
+  };
+
   // PSUEDO CODE
-  // figure out what actions need to happen on each page. Separate those actions into functions. Store in one file. Access as needed.
+  //
 
   return (
     <>
@@ -72,7 +114,12 @@ const AffirmationParams = () => {
               value={currentGroup}
               onChange={(e) => {
                 let tempTarget = e.target.value;
-                setCurrentGroup(tempTarget);
+                if (tempTarget == addNewGroupMessaging) {
+                  setShowModal(true);
+                  // console.log("add new clicked");
+                } else {
+                  setCurrentGroup(tempTarget);
+                }
               }}
             >
               {affirmationsData[0].groups.map((groups) => (
@@ -84,6 +131,7 @@ const AffirmationParams = () => {
                   {groups.group}
                 </option>
               ))}
+              <option>{addNewGroupMessaging}</option>
             </select>
           </label>
         </form>
@@ -98,19 +146,44 @@ const AffirmationParams = () => {
         <div>
           <Button
             onClick={handleAddAffirmationClick}
+            // onClick={() => setShowModal(true)}
             className="position-absolute top-100 start-50 translate-middle"
           >
             Add Affirmation
           </Button>
         </div>
-        {/* <Button
-          onClick={(e) => {
-            handleAddAffirmationClick();
-            console.log("click");
-          }}
-          className="theme-switcher edit"
-        ></Button> */}
       </div>
+      {
+        showModal ? (
+          <Modal>
+            <div className="modal-container">
+              <h2>Creating new group?</h2>
+              <div className="buttons">
+                <form>
+                  <label htmlFor="name">Enter your new group name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    minLength="1"
+                    maxLength="100"
+                    size="20"
+                  />
+                </form>
+                <button onClick={() => setShowModal(false)}>Cancel</button>
+                <button
+                  onClick={() => {
+                    handleCreateNewGroup();
+                  }}
+                >
+                  Create group
+                </button>
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
     </>
   );
 };
