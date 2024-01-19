@@ -1,7 +1,6 @@
 import { AiFillEdit } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { v4 as uuidv4 } from "uuid";
 import ShortUuid from "short-uuid";
 
 const AffirmationListResults = ({
@@ -28,7 +27,6 @@ const AffirmationListResults = ({
     }); // Pass optional second argument
   };
 
-  const TEST = uuidv4();
   const TEST2 = ShortUuid.generate();
 
   return (
