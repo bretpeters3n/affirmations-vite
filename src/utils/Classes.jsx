@@ -1,4 +1,4 @@
-export default class Affirmation {
+const Affirmation = class {
   constructor(affirmation, id) {
     // this.group = currentGroup;
     this.affirmation = affirmation;
@@ -18,7 +18,8 @@ export default class Affirmation {
     //   this.duration = long;
     // }
   }
-}
+};
+export default Affirmation;
 
 // if you add another class here, figure out how to export them all here:
 // https://medium.com/@etherealm/named-export-vs-default-export-in-es6-affb483a0910

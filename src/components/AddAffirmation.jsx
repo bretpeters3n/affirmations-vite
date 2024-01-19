@@ -31,10 +31,13 @@ const AddAffirmation = () => {
       const id = affirmationsData[0].groups[groupKey].affirmations.length + 1;
       console.log(id);
       const newAffirmation = new Affirmation(affirmation, id);
-      console.log(newAffirmation);
+
       // // newAffirmation.calcLength();
-      affirmationsData[0].groups[groupKey].affirmations.push(newAffirmation);
-      console.log(affirmationsData);
+      affirmationsData[0].groups[groupKey].affirmations.push({
+        id: newAffirmation.id,
+        affirmation: newAffirmation.affirmation,
+      });
+
       postAffirmationsData(affirmationsData);
       navigate("/current");
     }

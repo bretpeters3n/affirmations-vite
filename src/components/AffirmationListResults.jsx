@@ -1,6 +1,8 @@
 import { AiFillEdit } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import ShortUuid from "short-uuid";
 
 const AffirmationListResults = ({
   currentGroup,
@@ -26,10 +28,16 @@ const AffirmationListResults = ({
     }); // Pass optional second argument
   };
 
+  const TEST = uuidv4();
+  const TEST2 = ShortUuid.generate();
+
   return (
     <>
       <div>
-        <p>List of {currentGroup} affirmations</p>
+        <p>
+          List of {currentGroup}
+          {TEST2} affirmations
+        </p>
       </div>
       {!affirmationsList.length ? (
         <h1>No Affirmations present</h1>
