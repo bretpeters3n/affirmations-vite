@@ -24,19 +24,23 @@ const EditAffirmation = () => {
 
   const handleConfirmDeleteAffirmationClick = () => {
     console.log("handleConfirmDeleteAffirmationClick clicked");
+    // const n = affirmationId;
+    let updatedAffirmationList =
+      affirmationsData[0].groups[groupKey].affirmations;
+    updatedAffirmationList = updatedAffirmationList
+      .slice(0, affirmationId)
+      .concat(updatedAffirmationList.slice(affirmationId + 1));
+    affirmationsData[0].groups[groupKey].affirmations = updatedAffirmationList;
+    postAffirmationsData(affirmationsData);
     navigate("/current");
   };
 
-  function handleConfirmEditAffirmationClick(e) {
+  function handleConfirmEditAffirmationClick() {
     let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
-    // let pathToEditAffirmation =
-    //   affirmationsData[0].groups[groupKey].affirmations[affirmationId]
-    //     .affirmation;
     let updatedAffirmation = document.getElementById("affirmationText").value;
     affirmationsData[0].groups[groupKey].affirmations[
       affirmationId
     ].affirmation = updatedAffirmation;
-    console.log(affirmationsData[0]);
     console.log(affirmationsData[0]);
     postAffirmationsData(affirmationsData);
     navigate("/current");
