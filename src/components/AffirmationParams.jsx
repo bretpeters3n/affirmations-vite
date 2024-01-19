@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 import AffirmationListResults from "./AffirmationListResults";
 import stockAffirmationsArray from "../db/stockAffirmations";
 import {
@@ -7,6 +9,8 @@ import {
 } from "../utils/PullPostGetSet";
 
 const AffirmationParams = () => {
+  const navigate = useNavigate();
+
   // variable holding the localStorage data
   const [affirmationsData, setAffirmationsData] = useState(
     localStorage.getItem("affirmationsUnique")
@@ -27,6 +31,17 @@ const AffirmationParams = () => {
       currentGroup
     );
     setAffirmationList(data);
+  };
+
+  const handleAddAffirmationClick = () => {
+    navigate("/add", {
+      state: {
+        // affirmationsList: affirmationsList,
+        currentGroup: currentGroup,
+        affirmationsData: affirmationsData,
+      },
+    }); // Pass optional second argument
+    console.log("click");
   };
 
   useEffect(() => {
@@ -80,6 +95,21 @@ const AffirmationParams = () => {
           />
         </ul>
         <p>End of list</p>
+        <div>
+          <Button
+            onClick={handleAddAffirmationClick}
+            className="position-absolute top-100 start-50 translate-middle"
+          >
+            Add Affirmation
+          </Button>
+        </div>
+        {/* <Button
+          onClick={(e) => {
+            handleAddAffirmationClick();
+            console.log("click");
+          }}
+          className="theme-switcher edit"
+        ></Button> */}
       </div>
     </>
   );

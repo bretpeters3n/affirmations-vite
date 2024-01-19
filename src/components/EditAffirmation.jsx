@@ -4,7 +4,6 @@ import {
   postAffirmationsData,
   getCurrentGroupKey,
 } from "../utils/PullPostGetSet";
-// import useConfirm from "./UseConfirm";
 
 const EditAffirmation = () => {
   const navigate = useNavigate();
@@ -15,16 +14,13 @@ const EditAffirmation = () => {
   let currentGroup = location.state.currentGroup;
   let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
 
-  // let affirmationsList = location.state.affirmationsList;
   let affirmationId = location.state.affirmation_id;
-  // let affirmationTextToEdit = affirmationsList[affirmationId].affirmation;
   let affirmationTextToEdit =
     affirmationsData[0].groups[groupKey].affirmations[affirmationId]
       .affirmation;
 
   const handleConfirmDeleteAffirmationClick = () => {
     console.log("handleConfirmDeleteAffirmationClick clicked");
-    // const n = affirmationId;
     let updatedAffirmationList =
       affirmationsData[0].groups[groupKey].affirmations;
     updatedAffirmationList = updatedAffirmationList

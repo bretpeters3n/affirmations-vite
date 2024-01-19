@@ -1,0 +1,74 @@
+import {
+  BrowserRouter,
+  useNavigate,
+  Route,
+  Routes,
+  Link,
+  useLocation,
+} from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import {
+  postAffirmationsData,
+  getCurrentGroupKey,
+} from "../utils/PullPostGetSet";
+import Affirmation from "../utils/Classes"; // Affirmation class
+
+const AddAffirmation = () => {
+  const navigate = useNavigate();
+
+  const location = useLocation();
+
+  let affirmationsData = location.state.affirmationsData;
+  let currentGroup = location.state.currentGroup;
+  let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
+  console.log(groupKey);
+
+  const handleAddAffirmationClick = () => {
+    const affirmation = document.getElementById("affirmationText").value;
+    if (!affirmation) {
+      alert("Affirmation text is empty. Please add you affirmation.");
+    } else {
+      const id = affirmationsData[0].groups[groupKey].affirmations.length + 1;
+      console.log(id);
+      const newAffirmation = new Affirmation(affirmation, id);
+      console.log(newAffirmation);
+      // // newAffirmation.calcLength();
+      affirmationsData[0].groups[groupKey].affirmations.push(newAffirmation);
+      console.log(affirmationsData);
+      postAffirmationsData(affirmationsData);
+      navigate("/current");
+    }
+  };
+
+  const handleCancelAddAffirmationClick = () => {
+    navigate("/current");
+  };
+
+  return (
+    <>
+      <section className="traditional__layout addAffirmation">
+        <h1 className="font-bold pb-2">Add Affirmation</h1>
+        <div className="pb-2">
+          <p>Enter your affirmation below</p>
+        </div>
+        <form className="align-items-center pb-3">
+          <textarea
+            className=""
+            id="affirmationText"
+            placeholder="Type/paste your affirmation here"
+          ></textarea>
+        </form>
+        <div className="flex">
+          <Button onClick={handleCancelAddAffirmationClick}>Cancel</Button>
+          <button
+            className="theme-switcher btn btn-outline-primary"
+            onClick={handleAddAffirmationClick}
+          >
+            Add affirmation
+          </button>
+        </div>
+      </section>
+    </>
+  );
+};
+export default AddAffirmation;

@@ -29,7 +29,7 @@ const AffirmationListResults = ({
   return (
     <>
       <div>
-        <p>List of affirmations</p>
+        <p>List of {currentGroup} affirmations</p>
       </div>
       {!affirmationsList.length ? (
         <h1>No Affirmations present</h1>
