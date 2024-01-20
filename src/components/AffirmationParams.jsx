@@ -11,6 +11,9 @@ import {
   getCurrentGroupAffirmations,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
+import ShortUniqueId from "short-unique-id";
+
+const uid = new ShortUniqueId();
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
@@ -112,6 +115,7 @@ const AffirmationParams = () => {
       // add new group
       affirmationsData[0].groups.push({
         id: newGroup.id,
+        uid: uid.rnd(),
         group: newGroup.group,
         affirmations: newGroup.affirmations,
       });
@@ -152,11 +156,7 @@ const AffirmationParams = () => {
               }}
             >
               {affirmationsData[0].groups.map((groups) => (
-                <option
-                  id={groups.group}
-                  key={groups.group}
-                  value={groups.group}
-                >
+                <option id={groups.id} key={groups.uid} value={groups.group}>
                   {groups.group}
                 </option>
               ))}

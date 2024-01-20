@@ -4,7 +4,7 @@
   "description": "Build, enjoy, and share lists of Affirmations",
   "main": "index.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5173",
     "build": "vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,6 +30,6 @@
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.4.1",
     "react-toastify": "^10.0.3",
-    "short-uuid": "^4.2.2"
+    "short-unique-id": "^5.0.3"
   }
 }

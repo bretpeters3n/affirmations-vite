@@ -1,7 +1,12 @@
+import ShortUniqueId from "short-unique-id";
+
+const uid = new ShortUniqueId();
+
 const Group = class {
   constructor(newGroupName, id) {
     // this.group = currentGroup;
-    this.id = id;
+    this.id = uid.rnd();
+    this.uid = uid.rnd();
     this.group = newGroupName;
     this.affirmations = [];
     // this.order = "69";

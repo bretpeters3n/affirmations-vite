@@ -31,3 +31,17 @@ export const getCurrentGroupKey = (affirmationsData, currentGroup) => {
 
   return groupKey;
 };
+
+export const getCurrentAffirmationKey = (affirmations, id) => {
+  // define var for key of affirmation group we are attempting to display
+  let affirmationKey;
+  // assign the wanted key to the var
+  Object.entries(affirmations).forEach((entry) => {
+    const [key, value] = entry;
+    if (value.id === id) {
+      affirmationKey = key;
+    }
+  });
+
+  return affirmationKey;
+};

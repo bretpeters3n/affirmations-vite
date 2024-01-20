@@ -11,13 +11,27 @@ const EditAffirmation = () => {
   const location = useLocation();
 
   let affirmationsData = location.state.affirmationsData;
+  console.log(affirmationsData);
   let currentGroup = location.state.currentGroup;
+  console.log(currentGroup);
+  let affirmationId = location.state.affirmationId;
+  console.log("affirmationId :");
+  console.log(affirmationId);
   let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
+  console.log(groupKey);
 
-  let affirmationId = location.state.affirmation_id;
+  // debugging
+
+  console.log(affirmationsData);
+
+  // test strings and find 'affirmation' value
   let affirmationTextToEdit =
-    affirmationsData[0].groups[groupKey].affirmations[affirmationId]
-      .affirmation;
+    affirmationsData[0].groups[groupKey].affirmations[0].affirmation;
+  // let affirmationTextToEdit =
+  //   affirmationsData[0].groups[groupKey].affirmations[affirmationId]
+  //     .affirmation;
+  console.log("affirmationTextToEdit is:");
+  console.log(affirmationTextToEdit);
 
   const handleConfirmDeleteAffirmationClick = () => {
     console.log("handleConfirmDeleteAffirmationClick clicked");
@@ -25,7 +39,7 @@ const EditAffirmation = () => {
       affirmationsData[0].groups[groupKey].affirmations;
     updatedAffirmationList = updatedAffirmationList
       .slice(0, affirmationId)
-      .concat(updatedAffirmationList.slice(affirmationId + 1));
+      .concat(updatedAffirmationList.slice(affirmationId));
     affirmationsData[0].groups[groupKey].affirmations = updatedAffirmationList;
     postAffirmationsData(affirmationsData);
     navigate("/current");

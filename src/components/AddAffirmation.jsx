@@ -34,7 +34,8 @@ const AddAffirmation = () => {
 
       // add new affirmation
       affirmationsData[0].groups[groupKey].affirmations.push({
-        id: newAffirmation.id,
+        id: newAffirmation.uid,
+        uid: newAffirmation.uid,
         affirmation: newAffirmation.affirmation,
       });
 

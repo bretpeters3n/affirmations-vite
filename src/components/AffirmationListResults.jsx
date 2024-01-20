@@ -1,7 +1,6 @@
 import { AiFillEdit } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import ShortUuid from "short-uuid";
 
 const AffirmationListResults = ({
   currentGroup,
@@ -19,7 +18,7 @@ const AffirmationListResults = ({
     console.log(affirmationsList);
     navigate("/edit", {
       state: {
-        affirmation_id: editId - 1,
+        affirmationId: editId,
         affirmationsList: affirmationsList,
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
@@ -27,15 +26,10 @@ const AffirmationListResults = ({
     }); // Pass optional second argument
   };
 
-  const TEST2 = ShortUuid.generate();
-
   return (
     <>
       <div>
-        <p>
-          List of {currentGroup}
-          {TEST2} affirmations
-        </p>
+        <p>List of {currentGroup} affirmations</p>
       </div>
       {!affirmationsList.length ? (
         <h1>No Affirmations present</h1>
@@ -43,8 +37,8 @@ const AffirmationListResults = ({
         affirmationsList.map((affirmations) => (
           <li
             style={{ listStyleType: "none" }}
-            id={affirmations.id}
-            key={affirmations.id}
+            id={affirmations.uid}
+            key={affirmations.uid}
             className="list-group-flush splide__slide__EDIT"
           >
             <div className="card">

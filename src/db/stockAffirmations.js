@@ -1,80 +1,80 @@
 const stockAffirmations = [
   {
-    id: 1,
-    // shortUUID: "4EBDTBzzHjPynVY8ESriJu",
+    id: "4EBDTB",
+    uid: "4EBDTB",
     currentGroup: "Default Affirmations",
     groups: [
       {
-        id: 1,
-        // shortUUID: "fkuT6NzLdNcviXeT2JpvBQ",
+        id: "fkuT6N",
+        uid: "fkuT6N",
         group: "Default Affirmations",
         affirmations: [
           {
-            id: 1,
-            // shortUUID: "iqjiu5i79yUh4fc6ohgznM",
+            id: "iqjiu5",
+            uid: "iqjiu5",
             affirmation: "You got this",
           },
           {
-            id: 2,
-            // shortUUID: "xsNHVzcN64dewNuebQ7SF4",
+            id: "xsNHVz",
+            uid: "xsNHVz",
             affirmation: "You’ll figure it out",
           },
           {
-            id: 3,
-            // shortUUID: "fFTc4TprWpgACHCRkJBmx7",
+            id: "fFTc4T",
+            uid: "fFTc4T",
             affirmation: "You’re a smart cookie",
           },
           {
-            id: 4,
-            // shortUUID: "xxbx1bSCuKZREEFSq7GUuC",
+            id: "xxbx1b",
+            uid: "xxbx1b",
             affirmation: "I believe in you",
           },
           {
-            id: 5,
-            // shortUUID: "ogoSaRbDG3RGoMT97A9TDq",
+            id: "ogoSaR",
+            uid: "ogoSaR",
             affirmation:
               "Sucking at something is the first step towards being good at something",
           },
         ],
       },
       {
-        id: 2,
-        // shortUUID: "cWy99j1ptKzha8bfsoXhoH",
+        id: "cWy99j",
+        uid: "cWy99j",
         group: "Share Affirmations",
         affirmations: [
           {
-            id: 1,
-            // shortUUID: "rAhggXMkXJcmPoRuS6ni3c",
+            id: "rAhggX",
+            uid: "rAhggX",
             affirmation: "Struggling is part of learning",
           },
           {
-            id: 2,
-            // shortUUID: "o1eWp2HGnY7MFc6px8goiE",
+            id: "o1eWp2",
+            uid: "o1eWp2",
             affirmation: "Everything has cracks - that’s how the light gets in",
           },
         ],
       },
       {
-        id: 3,
-        // shortUUID: "vP4HsjCUVFq3xLqee5vg4v",
+        id: "vP4Hsj",
+        uid: "vP4Hsj",
         group: "Coding Affirmations",
         affirmations: [
           {
-            id: 1,
-            // shortUUID: "1AmiCPXNynKX166JMsB3Sn",
+            id: "1AmiCP",
+            uid: "1AmiCP",
             affirmation: "10x engineers are a myth",
           },
           {
-            id: 2,
-            // shortUUID: "nEkogwxp4eKFmNjY5eMHGM",
+            id: "nEkogw",
+            uid: "nEkogw",
             affirmation:
               "When you sit down to code you first draw from your experience. Keep practicing to build that experience up!",
           },
         ],
       },
       {
-        id: 4,
-        // shortUUID: "fm3ifmETMc6CXQGhCHswfP",
+        id: "fm3ifm",
+        uid: "fm3ifm",
         group: "Empty Affirmations",
         affirmations: [],
       },

@@ -1,8 +1,13 @@
+import ShortUniqueId from "short-unique-id";
+
+const uid = new ShortUniqueId();
+
 const Affirmation = class {
   constructor(affirmation, id) {
     // this.group = currentGroup;
     this.affirmation = affirmation;
-    this.id = id;
+    this.uid = uid.rnd();
+    this.id = uid.rnd();
     // this.order = "69";
     // this.uuid = "install this and creat method";
 
