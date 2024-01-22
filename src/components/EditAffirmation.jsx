@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import {
   postAffirmationsData,
   getCurrentGroupKey,
+  getCurrentAffirmationKey,
 } from "../utils/PullPostGetSet";
 
 const EditAffirmation = () => {
@@ -11,35 +12,28 @@ const EditAffirmation = () => {
   const location = useLocation();
 
   let affirmationsData = location.state.affirmationsData;
-  console.log(affirmationsData);
   let currentGroup = location.state.currentGroup;
-  console.log(currentGroup);
   let affirmationId = location.state.affirmationId;
-  console.log("affirmationId :");
-  console.log(affirmationId);
-  let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
-  console.log(groupKey);
+  let groupKey = Number(getCurrentGroupKey(affirmationsData, currentGroup));
+  let affirmationKey = Number(
+    getCurrentAffirmationKey(
+      affirmationsData[0].groups[groupKey].affirmations,
+      affirmationId
+    )
+  );
 
-  // debugging
-
-  console.log(affirmationsData);
-
-  // test strings and find 'affirmation' value
   let affirmationTextToEdit =
-    affirmationsData[0].groups[groupKey].affirmations[0].affirmation;
-  // let affirmationTextToEdit =
-  //   affirmationsData[0].groups[groupKey].affirmations[affirmationId]
-  //     .affirmation;
-  console.log("affirmationTextToEdit is:");
-  console.log(affirmationTextToEdit);
+    affirmationsData[0].groups[groupKey].affirmations[affirmationKey]
+      .affirmation;
 
+  //Working :)
   const handleConfirmDeleteAffirmationClick = () => {
-    console.log("handleConfirmDeleteAffirmationClick clicked");
-    let updatedAffirmationList =
-      affirmationsData[0].groups[groupKey].affirmations;
-    updatedAffirmationList = updatedAffirmationList
-      .slice(0, affirmationId)
-      .concat(updatedAffirmationList.slice(affirmationId));
+    let affirmationListCopy = affirmationsData[0].groups[groupKey].affirmations;
+    let updatedAffirmationList = affirmationListCopy
+      .slice(0, Number(affirmationKey))
+      .concat(affirmationListCopy.slice(Number(affirmationKey) + 1));
+    console.log("updatedAffirmationList is:");
+    console.log(updatedAffirmationList);
     affirmationsData[0].groups[groupKey].affirmations = updatedAffirmationList;
     postAffirmationsData(affirmationsData);
     navigate("/current");
@@ -48,10 +42,13 @@ const EditAffirmation = () => {
   function handleConfirmEditAffirmationClick() {
     let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
     let updatedAffirmation = document.getElementById("affirmationText").value;
+    console.log("updatedAffirmation is:");
+    console.log(updatedAffirmation);
+
     affirmationsData[0].groups[groupKey].affirmations[
-      affirmationId
+      affirmationKey
     ].affirmation = updatedAffirmation;
-    console.log(affirmationsData[0]);
+    // console.log(affirmationsData[0]);
     postAffirmationsData(affirmationsData);
     navigate("/current");
   }

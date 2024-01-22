@@ -34,17 +34,17 @@ const AffirmationListResults = ({
       {!affirmationsList.length ? (
         <h1>No Affirmations present</h1>
       ) : (
-        affirmationsList.map((affirmations) => (
+        affirmationsList.map((affirmation) => (
           <li
             style={{ listStyleType: "none" }}
-            id={affirmations.uid}
-            key={affirmations.uid}
+            id={affirmation.uid}
+            key={affirmation.uid}
             className="list-group-flush splide__slide__EDIT"
           >
             <div className="card">
               <div className="card-body d-flex flex-row">
                 <p className="theme-switcher text-center">
-                  {affirmations.affirmation}
+                  {affirmation.affirmation}
                 </p>
                 <Button
                   onClick={(e) => {
