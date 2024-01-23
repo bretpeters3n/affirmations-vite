@@ -12,11 +12,14 @@ import {
   requestCurrentGroupKey,
 } from "../utils/PullPostGetSet";
 import Affirmation from "../utils/affirmationClass"; // Affirmation class
+import ShortUniqueId from "short-unique-id";
 
 const AddAffirmation = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
+
+  const uid = new ShortUniqueId();
 
   let affirmationsData = location.state.affirmationsData;
   let currentGroup = location.state.currentGroup;
@@ -28,14 +31,13 @@ const AddAffirmation = () => {
     if (!affirmation) {
       alert("Affirmation text is empty. Please add you affirmation.");
     } else {
-      const id = affirmationsData[0].groups[groupKey].affirmations.length + 1;
-      console.log(id);
+      const id = uid.rnd();
       const newAffirmation = new Affirmation(affirmation, id);
 
       // add new affirmation
       affirmationsData[0].groups[groupKey].affirmations.push({
-        id: newAffirmation.uid,
-        uid: newAffirmation.uid,
+        id: newAffirmation.id,
+        // uid: newAffirmation.uid,
         affirmation: newAffirmation.affirmation,
       });
 

@@ -6,8 +6,8 @@ const Affirmation = class {
   constructor(affirmation, id) {
     // this.group = currentGroup;
     this.affirmation = affirmation;
-    this.uid = uid.rnd();
-    this.id = uid.rnd();
+    // this.uid = uid.rnd();
+    this.id = id;
     // this.order = "69";
     // this.uuid = "install this and creat method";
 

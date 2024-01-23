@@ -12,7 +12,6 @@ const EditAffirmation = () => {
 
   // const location = useLocation();
 
-  // variable holding the localStorage data
   const [affirmationsData, setAffirmationsData] = useState(
     localStorage.getItem("affirmationsUnique")
       ? JSON.parse(localStorage.getItem("affirmationsUnique"))
@@ -24,45 +23,23 @@ const EditAffirmation = () => {
   let affirmationTextToEdit =
     affirmationsData[0].groups[groupKey].affirmations[id].affirmation;
 
-  // let affirmationsData = location.state.affirmationsData;
-  // let currentGroup = location.state.currentGroup;
-  // let affirmationId = location.state.affirmationId;
-  // let groupKey = Number(requestCurrentGroupKey(affirmationsData, currentGroup));
-  // let affirmationKey = Number(
-  //   requestCurrentAffirmationKey(
-  //     affirmationsData[0].groups[groupKey].affirmations,
-  //     affirmationId
-  //   )
-  // );
+  const handleConfirmDeleteAffirmationClick = () => {
+    let affirmationListCopy = affirmationsData[0].groups[groupKey].affirmations;
+    let updatedAffirmationList = affirmationListCopy
+      .slice(0, Number(id))
+      .concat(affirmationListCopy.slice(Number(id) + 1));
+    affirmationsData[0].groups[groupKey].affirmations = updatedAffirmationList;
+    postAffirmationsData(affirmationsData);
+    navigate("/current");
+  };
 
-  // let affirmationTextToEdit =
-  //   affirmationsData[0].groups[groupKey].affirmations[affirmationKey]
-  //     .affirmation;
-
-  // const handleConfirmDeleteAffirmationClick = () => {
-  //   let affirmationListCopy = affirmationsData[0].groups[groupKey].affirmations;
-  //   let updatedAffirmationList = affirmationListCopy
-  //     .slice(0, Number(affirmationKey))
-  //     .concat(affirmationListCopy.slice(Number(affirmationKey) + 1));
-  //   console.log("updatedAffirmationList is:");
-  //   console.log(updatedAffirmationList);
-  //   affirmationsData[0].groups[groupKey].affirmations = updatedAffirmationList;
-  //   postAffirmationsData(affirmationsData);
-  //   navigate("/current");
-  // };
-
-  // function handleConfirmEditAffirmationClick() {
-  //   let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-  //   let updatedAffirmation = document.getElementById("affirmationText").value;
-  //   console.log("updatedAffirmation is:");
-  //   console.log(updatedAffirmation);
-
-  //   affirmationsData[0].groups[groupKey].affirmations[
-  //     affirmationKey
-  //   ].affirmation = updatedAffirmation;
-  //   postAffirmationsData(affirmationsData);
-  //   navigate("/current");
-  // }
+  function handleConfirmEditAffirmationClick() {
+    let updatedAffirmation = document.getElementById("affirmationText").value;
+    affirmationsData[0].groups[groupKey].affirmations[id].affirmation =
+      updatedAffirmation;
+    postAffirmationsData(affirmationsData);
+    navigate("/current");
+  }
 
   function handleCancelEditAffirmationClick() {
     // this one is done until you add MODAL or TOAST
@@ -91,14 +68,14 @@ const EditAffirmation = () => {
           {/* <DialogCancel /> */}
           <button
             className="theme-switcher btn btn-outline-primary"
-            // onClick={handleConfirmEditAffirmationClick}
+            onClick={handleConfirmEditAffirmationClick}
           >
             Update Affirmation
           </button>
           {/* <DialogEdit /> */}
           <button
             className="theme-switcher btn btn-danger"
-            // onClick={handleConfirmDeleteAffirmationClick}
+            onClick={handleConfirmDeleteAffirmationClick}
           >
             Delete Affirmation
           </button>
