@@ -180,7 +180,9 @@ li {
   bottom: 0;
   left: 0;
 }
-
+.home-slideshow {
+  height: 100%;
+}
 /* mine */
 .app {
   background-color: var(--main-bg-color-light);
@@ -314,4 +316,10 @@ li {
 
 .codeVomit {
   font-size: 10px;
+}
+
+.testButton {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
