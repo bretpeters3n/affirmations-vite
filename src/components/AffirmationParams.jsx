@@ -3,12 +3,12 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AffirmationListResults from "./AffirmationListResults";
+import AffirmationResults from "./AffirmationResults";
 import Modal from "./Modal";
 import stockAffirmationsArray from "../db/stockAffirmations";
 import {
   postAffirmationsData,
-  getCurrentGroupAffirmations,
+  requestGroupAffirmations,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
 import ShortUniqueId from "short-unique-id";
@@ -49,31 +49,31 @@ const AffirmationParams = () => {
       ? JSON.parse(localStorage.getItem("affirmationsUnique"))
       : stockAffirmationsArray
   );
-  // console.log(affirmationsData);
 
   const [currentGroup, setCurrentGroup] = useState(
     affirmationsData[0].currentGroup
   );
 
-  const [affirmationsList, setAffirmationList] = useState([]);
+  const [affirmations, setAffirmations] = useState([]);
+  const [status, setStatus] = useState("unloaded");
 
   const [showModal, setShowModal] = useState(false);
 
   const addNewGroupMessaging = "+ Create new group";
 
   //Remove this out from useEffect
-  const runGetCurrentGroupAffirmations = async () => {
-    const data = await getCurrentGroupAffirmations(
-      affirmationsData,
-      currentGroup
-    );
-    setAffirmationList(data);
+  const runRequestGroupAffirmations = async () => {
+    setAffirmations([]);
+    setStatus("loading");
+    const data = await requestGroupAffirmations(affirmationsData, currentGroup);
+    setAffirmations(data);
+    setStatus("loaded");
   };
 
   const handleAddAffirmationClick = () => {
     navigate("/add", {
       state: {
-        // affirmationsList: affirmationsList,
+        // affirmations: affirmations,
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
       },
@@ -82,7 +82,7 @@ const AffirmationParams = () => {
   };
 
   useEffect(() => {
-    runGetCurrentGroupAffirmations();
+    runRequestGroupAffirmations();
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -165,10 +165,10 @@ const AffirmationParams = () => {
           </label>
         </form>
         <ul className="list-group cards">
-          <AffirmationListResults
+          <AffirmationResults
             currentGroup={currentGroup}
             affirmationsData={affirmationsData}
-            affirmationsList={affirmationsList}
+            affirmations={affirmations}
           />
         </ul>
         <p>End of list</p>

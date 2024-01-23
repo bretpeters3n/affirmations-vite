@@ -173,6 +173,13 @@ li {
   margin-left: 0;
   padding-left: 0;
 }
+.splide__progress .splide__progress__bar {
+  position: fixed;
+  height: 3px;
+  background: #000;
+  bottom: 0;
+  left: 0;
+}
 
 /* mine */
 .app {

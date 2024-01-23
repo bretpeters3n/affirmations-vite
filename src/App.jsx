@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useState, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
+import DisplayAffirmations from "./components/DisplayAffirmations";
 import CurrentAffirmations from "./components/CurrentAfirmations";
 import EditAffirmation from "./components/EditAffirmation";
 import AddAffirmation from "./components/AddAffirmation";
 import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 import lightModeIcon from "./assets/dark-mode-icon_light.svg";
+import "./css/splide-core.min.css";
 import "./css/App.css";
 import "./css/Nav.css";
 
@@ -78,10 +80,11 @@ const App = () => {
             <li className="lastMenuItemExtend"></li>
           </ul>
         </nav>
-        <main className="d-flex flex-column justify-content-center pt-4">
+        {/* <main className="d-flex flex-column justify-content-center pt-4"> */}
+        <main>
           <Routes>
-            {/* <Route path="/" element={<DisplayAffirmations />} /> */}
-            <Route path="/" element={<CurrentAffirmations />} />
+            <Route path="/" element={<DisplayAffirmations />} />
+            {/* <Route path="/" element={<CurrentAffirmations />} /> */}
             <Route path="/current" element={<CurrentAffirmations />} />
             <Route path="/add" element={<AddAffirmation />} />
             <Route path="/edit" element={<EditAffirmation />} />
@@ -96,4 +99,8 @@ const App = () => {
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
