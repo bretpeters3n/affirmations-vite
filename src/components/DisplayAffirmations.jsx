@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { requestGroupAffirmations } from "../utils/PullPostGetSet";
 
 const DisplayAffirmations = () => {
@@ -27,8 +27,11 @@ const DisplayAffirmations = () => {
   };
 
   useEffect(() => {
-    setAffirmations(runRequestGroupAffirmations());
+    // setAffirmations(runRequestGroupAffirmations());
+    runRequestGroupAffirmations();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // setAffirmations(runRequestGroupAffirmations());
 
   console.log("affirmations is:");
   console.log(affirmations);
@@ -38,15 +41,14 @@ const DisplayAffirmations = () => {
       <section className="home-slideshow w-80 position-absolute top-50 start-50 translate-middle">
         <Splide
           options={{
-            autoplay: true,
-            pauseOnHover: true,
             pagination: false,
             arrows: false,
             type: "fade",
             rewind: true,
+            autoplay: true,
             speed: 500,
             width: "100vw",
-            // interval: 4000,
+            interval: 4000,
           }}
           aria-label="My Affirmation Quotes"
         >
@@ -62,8 +64,15 @@ const DisplayAffirmations = () => {
               </SplideSlide>
             );
           })}
-          <div class="splide__progress">
-            <div class="splide__progress__bar"></div>
+          <div className="">
+            <div className="splide__progress">
+              <div className="splide__progress__bar"></div>
+            </div>
+
+            <button className="splide__toggle">
+              <span className="splide__toggle__play">Play</span>
+              <span className="splide__toggle__pause">Pause</span>
+            </button>
           </div>
         </Splide>
       </section>
