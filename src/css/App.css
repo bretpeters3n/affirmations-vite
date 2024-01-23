@@ -258,6 +258,9 @@ li {
 .card .edit:hover {
   background-color: rgb(50, 50, 50);
 }
+.card .edit svg {
+  height: 100%;
+}
 
 /* Page layouts? */
 .traditional__layout {

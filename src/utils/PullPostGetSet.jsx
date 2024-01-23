@@ -18,7 +18,7 @@ export const requestGroupAffirmations = (affirmationsData, currentGroup) => {
   return affirmationsData[0].groups[groupKey].affirmations;
 };
 
-export const getCurrentGroupKey = (affirmationsData, currentGroup) => {
+export const requestCurrentGroupKey = (affirmationsData, currentGroup) => {
   // define var for key of affirmation group we are attempting to display
   let groupKey;
   // assign the wanted key to the var
@@ -32,7 +32,7 @@ export const getCurrentGroupKey = (affirmationsData, currentGroup) => {
   return groupKey;
 };
 
-export const getCurrentAffirmationKey = (affirmations, id) => {
+export const requestCurrentAffirmationKey = (affirmations, id) => {
   // define var for key of affirmation group we are attempting to display
   let affirmationKey;
   // assign the wanted key to the var

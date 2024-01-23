@@ -41,6 +41,7 @@ const DisplayAffirmations = () => {
         <Splide
           options={{
             pagination: false,
+            pauseOnHover: false,
             arrows: false,
             type: "fade",
             rewind: true,
@@ -52,17 +53,15 @@ const DisplayAffirmations = () => {
           }}
           aria-label="My Affirmation Quotes"
         >
-          {affirmations.map(({ affirmation, id, uid }, index) => {
-            return (
-              <SplideSlide
-                index={index}
-                id={id}
-                key={uid}
-                data-splide-interval="4000"
-              >
-                <p>{affirmation}</p>
-              </SplideSlide>
-            );
+          {affirmations.map(({ affirmation, id }, index) => {
+            <SplideSlide
+              id={index}
+              // id={id}
+              key={id}
+              data-splide-interval="4000"
+            >
+              <p>{affirmation}</p>
+            </SplideSlide>;
           })}
           <div className="splide__progress">
             <div className="splide__progress__bar"></div>

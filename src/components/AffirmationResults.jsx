@@ -13,11 +13,11 @@ const AffirmationResults = ({
       {!affirmations.length ? (
         <h1>No Affirmations present</h1>
       ) : (
-        affirmations.map((affirmation) => (
+        affirmations.map(({ affirmation, id }, index) => (
           <Affirmation
-            affirmation={affirmation.affirmation}
-            id={affirmation.id}
-            key={affirmation.uid}
+            affirmation={affirmation}
+            id={index}
+            key={id}
             currentGroup={currentGroup}
             affirmationsData={affirmationsData}
           ></Affirmation>

@@ -114,8 +114,9 @@ const AffirmationParams = () => {
       // add reconstructed object to affirmationsData
       // add new group
       affirmationsData[0].groups.push({
-        id: newGroup.id,
-        uid: uid.rnd(),
+        // id: newGroup.id,
+        id: uid.rnd(),
+        // uid: uid.rnd(),
         group: newGroup.group,
         affirmations: newGroup.affirmations,
       });
@@ -156,7 +157,7 @@ const AffirmationParams = () => {
               }}
             >
               {affirmationsData[0].groups.map((groups) => (
-                <option id={groups.id} key={groups.uid} value={groups.group}>
+                <option key={groups.id} value={groups.group}>
                   {groups.group}
                 </option>
               ))}

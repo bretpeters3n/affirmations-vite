@@ -81,13 +81,13 @@ const App = () => {
           </ul>
         </nav>
         {/* <main className="d-flex flex-column justify-content-center pt-4"> */}
-        <main>
+        <main className="pt-4">
           <Routes>
             <Route path="/" element={<DisplayAffirmations />} />
             {/* <Route path="/" element={<CurrentAffirmations />} /> */}
             <Route path="/current" element={<CurrentAffirmations />} />
             <Route path="/add" element={<AddAffirmation />} />
-            <Route path="/edit" element={<EditAffirmation />} />
+            <Route path="/edit/:groupKey/:id" element={<EditAffirmation />} />
             {/* <Route path="/about" element={<AboutAffirmations />} /> */}
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>

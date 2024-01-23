@@ -1,22 +1,24 @@
 import { AiFillEdit } from "react-icons/ai";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
+import { requestCurrentGroupKey } from "../utils/PullPostGetSet";
 
 const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
   const navigate = useNavigate();
 
-  const handleEditAffirmationClick = (event) => {
-    let editEl = event.target.closest("li");
+  const handleEditAffirmationClick = (e) => {
+    let editEl = e.target.closest("li");
     let editId = editEl.getAttribute("id");
     navigate("/edit", {
       state: {
         affirmationId: editId,
-        // affirmations: affirmations,
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
       },
     }); // Pass optional second argument
   };
+
+  let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
 
   return (
     <li
@@ -28,14 +30,17 @@ const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
       <div className="card">
         <div className="card-body d-flex flex-row">
           <p className="theme-switcher text-center">{affirmation}</p>
-          <Button
+          <a href={`/edit/${groupKey}/${id}`} className="theme-switcher edit">
+            <AiFillEdit size={20} className="reactIcons" />
+          </a>
+          {/* <Button
             onClick={(e) => {
               handleEditAffirmationClick(e);
             }}
             className="theme-switcher edit"
           >
             <AiFillEdit size={20} className="reactIcons" />
-          </Button>
+          </Button> */}
         </div>
       </div>
     </li>

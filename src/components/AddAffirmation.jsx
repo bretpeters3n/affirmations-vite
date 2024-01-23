@@ -9,7 +9,7 @@ import {
 import Button from "react-bootstrap/Button";
 import {
   postAffirmationsData,
-  getCurrentGroupKey,
+  requestCurrentGroupKey,
 } from "../utils/PullPostGetSet";
 import Affirmation from "../utils/affirmationClass"; // Affirmation class
 
@@ -20,7 +20,7 @@ const AddAffirmation = () => {
 
   let affirmationsData = location.state.affirmationsData;
   let currentGroup = location.state.currentGroup;
-  let groupKey = getCurrentGroupKey(affirmationsData, currentGroup);
+  let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
   console.log(groupKey);
 
   const handleAddAffirmationClick = () => {
