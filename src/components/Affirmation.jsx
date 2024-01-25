@@ -12,13 +12,13 @@ const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
     navigate("/edit", {
       state: {
         affirmationId: editId,
-        currentGroup: currentGroup,
-        affirmationsData: affirmationsData,
+        // currentGroup: currentGroup,
+        // affirmationsData: affirmationsData,
       },
     }); // Pass optional second argument
   };
 
-  let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+  // let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
 
   return (
     <li
@@ -30,17 +30,17 @@ const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
       <div className="card">
         <div className="card-body d-flex flex-row">
           <p className="theme-switcher text-center">{affirmation}</p>
-          <a href={`/edit/${groupKey}/${id}`} className="theme-switcher edit">
-            <AiFillEdit size={20} className="reactIcons" />
-          </a>
-          {/* <Button
+          <button
             onClick={(e) => {
               handleEditAffirmationClick(e);
             }}
             className="theme-switcher edit"
           >
             <AiFillEdit size={20} className="reactIcons" />
-          </Button> */}
+          </button>
+          {/* <a href={`/edit/${groupKey}/${id}`} className="theme-switcher edit">
+            <AiFillEdit size={20} className="reactIcons" />
+          </a> */}
         </div>
       </div>
     </li>

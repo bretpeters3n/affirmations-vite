@@ -5,20 +5,25 @@ import {
   postAffirmationsData,
   requestCurrentGroupKey,
   requestCurrentAffirmationKey,
+  requestAndSaveAffirmationsData,
 } from "../utils/PullPostGetSet";
 
 const EditAffirmation = () => {
   const navigate = useNavigate();
 
-  // const location = useLocation();
+  const location = useLocation();
 
   const [affirmationsData, setAffirmationsData] = useState(
-    localStorage.getItem("affirmationsUnique")
-      ? JSON.parse(localStorage.getItem("affirmationsUnique"))
-      : stockAffirmationsArray
+    requestAndSaveAffirmationsData()
   );
 
-  const { groupKey, id } = useParams();
+  const [currentGroup, setCurrentGroup] = useState(
+    affirmationsData[0].currentGroup
+  );
+
+  let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+
+  let id = location.state.affirmationId;
 
   let affirmationTextToEdit =
     affirmationsData[0].groups[groupKey].affirmations[id].affirmation;
@@ -52,9 +57,6 @@ const EditAffirmation = () => {
         <h1 className="pb-2">Edit Affirmation</h1>
         <div className="pb-2">
           <p>Edit your affirmation below</p>
-          <p>
-            {groupKey} & {id}
-          </p>
         </div>
         <form className="align-items-center pb-3">
           <textarea

@@ -87,7 +87,7 @@ const App = () => {
             {/* <Route path="/" element={<CurrentAffirmations />} /> */}
             <Route path="/current" element={<CurrentAffirmations />} />
             <Route path="/add" element={<AddAffirmation />} />
-            <Route path="/edit/:groupKey/:id" element={<EditAffirmation />} />
+            <Route path="/edit" element={<EditAffirmation />} />
             {/* <Route path="/about" element={<AboutAffirmations />} /> */}
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>

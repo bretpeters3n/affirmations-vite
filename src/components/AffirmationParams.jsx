@@ -105,9 +105,6 @@ const AffirmationParams = () => {
 
   return (
     <>
-      {affirmationsData
-        ? console.log("affirmationsData exists")
-        : console.log("affirmationsData")}
       <div className="search-params">
         <form
           className="card"
