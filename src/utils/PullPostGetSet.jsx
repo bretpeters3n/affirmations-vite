@@ -24,14 +24,14 @@ export const requestAndSaveAffirmationsData = () => {
   return affirmationsData;
 };
 
-// export const requestLocalStorageAffirmationsData = () => {
-//   // define data
-//   let affirmationsData = [];
-//   // get data
-//   affirmationsData = JSON.parse(localStorage.getItem("affirmationsUnique"));
-//   // send data
-//   return affirmationsData;
-// };
+export const requestLocalStorageAffirmationsData = () => {
+  // define data
+  let affirmationsData = [];
+  // get data
+  affirmationsData = JSON.parse(localStorage.getItem("affirmationsUnique"));
+  // send data
+  return affirmationsData;
+};
 
 export const requestGroupAffirmations = (affirmationsData, currentGroup) => {
   affirmationsData[0].currentGroup = currentGroup;

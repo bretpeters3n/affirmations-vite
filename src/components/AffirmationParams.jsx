@@ -9,6 +9,7 @@ import {
   postAffirmationsData,
   requestGroupAffirmations,
   requestAndSaveAffirmationsData,
+  requestLocalStorageAffirmationsData,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
 import ShortUniqueId from "short-unique-id";
@@ -104,6 +105,9 @@ const AffirmationParams = () => {
 
   return (
     <>
+      {affirmationsData
+        ? console.log("affirmationsData exists")
+        : console.log("affirmationsData")}
       <div className="search-params">
         <form
           className="card"
