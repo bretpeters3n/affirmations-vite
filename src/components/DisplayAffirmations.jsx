@@ -1,50 +1,20 @@
 import { useState, useEffect } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
-//  import {
-//    requestGroupAffirmations,
-//    postAffirmationsData,
-// } from "../utils/PullPostGetSet";
+import {
+  postAffirmationsData,
+  requestAffirmationsData,
+  requestGroupAffirmations,
+} from "../utils/PullPostGetSet";
 import testAffirmations from "../db/testAffirmations";
 // import stockAffirmationsArray from "../db/stockAffirmations";
 
 const DisplayAffirmations = () => {
-  // const [affirmations, setAffirmations] = useState(testAffirmations);
-  // console.log(affirmations);
-
-  const affirmations = testAffirmations;
-  console.log("affirmations is:");
-  console.log(affirmations);
-
-  // const [affirmationsData, setAffirmationsData] = useState(
-  //   localStorage.getItem("affirmationsUnique")
-  //     ? JSON.parse(localStorage.getItem("affirmationsUnique"))
-  //     : stockAffirmationsArray
-  // );
-
-  // const [currentGroup, setCurrentGroup] = useState(
-  //   affirmationsData[0].currentGroup
-  // );
-
-  // const runRequestGroupAffirmations = () => {
-  //   console.log("runRequestGroupAffirmations triggered");
-  //   const data = requestGroupAffirmations(affirmationsData, currentGroup);
-  //   setAffirmations(data);
-  // };
-
-  // const runPostAffirmationsData = () => {
-  //   console.log("runPostAffirmationsData triggered");
-  //   postAffirmationsData(affirmationsData);
-  // };
-
-  // useEffect(() => {
-  //   runRequestGroupAffirmations();
-  //   console.log("useEffect triggered");
-  //   runPostAffirmationsData();
-  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const affirmationsData = requestAffirmationsData();
+  const currentGroup = affirmationsData[0].currentGroup;
+  const affirmations = requestGroupAffirmations(affirmationsData, currentGroup);
 
   return (
     <>
-      {/* <section className="home-slideshow w-80 position-absolute top-50 start-50 translate-middle"> */}
       <section className="home-slideshow">
         <Splide
           options={{
@@ -61,11 +31,9 @@ const DisplayAffirmations = () => {
           }}
           aria-label="My Affirmation Quotes"
         >
-          {/* {affirmations.map((affirmation, index) => { */}
           {affirmations.map((affirmation) => (
-            // console.log(`${affirmation}${id}${index}`);
             <SplideSlide
-              // id={index}
+              id={affirmation.id}
               key={affirmation.id}
               value={affirmation.affirmation}
               data-splide-interval="4000"

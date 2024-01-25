@@ -1,5 +1,26 @@
+import stockAffirmationsArray from "../db/stockAffirmations";
+
 export const postAffirmationsData = (affirmationsData) => {
   localStorage.setItem("affirmationsUnique", JSON.stringify(affirmationsData));
+};
+
+export const requestAffirmationsData = () => {
+  // define data
+  let affirmationsData = [];
+  // get data
+  async function readData() {
+    affirmationsData = localStorage.getItem("affirmationsUnique")
+      ? JSON.parse(localStorage.getItem("affirmationsUnique"))
+      : stockAffirmationsArray;
+  }
+  // set data
+  readData().then(() => {
+    localStorage.setItem(
+      "affirmationsUnique",
+      JSON.stringify(affirmationsData)
+    );
+  });
+  return affirmationsData;
 };
 
 export const requestGroupAffirmations = (affirmationsData, currentGroup) => {
