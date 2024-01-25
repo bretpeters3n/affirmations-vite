@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import {
   postAffirmationsData,
-  requestAffirmationsData,
+  requestAndSaveAffirmationsData,
   requestGroupAffirmations,
 } from "../utils/PullPostGetSet";
 import testAffirmations from "../db/testAffirmations";
 // import stockAffirmationsArray from "../db/stockAffirmations";
 
 const DisplayAffirmations = () => {
-  const affirmationsData = requestAffirmationsData();
+  const affirmationsData = requestAndSaveAffirmationsData();
   const currentGroup = affirmationsData[0].currentGroup;
   const affirmations = requestGroupAffirmations(affirmationsData, currentGroup);
 

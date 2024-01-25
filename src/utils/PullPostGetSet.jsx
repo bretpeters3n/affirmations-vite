@@ -4,7 +4,7 @@ export const postAffirmationsData = (affirmationsData) => {
   localStorage.setItem("affirmationsUnique", JSON.stringify(affirmationsData));
 };
 
-export const requestAffirmationsData = () => {
+export const requestAndSaveAffirmationsData = () => {
   // define data
   let affirmationsData = [];
   // get data
@@ -13,15 +13,25 @@ export const requestAffirmationsData = () => {
       ? JSON.parse(localStorage.getItem("affirmationsUnique"))
       : stockAffirmationsArray;
   }
-  // set data
+  // save data to localStorage
   readData().then(() => {
     localStorage.setItem(
       "affirmationsUnique",
       JSON.stringify(affirmationsData)
     );
   });
+  // send data
   return affirmationsData;
 };
+
+// export const requestLocalStorageAffirmationsData = () => {
+//   // define data
+//   let affirmationsData = [];
+//   // get data
+//   affirmationsData = JSON.parse(localStorage.getItem("affirmationsUnique"));
+//   // send data
+//   return affirmationsData;
+// };
 
 export const requestGroupAffirmations = (affirmationsData, currentGroup) => {
   affirmationsData[0].currentGroup = currentGroup;

@@ -5,10 +5,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AffirmationResults from "./AffirmationResults";
 import Modal from "./Modal";
-import stockAffirmationsArray from "../db/stockAffirmations";
 import {
   postAffirmationsData,
   requestGroupAffirmations,
+  requestAndSaveAffirmationsData,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
 import ShortUniqueId from "short-unique-id";
@@ -43,37 +43,31 @@ const AffirmationParams = () => {
     // });
   };
 
-  // variable holding the localStorage data
   const [affirmationsData, setAffirmationsData] = useState(
-    localStorage.getItem("affirmationsUnique")
-      ? JSON.parse(localStorage.getItem("affirmationsUnique"))
-      : stockAffirmationsArray
+    requestAndSaveAffirmationsData()
   );
 
   const [currentGroup, setCurrentGroup] = useState(
     affirmationsData[0].currentGroup
   );
-
-  const [affirmations, setAffirmations] = useState([]);
-  const [status, setStatus] = useState("unloaded");
+  const [affirmations, setAffirmations] = useState(
+    requestGroupAffirmations(affirmationsData, currentGroup)
+  );
 
   const [showModal, setShowModal] = useState(false);
 
   const addNewGroupMessaging = "+ Create new group";
 
-  //Remove this out from useEffect
   const runRequestGroupAffirmations = async () => {
-    setAffirmations([]);
-    setStatus("loading");
     const data = await requestGroupAffirmations(affirmationsData, currentGroup);
     setAffirmations(data);
-    setStatus("loaded");
+    affirmationsData[0].currentGroup = currentGroup;
+    postAffirmationsData(affirmationsData);
   };
 
   const handleAddAffirmationClick = () => {
     navigate("/add", {
       state: {
-        // affirmations: affirmations,
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
       },
@@ -85,38 +79,17 @@ const AffirmationParams = () => {
     runRequestGroupAffirmations();
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(() => {
-    postAffirmationsData(affirmationsData);
-  }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
-
   const handleCreateNewGroup = () => {
-    // const data = await getCurrentGroupAffirmations(
-    //   affirmationsData,
-    //   currentGroup
-    // );
-    // const affirmationsData = data.affirmationsData;
-    // const currentGroup = data.currentGroup;
-    console.log(affirmationsData);
-    // console.log(currentGroup);
     const newGroupName = document.getElementById("name").value;
     if (!newGroupName) {
       alert(
         "You have not entered any text. Please name your group to continue creating it."
       );
     } else {
-      // create new Group class that follows structure of object
       const id = affirmationsData[0].groups.length + 1;
-      console.log(id);
-      // create/run it
       const newGroup = new Group(newGroupName, id);
-      console.log(newGroup);
-      // deconstruct new object into three vars
-      // add reconstructed object to affirmationsData
-      // add new group
       affirmationsData[0].groups.push({
-        // id: newGroup.id,
         id: uid.rnd(),
-        // uid: uid.rnd(),
         group: newGroup.group,
         affirmations: newGroup.affirmations,
       });
@@ -127,9 +100,6 @@ const AffirmationParams = () => {
       });
     }
   };
-
-  // PSUEDO CODE
-  //
 
   return (
     <>
@@ -150,7 +120,6 @@ const AffirmationParams = () => {
                 let tempTarget = e.target.value;
                 if (tempTarget == addNewGroupMessaging) {
                   setShowModal(true);
-                  // console.log("add new clicked");
                 } else {
                   setCurrentGroup(tempTarget);
                 }
@@ -176,7 +145,6 @@ const AffirmationParams = () => {
         <div>
           <Button
             onClick={handleAddAffirmationClick}
-            // onClick={() => setShowModal(true)}
             className="position-relative start-50 translate-middle"
           >
             Add Affirmation
