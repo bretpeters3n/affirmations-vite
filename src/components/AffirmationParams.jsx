@@ -95,6 +95,7 @@ const AffirmationParams = () => {
       });
       postAffirmationsData(affirmationsData);
       setShowModal(false);
+      setCurrentGroup(newGroupName);
       toast.success("Group added!", {
         position: "bottom-center",
       });
