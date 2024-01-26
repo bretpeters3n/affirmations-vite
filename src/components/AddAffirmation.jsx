@@ -8,6 +8,8 @@ import {
   useLocation,
 } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Modal from "./Modal";
 import {
   postAffirmationsData,
@@ -46,6 +48,9 @@ const AddAffirmation = () => {
       });
 
       postAffirmationsData(affirmationsData);
+      toast.success(`Affirmation '${newAffirmation.affirmation}' added!`, {
+        position: "bottom-center",
+      });
       navigate("/current");
     }
   };

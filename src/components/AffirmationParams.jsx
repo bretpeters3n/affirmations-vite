@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AffirmationResults from "./AffirmationResults";
 import Modal from "./Modal";
@@ -18,31 +18,6 @@ const uid = new ShortUniqueId();
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
-
-  const notify = () => {
-    // toast("Default Notification !");
-
-    toast.success("Group added!", {
-      position: "bottom-center",
-    });
-
-    // toast.error("Error Notification !", {
-    //   position: "top-left",
-    // });
-
-    // toast.warn("Warning Notification !", {
-    //   position: "bottom-left",
-    // });
-
-    // toast.info("Info Notification !", {
-    //   position: "bottom-center",
-    // });
-
-    // toast("Custom Style Notification with css class!", {
-    //   position: "bottom-right",
-    //   className: "foo-bar",
-    // });
-  };
 
   const [affirmationsData, setAffirmationsData] = useState(
     requestAndSaveAffirmationsData()
@@ -83,6 +58,9 @@ const AffirmationParams = () => {
       .slice(0, Number(groupKey))
       .concat(updatedGroupList.slice(Number(groupKey) + 1));
     affirmationsData[0].groups = updatedGroupList;
+    toast.success(`Group '${currentGroup}' deleted!`, {
+      position: "bottom-center",
+    });
     setCurrentGroup(affirmationsData[0].groups[0].group);
     postAffirmationsData(affirmationsData);
   };
@@ -108,7 +86,7 @@ const AffirmationParams = () => {
       postAffirmationsData(affirmationsData);
       setShowModal(false);
       setCurrentGroup(newGroupName);
-      toast.success("Group added!", {
+      toast.success(`Group '${newGroupName}' added!`, {
         position: "bottom-center",
       });
     }
@@ -178,7 +156,6 @@ const AffirmationParams = () => {
           >
             Delete Group
           </Button>
-          <ToastContainer />
         </div>
       </div>
       {

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Modal from "./Modal";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   postAffirmationsData,
   requestCurrentGroupKey,
@@ -46,10 +48,18 @@ const EditAffirmation = () => {
     if (!updatedAffirmation) {
       // alert("Affirmation text is empty");
       setShowModal(true);
+    } else if (updatedAffirmation == affirmationTextToEdit) {
+      toast.info(`No changes were made 🧐 Try again?`, {
+        position: "bottom-center",
+      });
+      navigate("/current");
     } else {
       affirmationsData[0].groups[groupKey].affirmations[id].affirmation =
         updatedAffirmation;
       postAffirmationsData(affirmationsData);
+      toast.success(`Update to '${updatedAffirmation}', success!`, {
+        position: "bottom-center",
+      });
       navigate("/current");
     }
   }

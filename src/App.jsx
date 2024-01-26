@@ -1,6 +1,8 @@
 import { useState, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+
 import DisplayAffirmations from "./components/DisplayAffirmations";
 import CurrentAffirmations from "./components/CurrentAfirmations";
 import EditAffirmation from "./components/EditAffirmation";
@@ -93,6 +95,7 @@ const App = () => {
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </main>
+        <ToastContainer />
       </BrowserRouter>
     </>
   );
