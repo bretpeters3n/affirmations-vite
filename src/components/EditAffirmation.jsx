@@ -17,6 +17,7 @@ const EditAffirmation = () => {
   const location = useLocation();
 
   const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
 
   const [affirmationsData, setAffirmationsData] = useState(
     requestAndSaveAffirmationsData()
@@ -39,6 +40,9 @@ const EditAffirmation = () => {
       .slice(0, Number(id))
       .concat(affirmationListCopy.slice(Number(id) + 1));
     affirmationsData[0].groups[groupKey].affirmations = updatedAffirmationList;
+    toast.success(`Affirmation '${affirmationTextToEdit}' deleted!`, {
+      position: "bottom-center",
+    });
     postAffirmationsData(affirmationsData);
     navigate("/current");
   };
@@ -95,7 +99,7 @@ const EditAffirmation = () => {
           {/* <DialogEdit /> */}
           <button
             className="theme-switcher btn btn-danger"
-            onClick={handleConfirmDeleteAffirmationClick}
+            onClick={() => setShowModal2(true)}
           >
             Delete Affirmation
           </button>
@@ -111,6 +115,28 @@ const EditAffirmation = () => {
               <p>Please add you affirmation text and try again</p>
               <div className="buttons">
                 <button onClick={() => setShowModal(false)}>Ok</button>
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
+      {
+        showModal2 ? (
+          <Modal>
+            <div className="modal-container">
+              {/* <div className="modal-container"> */}
+              <h2>Delete this affirmation</h2>
+              <p>Are you sure?</p>
+              <div className="buttons">
+                <button onClick={() => setShowModal2(false)}>Cancel</button>
+                <button
+                  onClick={() => {
+                    handleConfirmDeleteAffirmationClick();
+                    setShowModal2(false);
+                  }}
+                >
+                  Yes
+                </button>
               </div>
             </div>
           </Modal>
