@@ -5,6 +5,7 @@ import DisplayAffirmations from "./components/DisplayAffirmations";
 import CurrentAffirmations from "./components/CurrentAfirmations";
 import EditAffirmation from "./components/EditAffirmation";
 import AddAffirmation from "./components/AddAffirmation";
+import AboutAffirmations from "./components/AboutAffirmations";
 import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 import lightModeIcon from "./assets/dark-mode-icon_light.svg";
 import "./css/splide-core.min.css";
@@ -49,7 +50,7 @@ const App = () => {
           <ul id="menu" className={isActive ? "opened" : ""}>
             <li>
               <Link to="/" onClick={handleHamClick} className="theme-switcher">
-                Home
+                Feels
               </Link>
             </li>
             <li>
@@ -58,12 +59,12 @@ const App = () => {
                 onClick={handleHamClick}
                 className="theme-switcher"
               >
-                Edit/Add
+                Settings
               </Link>
             </li>
             <li>
               <Link to="/about" onClick={handleHamClick}>
-                Why?
+                About
               </Link>
             </li>
             {/* <li>
@@ -88,7 +89,7 @@ const App = () => {
             <Route path="/current" element={<CurrentAffirmations />} />
             <Route path="/add" element={<AddAffirmation />} />
             <Route path="/edit" element={<EditAffirmation />} />
-            {/* <Route path="/about" element={<AboutAffirmations />} /> */}
+            <Route path="/about" element={<AboutAffirmations />} />
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </main>

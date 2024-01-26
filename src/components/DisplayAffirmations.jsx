@@ -36,7 +36,9 @@ const DisplayAffirmations = () => {
               id={affirmation.id}
               key={affirmation.id}
               value={affirmation.affirmation}
-              data-splide-interval="4000"
+              data-splide-interval={
+                affirmation.affirmation.length > 60 ? "8000" : "4000"
+              }
             >
               <p>{affirmation.affirmation}</p>
             </SplideSlide>
