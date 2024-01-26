@@ -9,7 +9,7 @@ import {
   postAffirmationsData,
   requestGroupAffirmations,
   requestAndSaveAffirmationsData,
-  requestLocalStorageAffirmationsData,
+  requestCurrentGroupKey,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
 import ShortUniqueId from "short-unique-id";
@@ -56,6 +56,7 @@ const AffirmationParams = () => {
   );
 
   const [showModal, setShowModal] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
 
   const addNewGroupMessaging = "+ Create new group";
 
@@ -73,7 +74,17 @@ const AffirmationParams = () => {
         affirmationsData: affirmationsData,
       },
     }); // Pass optional second argument
-    console.log("click");
+  };
+
+  const handleDeleteGroupClick = () => {
+    let updatedGroupList = affirmationsData[0].groups;
+    const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+    updatedGroupList = updatedGroupList
+      .slice(0, Number(groupKey))
+      .concat(updatedGroupList.slice(Number(groupKey) + 1));
+    affirmationsData[0].groups = updatedGroupList;
+    setCurrentGroup(affirmationsData[0].groups[0].group);
+    postAffirmationsData(affirmationsData);
   };
 
   useEffect(() => {
@@ -107,13 +118,13 @@ const AffirmationParams = () => {
     <>
       <div className="search-params">
         <form
-          className="card"
+          // className="card"
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
           <label htmlFor="group">
-            Select affirmation group:
+            {/* Select affirmation group: */}
             <select
               id={currentGroup}
               key={currentGroup}
@@ -161,6 +172,12 @@ const AffirmationParams = () => {
           >
             Notify!
           </Button>
+          <Button
+            onClick={() => setShowModal2(true)}
+            className="position-relative start-50 translate-middle"
+          >
+            Delete Group
+          </Button>
           <ToastContainer />
         </div>
       </div>
@@ -189,6 +206,28 @@ const AffirmationParams = () => {
                   }}
                 >
                   Create group
+                </button>
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
+      {
+        showModal2 ? (
+          <Modal>
+            <div className="modal-container">
+              {/* <div className="modal-container"> */}
+              <h2>Delete this group?</h2>
+              <p>{currentGroup}</p>
+              <div className="buttons">
+                <button onClick={() => setShowModal2(false)}>Cancel</button>
+                <button
+                  onClick={() => {
+                    handleDeleteGroupClick();
+                    setShowModal2(false);
+                  }}
+                >
+                  Yes
                 </button>
               </div>
             </div>

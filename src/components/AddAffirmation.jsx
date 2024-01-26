@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BrowserRouter,
   useNavigate,
@@ -7,6 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Modal from "./Modal";
 import {
   postAffirmationsData,
   requestCurrentGroupKey,
@@ -21,21 +23,23 @@ const AddAffirmation = () => {
 
   const uid = new ShortUniqueId();
 
+  const [showModal, setShowModal] = useState(false);
+
   let affirmationsData = location.state.affirmationsData;
   let currentGroup = location.state.currentGroup;
   let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-  console.log(groupKey);
 
   const handleAddAffirmationClick = () => {
     const affirmation = document.getElementById("affirmationText").value;
     if (!affirmation) {
-      alert("Affirmation text is empty. Please add you affirmation.");
+      // alert("Affirmation text is empty. Please add you affirmation.");
+      setShowModal(true);
     } else {
       const id = uid.rnd();
       const newAffirmation = new Affirmation(affirmation, id);
 
       // add new affirmation
-      affirmationsData[0].groups[groupKey].affirmations.push({
+      affirmationsData[0].groups[groupKey].affirmations.unshift({
         id: newAffirmation.id,
         // uid: newAffirmation.uid,
         affirmation: newAffirmation.affirmation,
@@ -74,6 +78,20 @@ const AddAffirmation = () => {
           </button>
         </div>
       </section>
+      {
+        showModal ? (
+          <Modal>
+            <div className="modal-container">
+              {/* <div className="modal-container"> */}
+              <h2>Affirmation text is empty</h2>
+              <p>Please add you affirmation text and try again</p>
+              <div className="buttons">
+                <button onClick={() => setShowModal(false)}>Ok</button>
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
     </>
   );
 };

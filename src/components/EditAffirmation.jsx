@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import Modal from "./Modal";
 import {
   postAffirmationsData,
   requestCurrentGroupKey,
@@ -12,6 +13,8 @@ const EditAffirmation = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
+
+  const [showModal, setShowModal] = useState(false);
 
   const [affirmationsData, setAffirmationsData] = useState(
     requestAndSaveAffirmationsData()
@@ -39,11 +42,16 @@ const EditAffirmation = () => {
   };
 
   function handleConfirmEditAffirmationClick() {
-    let updatedAffirmation = document.getElementById("affirmationText").value;
-    affirmationsData[0].groups[groupKey].affirmations[id].affirmation =
-      updatedAffirmation;
-    postAffirmationsData(affirmationsData);
-    navigate("/current");
+    const updatedAffirmation = document.getElementById("affirmationText").value;
+    if (!updatedAffirmation) {
+      // alert("Affirmation text is empty");
+      setShowModal(true);
+    } else {
+      affirmationsData[0].groups[groupKey].affirmations[id].affirmation =
+        updatedAffirmation;
+      postAffirmationsData(affirmationsData);
+      navigate("/current");
+    }
   }
 
   function handleCancelEditAffirmationClick() {
@@ -84,6 +92,20 @@ const EditAffirmation = () => {
           {/* <DialogDelete /> */}
         </div>
       </section>
+      {
+        showModal ? (
+          <Modal>
+            <div className="modal-container">
+              {/* <div className="modal-container"> */}
+              <h2>Affirmation text is empty</h2>
+              <p>Please add you affirmation text and try again</p>
+              <div className="buttons">
+                <button onClick={() => setShowModal(false)}>Ok</button>
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
     </>
   );
 };
