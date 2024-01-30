@@ -92,6 +92,39 @@ const AffirmationParams = () => {
     }
   };
 
+  const handleShareAffirmationsClick = () => {
+    const PAGE_PATH = `/shared?query=`;
+    let affParams = [
+      {
+        id: "fkuT6N",
+        // uid: "fkuT6N",
+        group: "Default Affirmations",
+        affirmations: [
+          {
+            id: "rAhggX",
+            affirmation: "Struggling%20is%20part%20of%20learning",
+          },
+          {
+            id: "o1eWp2",
+            affirmation:
+              "Everything%20has%20cracks%20-%20that’s%20how%20the%20light%20gets%20in",
+          },
+        ],
+      },
+    ];
+    // let affParams = affirmations;
+    console.log("currentGroup is:");
+    console.log(currentGroup);
+    const affParamString = JSON.stringify(affParams);
+    // const paramString = params.toString();
+    // console.log(paramString);
+    const urlFormatted = `${PAGE_PATH}${affParamString}`;
+    navigate({
+      pathname: urlFormatted,
+      state: affirmations,
+    });
+  };
+
   return (
     <>
       <div className="search-params">
@@ -135,7 +168,7 @@ const AffirmationParams = () => {
         <p>End of list</p>
         <div>
           <Button
-            onClick={handleAddAffirmationClick}
+            onClick={() => handleAddAffirmationClick()}
             className="position-relative start-50 translate-middle"
           >
             Add Affirmation
@@ -155,6 +188,12 @@ const AffirmationParams = () => {
             className="position-relative start-50 translate-middle"
           >
             Delete Group
+          </Button>
+          <Button
+            onClick={() => handleShareAffirmationsClick()}
+            className="position-relative start-50 translate-middle"
+          >
+            Share Group
           </Button>
         </div>
       </div>

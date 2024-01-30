@@ -1,10 +1,33 @@
+import { useEffect, useState } from "react";
 // import { useSearchParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import SharedAffirmationResults from "./SharedAffirmationResults";
 import AffirmationParams from "./AffirmationParams";
 
-const SharedAffirmations = () => {
+const SharedAffirmations = (props) => {
   const queryParameters = new URLSearchParams(window.location.search);
-  const SHARED_AFFIRMATIONS = queryParameters.get("query");
+  const [sharedAffirmations, setSharedAffirmations] = useState(
+    queryParameters.get("query")
+    // [
+    //   {
+    //     id: "fkuT6N",
+    //     // uid: "fkuT6N",
+    //     group: "Default Affirmations",
+    //     affirmations: [
+    //       {
+    //         id: "rAhggX",
+    //         affirmation: "Struggling%20is%20part%20of%20learning",
+    //       },
+    //       {
+    //         id: "o1eWp2",
+    //         affirmation:
+    //           "Everything%20has%20cracks%20-%20that’s%20how%20the%20light%20gets%20in",
+    //       },
+    //     ],
+    //   },
+    // ]
+  );
+  // console.log(sharedAffirmations);
 
   return (
     <>
@@ -25,8 +48,12 @@ const SharedAffirmations = () => {
           </Button>
           {/* <p className="mb-0">List of "Best Affirmations Ever" group:</p> */}
         </div>
-        {/* <AffirmationParams /> */}
-        <div>{SHARED_AFFIRMATIONS}</div>
+        <SharedAffirmationResults
+          // currentGroup={currentGroup}
+          // affirmationsData={affirmationsData}
+          sharedAffirmations={sharedAffirmations}
+        />
+        {<div>{sharedAffirmations}</div>}
       </section>
     </>
   );
