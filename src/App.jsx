@@ -8,6 +8,7 @@ import CurrentAffirmations from "./components/CurrentAfirmations";
 import EditAffirmation from "./components/EditAffirmation";
 import AddAffirmation from "./components/AddAffirmation";
 import AboutAffirmations from "./components/AboutAffirmations";
+import SharedAffirmations from "./components/SharedAffirmations";
 import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 import lightModeIcon from "./assets/dark-mode-icon_light.svg";
 import "./css/splide-core.min.css";
@@ -80,6 +81,11 @@ const App = () => {
                 alt="dark/light mode icon"
               />
             </li>
+            <li>
+              <Link to="/shared" onClick={handleHamClick}>
+                Shared
+              </Link>
+            </li>
             <li className="lastMenuItemExtend"></li>
           </ul>
         </nav>
@@ -91,6 +97,7 @@ const App = () => {
             <Route path="/current" element={<CurrentAffirmations />} />
             <Route path="/add" element={<AddAffirmation />} />
             <Route path="/edit" element={<EditAffirmation />} />
+            <Route path="/shared" element={<SharedAffirmations />} />
             <Route path="/about" element={<AboutAffirmations />} />
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
