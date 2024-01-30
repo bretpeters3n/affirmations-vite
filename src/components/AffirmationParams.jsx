@@ -32,6 +32,7 @@ const AffirmationParams = () => {
 
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
+  const [showModalShare, setShowModalShare] = useState(false);
 
   const addNewGroupMessaging = "+ Create new group";
 
@@ -93,32 +94,20 @@ const AffirmationParams = () => {
   };
 
   const handleShareAffirmationsClick = () => {
+    const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
     const PAGE_PATH = `/shared?query=`;
-    let affParams = [
-      {
-        id: "fkuT6N",
-        // uid: "fkuT6N",
-        group: "Default Affirmations",
-        affirmations: [
-          {
-            id: "rAhggX",
-            affirmation: "Struggling%20is%20part%20of%20learning",
-          },
-          {
-            id: "o1eWp2",
-            affirmation:
-              "Everything%20has%20cracks%20-%20that’s%20how%20the%20light%20gets%20in",
-          },
-        ],
-      },
-    ];
-    // let affParams = affirmations;
+    let affParams = affirmationsData[0].groups[groupKey];
     console.log("currentGroup is:");
     console.log(currentGroup);
-    const affParamString = JSON.stringify(affParams);
-    // const paramString = params.toString();
-    // console.log(paramString);
-    const urlFormatted = `${PAGE_PATH}${affParamString}`;
+    console.log("affParams is:");
+    console.log(affParams);
+    // const affParamString = JSON.stringify(affParams);
+    const affParamArray = [affParams].flat();
+    const affParamArrayString = JSON.stringify(affParamArray);
+    console.log(affParamArrayString);
+    const urlFormatted = `${PAGE_PATH}${affParamArrayString}`;
+    console.log("urlFormatted is:");
+    console.log(urlFormatted);
     navigate({
       pathname: urlFormatted,
       state: affirmations,
@@ -190,7 +179,7 @@ const AffirmationParams = () => {
             Delete Group
           </Button>
           <Button
-            onClick={() => handleShareAffirmationsClick()}
+            onClick={() => setShowModalShare(true)}
             className="position-relative start-50 translate-middle"
           >
             Share Group
@@ -241,6 +230,27 @@ const AffirmationParams = () => {
                   onClick={() => {
                     handleDeleteGroupClick();
                     setShowModal2(false);
+                  }}
+                >
+                  Yes
+                </button>
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
+      {
+        showModalShare ? (
+          <Modal>
+            <div className="modal-container">
+              <h2>Share this group?</h2>
+              <p>{currentGroup}</p>
+              <div className="buttons">
+                <button onClick={() => setShowModalShare(false)}>Cancel</button>
+                <button
+                  onClick={() => {
+                    handleShareAffirmationsClick();
+                    setShowModalShare(false);
                   }}
                 >
                   Yes

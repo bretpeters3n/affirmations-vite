@@ -8,26 +8,15 @@ const SharedAffirmations = (props) => {
   const queryParameters = new URLSearchParams(window.location.search);
   const [sharedAffirmations, setSharedAffirmations] = useState(
     queryParameters.get("query")
-    // [
-    //   {
-    //     id: "fkuT6N",
-    //     // uid: "fkuT6N",
-    //     group: "Default Affirmations",
-    //     affirmations: [
-    //       {
-    //         id: "rAhggX",
-    //         affirmation: "Struggling%20is%20part%20of%20learning",
-    //       },
-    //       {
-    //         id: "o1eWp2",
-    //         affirmation:
-    //           "Everything%20has%20cracks%20-%20that’s%20how%20the%20light%20gets%20in",
-    //       },
-    //     ],
-    //   },
-    // ]
   );
-  // console.log(sharedAffirmations);
+
+  const [currentGroup, setCurrentGroup] = useState(
+    JSON.parse(sharedAffirmations)[0].group
+  );
+
+  const handleAcceptAffirmationsClick = () => {
+    console.log("accept");
+  };
 
   return (
     <>
@@ -35,16 +24,15 @@ const SharedAffirmations = (props) => {
         <h1 className="pb-2">Incoming Affirmations</h1>
         <div className="d-flex flex-column justify-content-center">
           <p className="mb-3" style={{ width: "385px", margin: "0 auto" }}>
-            Someone has sent you a list of affirmations titled Best Affirmations
-            Ever.
+            Someone has sent you a list of affirmations titled {currentGroup}.
           </p>
           <Button
             onClick={() => {
-              console.log("click");
+              handleAcceptAffirmationsClick();
             }}
             className="mt-4 position-relative start-50 translate-middle w-50"
           >
-            Accept & view
+            Accept affirmations
           </Button>
           {/* <p className="mb-0">List of "Best Affirmations Ever" group:</p> */}
         </div>
@@ -53,7 +41,7 @@ const SharedAffirmations = (props) => {
           // affirmationsData={affirmationsData}
           sharedAffirmations={sharedAffirmations}
         />
-        {<div>{sharedAffirmations}</div>}
+        {/* {<div>{sharedAffirmations}</div>} */}
       </section>
     </>
   );

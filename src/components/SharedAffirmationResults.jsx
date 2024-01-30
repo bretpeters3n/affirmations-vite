@@ -1,29 +1,37 @@
-import Affirmation from "./Affirmation";
+import { useEffect, useState } from "react";
+import AffirmationShared from "./AffirmationShared";
 
 const SharedAffirmationResults = ({
-  currentGroup,
+  // currentGroup,
   // affirmationsData,
   sharedAffirmations,
 }) => {
-  sharedAffirmations = [sharedAffirmations];
-  console.log(sharedAffirmations);
+  const [affirmations, setAffirmations] = useState(
+    JSON.parse(sharedAffirmations)[0].affirmations
+  );
+
+  const [currentGroup, setCurrentGroup] = useState(
+    JSON.parse(sharedAffirmations)[0].group
+  );
+
+  // console.log(JSON.parse(sharedAffirmations)[0].group);
 
   return (
     <>
       <div>
         <p>List of {currentGroup} affirmations</p>
       </div>
-      {!sharedAffirmations.length ? (
+      {!affirmations.length ? (
         <h1>No Affirmations present</h1>
       ) : (
-        sharedAffirmations.map(({ affirmation, id }, index) => (
-          <Affirmation
+        affirmations.map(({ affirmation, id }, index) => (
+          <AffirmationShared
             affirmation={affirmation}
             id={index}
             key={id}
             // currentGroup={currentGroup}
             // affirmationsData={affirmationsData}
-          ></Affirmation>
+          ></AffirmationShared>
         ))
       )}
     </>
