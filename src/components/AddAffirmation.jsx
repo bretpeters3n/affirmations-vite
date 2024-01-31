@@ -8,6 +8,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import MyButton from "./MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "./Modal";
@@ -74,13 +75,21 @@ const AddAffirmation = () => {
           ></textarea>
         </form>
         <div className="flex">
-          <Button onClick={handleCancelAddAffirmationClick}>Cancel</Button>
-          <button
+          <MyButton
+            text="Cancel"
+            run={() => handleCancelAddAffirmationClick()}
+          />
+          {/* <Button onClick={handleCancelAddAffirmationClick}>Cancel</Button> */}
+          <MyButton
+            text="Add Affirmation"
+            run={() => handleAddAffirmationClick()}
+          />
+          {/* <button
             className="theme-switcher btn btn-outline-primary"
             onClick={handleAddAffirmationClick}
           >
             Add affirmation
-          </button>
+          </button> */}
         </div>
       </section>
       {

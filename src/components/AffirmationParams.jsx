@@ -153,17 +153,17 @@ const AffirmationParams = () => {
         </ul>
         <p>End of list</p>
         <div>
-          <MyButton
+          {/* <MyButton
             text="Add Affirmation"
             onClick={() => handleAddAffirmationClick()}
-          />
+          /> */}
           {/* <Button
             onClick={() => handleAddAffirmationClick()}
             className="position-relative start-50 translate-middle"
           >
             Add Affirmation
           </Button> */}
-          <Button
+          {/* <Button
             onClick={() => {
               toast.info("Notify pressed!", {
                 position: "bottom-center",
@@ -172,19 +172,24 @@ const AffirmationParams = () => {
             className="position-relative start-50 translate-middle"
           >
             Notify!
-          </Button>
-          <Button
+          </Button> */}
+          <MyButton text="Delete Group" run={() => setShowModal2(true)} />
+          {/* <Button
             onClick={() => setShowModal2(true)}
             className="position-relative start-50 translate-middle"
           >
             Delete Group
-          </Button>
-          <Button
+          </Button> */}
+          <MyButton
+            text="Share Group"
+            run={() => handleShareAffirmationsClick()}
+          />
+          {/* <Button
             onClick={() => handleShareAffirmationsClick()}
             className="position-relative start-50 translate-middle"
           >
             Share Group
-          </Button>
+          </Button> */}
         </div>
       </div>
       {

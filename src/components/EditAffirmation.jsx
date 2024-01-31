@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import MyButton from "./MyButton";
 import Modal from "./Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -88,21 +89,30 @@ const EditAffirmation = () => {
           ></textarea>
         </form>
         <div className="flex">
-          <Button onClick={handleCancelEditAffirmationClick}>Cancel</Button>
+          <MyButton
+            text="Cancel"
+            run={() => handleCancelEditAffirmationClick()}
+          />
+          {/* <Button onClick={handleCancelEditAffirmationClick}>Cancel</Button> */}
           {/* <DialogCancel /> */}
-          <button
+          <MyButton
+            text="Update Affirmation"
+            run={() => handleConfirmEditAffirmationClick()}
+          />
+          {/* <button
             className="theme-switcher btn btn-outline-primary"
             onClick={handleConfirmEditAffirmationClick}
           >
             Update Affirmation
-          </button>
+          </button> */}
           {/* <DialogEdit /> */}
-          <button
+          <MyButton text="Delete Affirmation" run={() => setShowModal2(true)} />
+          {/* <button
             className="theme-switcher btn btn-danger"
             onClick={() => setShowModal2(true)}
           >
             Delete Affirmation
-          </button>
+          </button> */}
           {/* <DialogDelete /> */}
         </div>
       </section>
