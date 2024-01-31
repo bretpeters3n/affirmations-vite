@@ -53,7 +53,7 @@ const App = () => {
           <ul id="menu" className={isActive ? "opened" : ""}>
             <li>
               <Link to="/" onClick={handleHamClick} className="theme-switcher">
-                Feels
+                Play
               </Link>
             </li>
             <li>

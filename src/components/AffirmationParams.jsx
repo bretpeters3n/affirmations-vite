@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import ShortUniqueId from "short-unique-id";
+import MyButton from "./MyButton";
 import "react-toastify/dist/ReactToastify.css";
 import AffirmationResults from "./AffirmationResults";
 import Modal from "./Modal";
@@ -12,9 +14,9 @@ import {
   requestCurrentGroupKey,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
-import ShortUniqueId from "short-unique-id";
 
 const uid = new ShortUniqueId();
+const BASE_URL = "localhost:5173";
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
@@ -33,6 +35,8 @@ const AffirmationParams = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
   const [showModalShare, setShowModalShare] = useState(false);
+
+  const [urlFormatted, setUrlFormatted] = useState("");
 
   const addNewGroupMessaging = "+ Create new group";
 
@@ -97,21 +101,14 @@ const AffirmationParams = () => {
     const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
     const PAGE_PATH = `/shared?query=`;
     let affParams = affirmationsData[0].groups[groupKey];
-    console.log("currentGroup is:");
-    console.log(currentGroup);
-    console.log("affParams is:");
-    console.log(affParams);
-    // const affParamString = JSON.stringify(affParams);
     const affParamArray = [affParams].flat();
     const affParamArrayString = JSON.stringify(affParamArray);
-    console.log(affParamArrayString);
-    const urlFormatted = `${PAGE_PATH}${affParamArrayString}`;
-    console.log("urlFormatted is:");
-    console.log(urlFormatted);
-    navigate({
-      pathname: urlFormatted,
-      state: affirmations,
-    });
+    setUrlFormatted(`${BASE_URL}${PAGE_PATH}${affParamArrayString}`);
+    setShowModalShare(true);
+    // navigate({
+    //   pathname: urlFormatted,
+    //   state: affirmations,
+    // });
   };
 
   return (
@@ -156,12 +153,16 @@ const AffirmationParams = () => {
         </ul>
         <p>End of list</p>
         <div>
-          <Button
+          <MyButton
+            text="Add Affirmation"
+            onClick={() => handleAddAffirmationClick()}
+          />
+          {/* <Button
             onClick={() => handleAddAffirmationClick()}
             className="position-relative start-50 translate-middle"
           >
             Add Affirmation
-          </Button>
+          </Button> */}
           <Button
             onClick={() => {
               toast.info("Notify pressed!", {
@@ -179,7 +180,7 @@ const AffirmationParams = () => {
             Delete Group
           </Button>
           <Button
-            onClick={() => setShowModalShare(true)}
+            onClick={() => handleShareAffirmationsClick()}
             className="position-relative start-50 translate-middle"
           >
             Share Group
@@ -245,7 +246,43 @@ const AffirmationParams = () => {
             <div className="modal-container">
               <h2>Share this group?</h2>
               <p>{currentGroup}</p>
+              {/* <form
+                onSubmit={preventDefault()}
+                style={{ display: "flex", flexDirection: "column" }}
+              > */}
+              <label style={{ display: "flex", flexDirection: "column" }}>
+                {/* Essay: */}
+                <textarea
+                  style={{ height: "200px" }}
+                  type="text"
+                  readOnly
+                  value={urlFormatted}
+                  // onChange={console.log("change")}
+                />
+              </label>
+              {/* <input type="submit" value="Submit" /> */}
               <div className="buttons">
+                <button onClick={() => setShowModalShare(false)}>Close</button>
+                <button
+                  // type="submit"
+                  // value="Submit"
+                  onClick={() => {
+                    navigator.clipboard.writeText(urlFormatted);
+                    toast.success(
+                      `Sharable '${currentGroup}' URL copied to clipboard!`,
+                      {
+                        position: "bottom-center",
+                      }
+                    );
+                    setShowModalShare(false);
+                  }}
+                  // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}
+                >
+                  Copy to clipboard
+                </button>
+              </div>
+              {/* </form> */}
+              {/* <div className="buttons">
                 <button onClick={() => setShowModalShare(false)}>Cancel</button>
                 <button
                   onClick={() => {
@@ -255,7 +292,7 @@ const AffirmationParams = () => {
                 >
                   Yes
                 </button>
-              </div>
+              </div> */}
             </div>
           </Modal>
         ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
