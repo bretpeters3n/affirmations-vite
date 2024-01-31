@@ -18,6 +18,18 @@ const SharedAffirmations = (props) => {
     console.log("accept");
   };
 
+  // What possibilities exist on the ShareAffirmations page:
+  //   - Receiving affs as new USER
+  //       - Accept ⇒ Create localStorage save with Received affs and Default Affs
+  //       - set currentGroup to Received affs group
+  //       - send user to DisplayAffs page with new affs playing
+  //   - Receiving affs as current USER
+  //       - Accept ⇒ Create localStorage save with added Received affs
+  //       - set currentGroup to Received affs group
+  //       - send user to DisplayAffs page with new affs playing
+  //   - Receiving affs as YOURSELF USER (likely a mistake, but code for)
+  //       - Probs alert that you already have it? This brings up issues of same named groups and same ID groups. Regenerate ID upon Receiving affs?
+
   return (
     <>
       <section className="traditional__layout">

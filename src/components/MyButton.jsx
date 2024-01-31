@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 function MyButton(props) {
   return (
-    <Div className={"btn"} onClick={props.run}>
+    <Primary className={"btn"} onClick={props.run}>
       {props.text}
-    </Div>
+    </Primary>
   );
 }
 
-const Div = styled.div`
+const Primary = styled.div`
   border: 2px solid var(--primaryColor);
   background-color: var(--backgroundColor);
   color: var(--primaryColor);

@@ -10,7 +10,7 @@ const AffirmationResults = ({
   const navigate = useNavigate();
 
   const handleAddAffirmationClick = () => {
-    console.log("add");
+    // console.log("add");
     navigate("/add", {
       state: {
         currentGroup: currentGroup,
