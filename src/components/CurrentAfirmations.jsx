@@ -4,9 +4,9 @@ const CurrentAffirmations = () => {
   return (
     <>
       <section className="traditional__layout">
-        <h1 className="pb-2">Current Affirmations</h1>
+        <h1 className="pb-2">Saved Affirmations</h1>
         <div>
-          <p className="mb-0">Your selected affirmation group:</p>
+          <p className="mb-0">Currently selected group:</p>
         </div>
         <AffirmationParams />
       </section>

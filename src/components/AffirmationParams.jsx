@@ -3,8 +3,9 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ShortUniqueId from "short-unique-id";
-import MyButton from "./MyButton";
+import Form from "react-bootstrap/Form";
 import "react-toastify/dist/ReactToastify.css";
+import MyButton from "./MyButton";
 import AffirmationResults from "./AffirmationResults";
 import Modal from "./Modal";
 import {
@@ -122,7 +123,9 @@ const AffirmationParams = () => {
         >
           <label htmlFor="group">
             {/* Select affirmation group: */}
-            <select
+            <Form.Select
+              size="sm"
+              style={{ width: "100%", height: "2em" }}
               id={currentGroup}
               key={currentGroup}
               value={currentGroup}
@@ -141,7 +144,7 @@ const AffirmationParams = () => {
                 </option>
               ))}
               <option>{addNewGroupMessaging}</option>
-            </select>
+            </Form.Select>
           </label>
         </form>
         <ul className="list-group cards">

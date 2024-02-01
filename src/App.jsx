@@ -81,11 +81,11 @@ const App = () => {
                 alt="dark/light mode icon"
               />
             </li>
-            <li>
+            {/* <li>
               <Link to="/shared" onClick={handleHamClick}>
                 Shared
               </Link>
-            </li>
+            </li> */}
             <li className="lastMenuItemExtend"></li>
           </ul>
         </nav>
