@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
+import MyButton from "./MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SharedAffirmationResults from "./SharedAffirmationResults";
 import {
   requestAffirmationsDataIfPresent,
   requestAndSaveAffirmationsData,
+  postAffirmationsData,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass";
 import AffirmationParams from "./AffirmationParams";
@@ -52,12 +54,29 @@ const SharedAffirmations = (props) => {
       // switch to
       // const sharedGroup = sharedAffirmations;
 
+      let sharedAffirmations_parsed = JSON.parse(sharedAffirmations)[0];
+      sharedAffirmations_parsed.id = uid.rnd();
+      setSharedAffirmations(JSON.stringify([sharedAffirmations_parsed]));
+
       affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
       affirmationsData[0].currentGroup = currentGroup;
+      // JSON.parse(sharedAffirmations)[0].id = uid.rnd();
+
+      console.log("sharedAffirmations_parsed.id is:");
+      console.log(sharedAffirmations_parsed.id);
+      console.log("sharedAffirmations is:");
+      console.log(sharedAffirmations);
+
+      postAffirmationsData(affirmationsData);
+
+      // find where the UID is and replace it with a new one (this could be reusable code, FYI!)
+
+      // comment out for testing (Navigate and Toast)
       navigate("/");
       toast.success(`Group '${currentGroup}' added!`, {
         position: "bottom-center",
       });
+
       // affirmationsData[0].groups.push({
       //   id: uid.rnd(),
       //   group: newGroup.group,
@@ -107,14 +126,20 @@ const SharedAffirmations = (props) => {
           <p className="mb-3" style={{ width: "385px", margin: "0 auto" }}>
             Someone has sent you a list of affirmations titled {currentGroup}.
           </p>
-          <Button
+          <div className="flex">
+            <MyButton
+              text="Accept affirmations"
+              run={() => handleAcceptAffirmationsClick()}
+            />
+          </div>
+          {/* <Button
             onClick={() => {
               handleAcceptAffirmationsClick();
             }}
             className="mt-4 position-relative start-50 translate-middle w-50"
           >
             Accept affirmations
-          </Button>
+          </Button> */}
           {/* <p className="mb-0">List of "Best Affirmations Ever" group:</p> */}
         </div>
         <SharedAffirmationResults
