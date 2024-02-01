@@ -40,6 +40,17 @@ const SharedAffirmations = (props) => {
   const handleAcceptAffirmationsClick = () => {
     if (affirmationsData) {
       console.log("Add group to existing users affs");
+      const id = affirmationsData[0].groups.length;
+
+      affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
+      affirmationsData[0].currentGroup = currentGroup;
+      affirmationsData[0].groups[id].id = uid.rnd();
+
+      postAffirmationsData(affirmationsData);
+      navigate("/");
+      toast.success(`Group '${currentGroup}' added!`, {
+        position: "bottom-center",
+      });
       /*
       - Receiving affs as EXISTING USER
       - Accept ⇒ Update localStorage save with added Received affs
@@ -49,33 +60,23 @@ const SharedAffirmations = (props) => {
     } else {
       console.log("Create new user affs and add this new group");
       affirmationsData = requestAndSaveAffirmationsData();
-      const id = affirmationsData[0].groups.length + 1;
-
-      // switch to
-      // const sharedGroup = sharedAffirmations;
-
-      let sharedAffirmations_parsed = JSON.parse(sharedAffirmations)[0];
-      sharedAffirmations_parsed.id = uid.rnd();
-      setSharedAffirmations(JSON.stringify([sharedAffirmations_parsed]));
+      const id = affirmationsData[0].groups.length;
 
       affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
       affirmationsData[0].currentGroup = currentGroup;
-      // JSON.parse(sharedAffirmations)[0].id = uid.rnd();
-
-      console.log("sharedAffirmations_parsed.id is:");
-      console.log(sharedAffirmations_parsed.id);
-      console.log("sharedAffirmations is:");
-      console.log(sharedAffirmations);
+      affirmationsData[0].groups[id].id = uid.rnd();
 
       postAffirmationsData(affirmationsData);
-
-      // find where the UID is and replace it with a new one (this could be reusable code, FYI!)
-
-      // comment out for testing (Navigate and Toast)
       navigate("/");
       toast.success(`Group '${currentGroup}' added!`, {
         position: "bottom-center",
       });
+
+      // postAffirmationsData(affirmationsData);
+      // navigate("/");
+      // toast.success(`Group '${currentGroup}' added!`, {
+      //   position: "bottom-center",
+      // });
 
       // affirmationsData[0].groups.push({
       //   id: uid.rnd(),
