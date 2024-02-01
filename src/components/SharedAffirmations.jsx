@@ -2,10 +2,20 @@ import { useEffect, useState } from "react";
 // import { useSearchParams } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import SharedAffirmationResults from "./SharedAffirmationResults";
+import { requestAffirmationsDataIfPresent } from "../utils/PullPostGetSet";
 import AffirmationParams from "./AffirmationParams";
 
 const SharedAffirmations = (props) => {
   const queryParameters = new URLSearchParams(window.location.search);
+
+  let affirmationsData = null;
+  const existingAffirmationsData = requestAffirmationsDataIfPresent();
+  if (existingAffirmationsData) {
+    affirmationsData = existingAffirmationsData;
+  }
+  console.log("affirmationsData is:");
+  console.log(affirmationsData);
+
   const [sharedAffirmations, setSharedAffirmations] = useState(
     queryParameters.get("query")
   );
@@ -15,20 +25,39 @@ const SharedAffirmations = (props) => {
   );
 
   const handleAcceptAffirmationsClick = () => {
-    console.log("accept");
+    if (affirmationsData) {
+      console.log("Add group to existing users affs");
+    } else {
+      console.log("Create new user affs and add this new group");
+    }
   };
 
-  // What possibilities exist on the ShareAffirmations page:
-  //   - Receiving affs as new USER
-  //       - Accept ⇒ Create localStorage save with Received affs and Default Affs
-  //       - set currentGroup to Received affs group
-  //       - send user to DisplayAffs page with new affs playing
-  //   - Receiving affs as current USER
-  //       - Accept ⇒ Create localStorage save with added Received affs
-  //       - set currentGroup to Received affs group
-  //       - send user to DisplayAffs page with new affs playing
-  //   - Receiving affs as YOURSELF USER (likely a mistake, but code for)
-  //       - Probs alert that you already have it? This brings up issues of same named groups and same ID groups. Regenerate ID upon Receiving affs?
+  /*
+  What possibilities exist on the ShareAffirmations page:
+
+    - Arrive at Share page
+      - grab sharedAffirmations from query
+        - assign needed variables for page
+        - problem assigning needed variables
+          - use error handling to show error message (include button for new user to start)
+      - check for existing localStorage 'affirmationsUnique' key value pair
+        - if (affirmationsUnique) { EXISTING USER }
+        - else { NEW USER }
+
+    - Receiving affs as EXISTING USER
+      - Accept ⇒ Update localStorage save with added Received affs
+      - set currentGroup to Received affs group
+      - send user to DisplayAffs page with new affs playing
+
+    - Receiving affs as NEW USER
+      - Accept ⇒ Create localStorage save with Received affs and Default Affs
+      - set currentGroup to Received affs group
+      - send user to DisplayAffs page with new affs playing
+
+    - Receiving affs as YOURSELF USER (likely a mistake, but code for)
+      - Probs alert that you already have it? This brings up issues of same named groups and same ID groups. Regenerate ID upon Receiving affs?
+  
+      */
 
   return (
     <>

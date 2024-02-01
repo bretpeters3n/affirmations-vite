@@ -4,6 +4,21 @@ export const postAffirmationsData = (affirmationsData) => {
   localStorage.setItem("affirmationsUnique", JSON.stringify(affirmationsData));
 };
 
+export const requestAffirmationsDataIfPresent = () => {
+  // define data
+  let affirmationsData = null;
+  // get data
+  function readData() {
+    affirmationsData = localStorage.getItem("affirmationsUnique")
+      ? JSON.parse(localStorage.getItem("affirmationsUnique"))
+      : null;
+  }
+  // save data to localStorage
+  readData();
+  // send data
+  return affirmationsData;
+};
+
 export const requestAndSaveAffirmationsData = () => {
   // define data
   let affirmationsData = [];
