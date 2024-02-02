@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import MyButton from "./MyButton";
 import Modal from "./Modal";
+// import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -122,9 +123,10 @@ const EditAffirmation = () => {
             <div className="modal-container">
               {/* <div className="modal-container"> */}
               <h2>Affirmation text is empty</h2>
-              <p>Please add you affirmation text and try again</p>
+              <p>Please add text and try again</p>
               <div className="buttons">
-                <button onClick={() => setShowModal(false)}>Ok</button>
+                <MyButton text="Understood" run={() => setShowModal(false)} />
+                {/* <button onClick={() => setShowModal(false)}>Ok</button> */}
               </div>
             </div>
           </Modal>
@@ -138,15 +140,24 @@ const EditAffirmation = () => {
               <h2>Delete this affirmation</h2>
               <p>Are you sure?</p>
               <div className="buttons">
-                <button onClick={() => setShowModal2(false)}>Cancel</button>
-                <button
+                <MyButton text="Abort" run={() => setShowModal2(false)} />
+                {/* <button onClick={() => setShowModal2(false)}>Cancel</button> */}
+                <MyButton
+                  text="Delete"
+                  run={() => {
+                    handleConfirmDeleteAffirmationClick();
+                    setShowModal2(false);
+                  }}
+                />
+
+                {/* <button
                   onClick={() => {
                     handleConfirmDeleteAffirmationClick();
                     setShowModal2(false);
                   }}
                 >
                   Yes
-                </button>
+                </button> */}
               </div>
             </div>
           </Modal>

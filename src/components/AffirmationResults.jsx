@@ -21,15 +21,17 @@ const AffirmationResults = ({
 
   return (
     <>
-      <div>
+      <div className="pb-0">
+        <p className="pt-3 mb-0">
+          <strong>{currentGroup}</strong>
+        </p>
         <MyButton
           text="Add Affirmation"
           run={() => handleAddAffirmationClick()}
         />
-        {/* <p>List of {currentGroup} affirmations</p> */}
       </div>
       {!affirmations.length ? (
-        <h1>No Affirmations present</h1>
+        <h3>No Affirmations present</h3>
       ) : (
         affirmations.map(({ affirmation, id }, index) => (
           <Affirmation

@@ -288,12 +288,21 @@ li {
   min-width: 300px;
   max-width: 500px;
 }
-.about p i {
-  font-family: var(--attention-font);
-  font-size: 1.3rem;
+.about p i,
+.search-params p strong {
+  font-weight: 800;
   text-decoration: underline;
   text-decoration-color: #d1f409;
   line-height: 0;
+}
+.about p i {
+  font-family: var(--attention-font);
+  font-size: 1.3rem;
+}
+.search-params p strong {
+  font-family: var(--main-font);
+  font-size: 1.2rem;
+  text-decoration-color: unset;
 }
 
 .affirmation-params {

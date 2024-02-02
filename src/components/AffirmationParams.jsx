@@ -147,7 +147,7 @@ const AffirmationParams = () => {
             </Form.Select>
           </label>
         </form>
-        <ul className="list-group cards">
+        <ul className="list-group cards pb-3">
           <AffirmationResults
             currentGroup={currentGroup}
             affirmationsData={affirmationsData}
@@ -214,13 +214,17 @@ const AffirmationParams = () => {
                   />
                 </form>
                 <button onClick={() => setShowModal(false)}>Cancel</button>
-                <button
+                <MyButton
+                  text="Create Group"
+                  run={() => handleCreateNewGroup()}
+                />
+                {/* <button
                   onClick={() => {
                     handleCreateNewGroup();
                   }}
                 >
                   Create group
-                </button>
+                </button> */}
               </div>
             </div>
           </Modal>
@@ -234,15 +238,17 @@ const AffirmationParams = () => {
               <h2>Delete this group?</h2>
               <p>{currentGroup}</p>
               <div className="buttons">
-                <button onClick={() => setShowModal2(false)}>Cancel</button>
-                <button
+                <MyButton text="Abort!" run={() => setShowModal2(false)} />
+                {/* <button onClick={() => setShowModal2(false)}>Cancel</button> */}
+                <MyButton text="Confirm" run={() => handleDeleteGroupClick()} />
+                {/* <button
                   onClick={() => {
                     handleDeleteGroupClick();
                     setShowModal2(false);
                   }}
                 >
                   Yes
-                </button>
+                </button> */}
               </div>
             </div>
           </Modal>
@@ -258,10 +264,16 @@ const AffirmationParams = () => {
                 onSubmit={preventDefault()}
                 style={{ display: "flex", flexDirection: "column" }}
               > */}
-              <label style={{ display: "flex", flexDirection: "column" }}>
+              <label
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "8px",
+                }}
+              >
                 {/* Essay: */}
                 <textarea
-                  style={{ height: "200px" }}
+                  style={{ height: "200px", fontSize: "10px" }}
                   type="text"
                   readOnly
                   value={urlFormatted}
@@ -270,8 +282,21 @@ const AffirmationParams = () => {
               </label>
               {/* <input type="submit" value="Submit" /> */}
               <div className="buttons">
-                <button onClick={() => setShowModalShare(false)}>Close</button>
-                <button
+                <MyButton text="Close" run={() => setShowModalShare(false)} />
+                {/* <button onClick={() => setShowModalShare(false)}>Close</button> */}
+                <MyButton
+                  text="Copy to clipboard"
+                  run={() => {
+                    navigator.clipboard.writeText(urlFormatted);
+                    toast.success(
+                      `Sharable '${currentGroup}' URL copied to clipboard!`,
+                      {
+                        position: "bottom-center",
+                      }
+                    );
+                  }}
+                />
+                {/* <button
                   // type="submit"
                   // value="Submit"
                   onClick={() => {
@@ -287,7 +312,7 @@ const AffirmationParams = () => {
                   // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}
                 >
                   Copy to clipboard
-                </button>
+                </button> */}
               </div>
               {/* </form> */}
               {/* <div className="buttons">

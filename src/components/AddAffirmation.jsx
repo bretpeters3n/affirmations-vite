@@ -98,9 +98,10 @@ const AddAffirmation = () => {
             <div className="modal-container">
               {/* <div className="modal-container"> */}
               <h2>Affirmation text is empty</h2>
-              <p>Please add you affirmation text and try again</p>
+              <p>Please add text and try again</p>
               <div className="buttons">
-                <button onClick={() => setShowModal(false)}>Ok</button>
+                <MyButton text="Understood" run={() => setShowModal(false)} />
+                {/* <button onClick={() => setShowModal(false)}>Ok</button> */}
               </div>
             </div>
           </Modal>
