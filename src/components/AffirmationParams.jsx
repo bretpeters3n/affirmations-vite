@@ -3,6 +3,8 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ShortUniqueId from "short-unique-id";
+import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
 import Form from "react-bootstrap/Form";
 import "react-toastify/dist/ReactToastify.css";
 import MyButton from "./MyButton";
@@ -18,6 +20,25 @@ import Group from "../utils/groupClass"; // Group class
 
 const uid = new ShortUniqueId();
 const BASE_URL = "localhost:5173";
+
+const currencies = [
+  {
+    value: "USD",
+    label: "$",
+  },
+  {
+    value: "EUR",
+    label: "€",
+  },
+  {
+    value: "BTC",
+    label: "฿",
+  },
+  {
+    value: "JPY",
+    label: "¥",
+  },
+];
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
@@ -115,14 +136,39 @@ const AffirmationParams = () => {
   return (
     <>
       <div className="search-params">
-        <form
-          // className="card"
+        <TextField
+          style={{ width: "100%", maxWidth: "500px" }}
+          id="outlined-select-currency"
+          select
+          label="Please select or add a group"
+          defaultValue={currentGroup}
+          // helperText="Please select or add a group"
+          onChange={(e) => {
+            let tempTarget = e.target.value;
+            // console.log(tempTarget);
+            // console.log(addNewGroupMessaging);
+            if (tempTarget == addNewGroupMessaging) {
+              setShowModal(true);
+            } else {
+              setCurrentGroup(tempTarget);
+            }
+          }}
+        >
+          {affirmationsData[0].groups.map((groups) => (
+            <MenuItem key={groups.id} value={groups.group}>
+              {groups.group}
+            </MenuItem>
+          ))}
+          <MenuItem value={addNewGroupMessaging}>
+            {addNewGroupMessaging}
+          </MenuItem>
+        </TextField>
+        {/* <form
           onSubmit={(e) => {
             e.preventDefault();
           }}
         >
           <label htmlFor="group">
-            {/* Select affirmation group: */}
             <Form.Select
               size="sm"
               style={{ width: "100%", height: "2em" }}
@@ -146,7 +192,7 @@ const AffirmationParams = () => {
               <option>{addNewGroupMessaging}</option>
             </Form.Select>
           </label>
-        </form>
+        </form> */}
         <ul className="list-group cards pb-3">
           <AffirmationResults
             currentGroup={currentGroup}
