@@ -50,14 +50,18 @@ const AffirmationResults = ({
       >
         <label
           className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-outlined css-1jy569b-MuiFormLabel-root-MuiInputLabel-root"
-          dataShrink="true"
-          for="outlined-select-currency"
+          data-shrink="true"
+          htmlFor="outlined-select-currency"
           id="outlined-select-currency-label"
+          // style={{ color: "#303030" }}
         >
-          Group: Default Affirmations
+          Group: <i style={{ color: "#303030" }}>{currentGroup}</i>
         </label>
-        <div className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root">
-          <div className="d-flex flex-column">
+        <div
+          className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-multiline css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root"
+          style={{ borderRadius: "5px" }}
+        >
+          <div className="d-grid gap-2 p-3 pt-4">
             {!affirmations.length ? (
               <h3>No Affirmations present</h3>
             ) : (
@@ -71,9 +75,14 @@ const AffirmationResults = ({
                 ></Affirmation>
               ))
             )}
+            <div className="pt-3">
+              <p>
+                <i>End of list</i>
+              </p>
+            </div>
           </div>
           <fieldset
-            ariaHidden="true"
+            aria-hidden="true"
             className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
           >
             <legend className="css-14lo706">

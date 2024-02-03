@@ -200,7 +200,7 @@ const AffirmationParams = () => {
             affirmations={affirmations}
           />
         </ul>
-        <p>End of list</p>
+        {/* <p>End of list</p> */}
         <div>
           {/* <MyButton
             text="Add Affirmation"
