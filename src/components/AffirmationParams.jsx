@@ -222,17 +222,17 @@ const AffirmationParams = () => {
           >
             Notify!
           </Button> */}
-          <MyButton text="Delete Group" run={() => setShowModal2(true)} />
           {/* <Button
             onClick={() => setShowModal2(true)}
             className="position-relative start-50 translate-middle"
-          >
+            >
             Delete Group
           </Button> */}
           <MyButton
             text="Share Group"
             run={() => handleShareAffirmationsClick()}
           />
+          <MyButton text="Delete Group" run={() => setShowModal2(true)} />
           {/* <Button
             onClick={() => handleShareAffirmationsClick()}
             className="position-relative start-50 translate-middle"
@@ -259,7 +259,8 @@ const AffirmationParams = () => {
                     size="20"
                   />
                 </form>
-                <button onClick={() => setShowModal(false)}>Cancel</button>
+                <MyButton text="Cancel" run={() => setShowModal(false)} />
+                {/* <button onClick={() => setShowModal(false)}>Cancel</button> */}
                 <MyButton
                   text="Create Group"
                   run={() => handleCreateNewGroup()}
