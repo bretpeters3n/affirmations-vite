@@ -25,13 +25,13 @@ const AffirmationResults = ({
     }); // Pass optional second argument
   };
 
-  const [currentGroupTitle, setCurrentGroupTitle] = useState(
-    "Group: " + currentGroup
-  );
+  // const [currentGroupTitle, setCurrentGroupTitle] = useState(
+  //   "Group: " + currentGroup
+  // );
 
   return (
     <>
-      <div className="pb-0">
+      <div className="pt-4 pb-4">
         {/* <p className="pt-3 mb-0">
           <strong>{currentGroup}</strong>
         </p> */}

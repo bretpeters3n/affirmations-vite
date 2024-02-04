@@ -201,7 +201,10 @@ const AffirmationParams = () => {
           />
         </ul>
         {/* <p>End of list</p> */}
-        <div>
+        <div
+          className="d-flex justify-content-between pt-2"
+          style={{ maxWidth: "500px", margin: "auto" }}
+        >
           {/* <MyButton
             text="Add Affirmation"
             onClick={() => handleAddAffirmationClick()}
@@ -229,10 +232,14 @@ const AffirmationParams = () => {
             Delete Group
           </Button> */}
           <MyButton
+            text="."
+            // run={() => handleShareAffirmationsClick()}
+          />
+          <MyButton
             text="Share Group"
             run={() => handleShareAffirmationsClick()}
           />
-          <MyButton text="Delete Group" run={() => setShowModal2(true)} />
+          <MyButton text="D" run={() => setShowModal2(true)} />
           {/* <Button
             onClick={() => handleShareAffirmationsClick()}
             className="position-relative start-50 translate-middle"
