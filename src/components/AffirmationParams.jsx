@@ -137,7 +137,11 @@ const AffirmationParams = () => {
     <>
       <div className="search-params">
         <TextField
-          style={{ width: "100%", maxWidth: "500px" }}
+          style={{
+            width: "100%",
+            maxWidth: "500px",
+            textAlign: "left",
+          }}
           id="outlined-select-currency"
           select
           label="Please select or add a group"
@@ -155,11 +159,18 @@ const AffirmationParams = () => {
           }}
         >
           {affirmationsData[0].groups.map((groups) => (
-            <MenuItem key={groups.id} value={groups.group}>
+            <MenuItem
+              key={groups.id}
+              style={{ fontFamily: "Poppins" }}
+              value={groups.group}
+            >
               {groups.group}
             </MenuItem>
           ))}
-          <MenuItem value={addNewGroupMessaging}>
+          <MenuItem
+            style={{ fontFamily: "Poppins" }}
+            value={addNewGroupMessaging}
+          >
             {addNewGroupMessaging}
           </MenuItem>
         </TextField>

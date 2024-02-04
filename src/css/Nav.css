@@ -35,7 +35,7 @@ nav #menu {
 }
 
 nav #appName {
-  position: fixed;
+  position: absolute;
   top: 21px;
   font-family: var(--main-font);
   font-weight: 800;

@@ -126,3 +126,8 @@ body {
 .list-group {
   gap: 0.4rem;
 }
+.MuiInputBase-root .MuiSelect-select {
+  font-family: "Poppins";
+  font-size: 1.2rem;
+  padding-bottom: 0.7rem;
+}
