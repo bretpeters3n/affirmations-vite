@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/Button";
 import ShortUniqueId from "short-unique-id";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -174,36 +176,6 @@ const AffirmationParams = () => {
             {addNewGroupMessaging}
           </MenuItem>
         </TextField>
-        {/* <form
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <label htmlFor="group">
-            <Form.Select
-              size="sm"
-              style={{ width: "100%", height: "2em" }}
-              id={currentGroup}
-              key={currentGroup}
-              value={currentGroup}
-              onChange={(e) => {
-                let tempTarget = e.target.value;
-                if (tempTarget == addNewGroupMessaging) {
-                  setShowModal(true);
-                } else {
-                  setCurrentGroup(tempTarget);
-                }
-              }}
-            >
-              {affirmationsData[0].groups.map((groups) => (
-                <option key={groups.id} value={groups.group}>
-                  {groups.group}
-                </option>
-              ))}
-              <option>{addNewGroupMessaging}</option>
-            </Form.Select>
-          </label>
-        </form> */}
         <ul className="list-group cards pb-3">
           <AffirmationResults
             currentGroup={currentGroup}
@@ -211,52 +183,23 @@ const AffirmationParams = () => {
             affirmations={affirmations}
           />
         </ul>
-        {/* <p>End of list</p> */}
         <div
           className="d-flex justify-content-between pt-2"
           style={{ maxWidth: "500px", margin: "auto" }}
         >
-          {/* <MyButton
-            text="Add Affirmation"
-            onClick={() => handleAddAffirmationClick()}
-          /> */}
-          {/* <Button
-            onClick={() => handleAddAffirmationClick()}
-            className="position-relative start-50 translate-middle"
-          >
-            Add Affirmation
-          </Button> */}
-          {/* <Button
-            onClick={() => {
-              toast.info("Notify pressed!", {
-                position: "bottom-center",
-              });
-            }}
-            className="position-relative start-50 translate-middle"
-          >
-            Notify!
-          </Button> */}
-          {/* <Button
-            onClick={() => setShowModal2(true)}
-            className="position-relative start-50 translate-middle"
-            >
-            Delete Group
-          </Button> */}
-          <MyButton
-            text="."
-            // run={() => handleShareAffirmationsClick()}
-          />
+          <div style={{ visibility: "hidden" }}>
+            <MyButton aria-label="layout spacer" />
+          </div>
           <MyButton
             text="Share Group"
+            aria-label="share group"
             run={() => handleShareAffirmationsClick()}
           />
-          <MyButton text="D" run={() => setShowModal2(true)} />
-          {/* <Button
-            onClick={() => handleShareAffirmationsClick()}
-            className="position-relative start-50 translate-middle"
-          >
-            Share Group
-          </Button> */}
+          <MyButton
+            text="."
+            aria-label="delete group"
+            run={() => setShowModal2(true)}
+          />
         </div>
       </div>
       {
