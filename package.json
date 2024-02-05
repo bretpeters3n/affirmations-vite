@@ -2,9 +2,12 @@
   "name": "affirmations-vite",
   "version": "1.0.0",
   "description": "Build, enjoy, and share lists of Affirmations",
+  "homepage": "https://bretpeters3n.github.io/affirmations-vite",
   "main": "index.js",
   "scripts": {
     "dev": "vite --port 5173",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d src/dist",
     "build": "vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -20,6 +23,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.8",
+    "gh-pages": "^6.1.1",
     "prettier": "^2.7.1",
     "vite": "^3.1.4"
   },
