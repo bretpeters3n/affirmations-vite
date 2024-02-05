@@ -52,13 +52,17 @@ const App = () => {
           </button>
           <ul id="menu" className={isActive ? "opened" : ""}>
             <li>
-              <Link to="/" onClick={handleHamClick} className="theme-switcher">
+              <Link
+                to="/affirmations-vite/"
+                onClick={handleHamClick}
+                className="theme-switcher"
+              >
                 Play
               </Link>
             </li>
             <li>
               <Link
-                to="/current"
+                to="/affirmations-vite/current"
                 onClick={handleHamClick}
                 className="theme-switcher"
               >
@@ -66,7 +70,7 @@ const App = () => {
               </Link>
             </li>
             <li>
-              <Link to="/about" onClick={handleHamClick}>
+              <Link to="/affirmations-vite/about" onClick={handleHamClick}>
                 About
               </Link>
             </li>
@@ -92,13 +96,28 @@ const App = () => {
         {/* <main className="d-flex flex-column justify-content-center pt-4"> */}
         <main className="pt-4">
           <Routes>
-            <Route path="/" element={<DisplayAffirmations />} />
+            <Route
+              path="/affirmations-vite/"
+              element={<DisplayAffirmations />}
+            />
             {/* <Route path="/" element={<CurrentAffirmations />} /> */}
-            <Route path="/current" element={<CurrentAffirmations />} />
-            <Route path="/add" element={<AddAffirmation />} />
-            <Route path="/edit" element={<EditAffirmation />} />
-            <Route path="/shared" element={<SharedAffirmations />} />
-            <Route path="/about" element={<AboutAffirmations />} />
+            <Route
+              path="/affirmations-vite/current"
+              element={<CurrentAffirmations />}
+            />
+            <Route path="/affirmations-vite/add" element={<AddAffirmation />} />
+            <Route
+              path="/affirmations-vite/edit"
+              element={<EditAffirmation />}
+            />
+            <Route
+              path="/affirmations-vite/shared"
+              element={<SharedAffirmations />}
+            />
+            <Route
+              path="/affirmations-vite/about"
+              element={<AboutAffirmations />}
+            />
             {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </main>
