@@ -23,25 +23,6 @@ import Group from "../utils/groupClass"; // Group class
 const uid = new ShortUniqueId();
 const BASE_URL = "localhost:5173";
 
-const currencies = [
-  {
-    value: "USD",
-    label: "$",
-  },
-  {
-    value: "EUR",
-    label: "€",
-  },
-  {
-    value: "BTC",
-    label: "฿",
-  },
-  {
-    value: "JPY",
-    label: "¥",
-  },
-];
-
 const AffirmationParams = () => {
   const navigate = useNavigate();
 

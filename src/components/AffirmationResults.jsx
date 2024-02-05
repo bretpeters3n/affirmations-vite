@@ -83,7 +83,7 @@ const AffirmationResults = ({
           </div>
           <fieldset
             aria-hidden="true"
-            className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+            className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline aff-wrap-gradient"
           >
             <legend className="css-14lo706">
               <span>Group: Default Affirmations</span>

@@ -137,3 +137,6 @@ body {
   padding: 8px 8px !important;
   border: unset !important;
 }
+.aff-wrap-gradient {
+  border-color: rgba(0, 0, 0, 0.23) rgb(240 30 50 / 0%) rgba(0, 0, 0, 0.23) !important;
+}
