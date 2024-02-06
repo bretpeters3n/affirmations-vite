@@ -86,7 +86,7 @@ const App = () => {
               />
             </li>
             {/* <li>
-              <Link to="/shared" onClick={handleHamClick}>
+              <Link to="/affirmations-vite/shared" onClick={handleHamClick}>
                 Shared
               </Link>
             </li> */}

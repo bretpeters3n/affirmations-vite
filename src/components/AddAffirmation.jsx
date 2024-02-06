@@ -57,7 +57,7 @@ const AddAffirmation = () => {
   };
 
   const handleCancelAddAffirmationClick = () => {
-    navigate("/current");
+    navigate("/affirmations-vite/current");
   };
 
   return (

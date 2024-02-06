@@ -46,7 +46,7 @@ const SharedAffirmations = (props) => {
     affirmationsData[0].currentGroup = currentGroup;
     affirmationsData[0].groups[id].id = uid.rnd();
     postAffirmationsData(affirmationsData);
-    navigate("/");
+    navigate("/affirmations-vite/");
     toast.success(`Group '${currentGroup}' added!`, {
       position: "bottom-center",
     });

@@ -39,23 +39,23 @@ const AffirmationParams = () => {
     requestGroupAffirmations(affirmationsData, currentGroup)
   );
 
-  const [showModal, setShowModal] = useState(false);
-  const [showModal2, setShowModal2] = useState(false);
-  const [showModalShare, setShowModalShare] = useState(false);
+  const [showNewGroupModal, setShowNewGroupModal] = useState(false);
+  const [showDeleteGroupModal, setShowDeleteGroupModal] = useState(false);
+  const [showShareModal, setShowShareModal] = useState(false);
 
   const [urlFormatted, setUrlFormatted] = useState("");
 
   const addNewGroupMessaging = "+ Create new group";
 
-  const runRequestGroupAffirmations = async () => {
-    const data = await requestGroupAffirmations(affirmationsData, currentGroup);
+  const runRequestGroupAffirmations = () => {
+    const data = requestGroupAffirmations(affirmationsData, currentGroup);
     setAffirmations(data);
     affirmationsData[0].currentGroup = currentGroup;
     postAffirmationsData(affirmationsData);
   };
 
   const handleAddAffirmationClick = () => {
-    navigate("/add", {
+    navigate("/affirmations-vite/add", {
       state: {
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
@@ -75,6 +75,8 @@ const AffirmationParams = () => {
     });
     setCurrentGroup(affirmationsData[0].groups[0].group);
     postAffirmationsData(affirmationsData);
+    navigate("/affirmations-vite/current");
+    console.log("this is after the 'navigate' that is being skipped");
   };
 
   useEffect(() => {
@@ -96,7 +98,7 @@ const AffirmationParams = () => {
         affirmations: newGroup.affirmations,
       });
       postAffirmationsData(affirmationsData);
-      setShowModal(false);
+      setShowNewGroupModal(false);
       setCurrentGroup(newGroupName);
       toast.success(`Group '${newGroupName}' added!`, {
         position: "bottom-center",
@@ -111,7 +113,7 @@ const AffirmationParams = () => {
     const affParamArray = [affParams].flat();
     const affParamArrayString = JSON.stringify(affParamArray);
     setUrlFormatted(`${BASE_URL}${PAGE_PATH}${affParamArrayString}`);
-    setShowModalShare(true);
+    setShowShareModal(true);
     // navigate({
     //   pathname: urlFormatted,
     //   state: affirmations,
@@ -127,17 +129,15 @@ const AffirmationParams = () => {
             maxWidth: "500px",
             textAlign: "left",
           }}
-          id="outlined-select-currency"
           select
-          label="Please select or add a group"
-          defaultValue={currentGroup}
-          // helperText="Please select or add a group"
+          id="outlined-select-currency"
+          label="Please select or create new group"
+          value={currentGroup}
           onChange={(e) => {
             let tempTarget = e.target.value;
             // console.log(tempTarget);
-            // console.log(addNewGroupMessaging);
             if (tempTarget == addNewGroupMessaging) {
-              setShowModal(true);
+              setShowNewGroupModal(true);
             } else {
               setCurrentGroup(tempTarget);
             }
@@ -145,6 +145,7 @@ const AffirmationParams = () => {
         >
           {affirmationsData[0].groups.map((groups) => (
             <MenuItem
+              id={groups.id}
               key={groups.id}
               style={{ fontFamily: "Poppins" }}
               value={groups.group}
@@ -184,21 +185,24 @@ const AffirmationParams = () => {
             size="small"
             aria-label="delete"
             className="btnGroupDelete"
-            onClick={() => setShowModal2(true)}
+            onClick={() => setShowDeleteGroupModal(true)}
           >
             <DeleteIcon fontSize="medium" />
           </IconButton>
         </div>
       </div>
       {
-        showModal ? (
+        showNewGroupModal ? (
           <Modal>
             <div className="modal-container">
               <h2>Creating new group?</h2>
               <div className="buttons">
                 <form>
-                  <label htmlFor="name">Enter your new group name</label>
+                  <label htmlFor="name" className="w-100 pb-2">
+                    Enter your new group name:
+                  </label>
                   <input
+                    className="mb-2"
                     type="text"
                     id="name"
                     name="name"
@@ -208,7 +212,10 @@ const AffirmationParams = () => {
                     size="20"
                   />
                 </form>
-                <MyButton text="Cancel" run={() => setShowModal(false)} />
+                <MyButton
+                  text="Cancel"
+                  run={() => setShowNewGroupModal(false)}
+                />
                 {/* <button onClick={() => setShowModal(false)}>Cancel</button> */}
                 <MyButton
                   text="Create Group"
@@ -227,31 +234,24 @@ const AffirmationParams = () => {
         ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
       }
       {
-        showModal2 ? (
+        showDeleteGroupModal ? (
           <Modal>
             <div className="modal-container">
-              {/* <div className="modal-container"> */}
               <h2>Delete this group?</h2>
               <p>{currentGroup}</p>
               <div className="buttons">
-                <MyButton text="Abort!" run={() => setShowModal2(false)} />
-                {/* <button onClick={() => setShowModal2(false)}>Cancel</button> */}
+                <MyButton
+                  text="Abort!"
+                  run={() => setShowDeleteGroupModal(false)}
+                />
                 <MyButton text="Confirm" run={() => handleDeleteGroupClick()} />
-                {/* <button
-                  onClick={() => {
-                    handleDeleteGroupClick();
-                    setShowModal2(false);
-                  }}
-                >
-                  Yes
-                </button> */}
               </div>
             </div>
           </Modal>
         ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
       }
       {
-        showModalShare ? (
+        showShareModal ? (
           <Modal>
             <div className="modal-container">
               <h2>Share this group?</h2>
@@ -278,8 +278,8 @@ const AffirmationParams = () => {
               </label>
               {/* <input type="submit" value="Submit" /> */}
               <div className="buttons">
-                <MyButton text="Close" run={() => setShowModalShare(false)} />
-                {/* <button onClick={() => setShowModalShare(false)}>Close</button> */}
+                <MyButton text="Close" run={() => setShowShareModal(false)} />
+                {/* <button onClick={() => setShowShareModal(false)}>Close</button> */}
                 <MyButton
                   text="Copy to clipboard"
                   run={() => {
@@ -303,7 +303,7 @@ const AffirmationParams = () => {
                         position: "bottom-center",
                       }
                     );
-                    setShowModalShare(false);
+                    setShowShareModal(false);
                   }}
                   // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}
                 >
@@ -312,11 +312,11 @@ const AffirmationParams = () => {
               </div>
               {/* </form> */}
               {/* <div className="buttons">
-                <button onClick={() => setShowModalShare(false)}>Cancel</button>
+                <button onClick={() => setShowShareModal(false)}>Cancel</button>
                 <button
                   onClick={() => {
                     handleShareAffirmationsClick();
-                    setShowModalShare(false);
+                    setShowShareModal(false);
                   }}
                 >
                   Yes

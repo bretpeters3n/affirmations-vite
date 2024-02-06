@@ -18,7 +18,7 @@ const AffirmationResults = ({
 
   const handleAddAffirmationClick = () => {
     // console.log("add");
-    navigate("/add", {
+    navigate("/affirmations-vite/add", {
       state: {
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
