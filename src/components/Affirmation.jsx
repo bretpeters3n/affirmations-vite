@@ -9,7 +9,7 @@ const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
   const handleEditAffirmationClick = (e) => {
     let editEl = e.target.closest("li");
     let editId = editEl.getAttribute("id");
-    navigate("/edit", {
+    navigate("/affirmations-vite/edit", {
       state: {
         affirmationId: editId,
         // currentGroup: currentGroup,

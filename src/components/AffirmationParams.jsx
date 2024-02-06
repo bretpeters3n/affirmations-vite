@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/Button";
+// import DeleteIcon from "@mui/icons-material/Delete";
+// import IconButton from "@mui/material/Button";
 import ShortUniqueId from "short-unique-id";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
 import Form from "react-bootstrap/Form";
 import "react-toastify/dist/ReactToastify.css";
 import MyButton from "./MyButton";
@@ -176,11 +178,14 @@ const AffirmationParams = () => {
             aria-label="share group"
             run={() => handleShareAffirmationsClick()}
           />
-          <MyButton
-            text="."
-            aria-label="delete group"
-            run={() => setShowModal2(true)}
-          />
+          <IconButton
+            size="small"
+            aria-label="delete"
+            className="btnGroupDelete"
+            onClick={() => setShowModal2(true)()}
+          >
+            <DeleteIcon fontSize="small" />
+          </IconButton>
         </div>
       </div>
       {

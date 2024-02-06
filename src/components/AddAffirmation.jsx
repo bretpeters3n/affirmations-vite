@@ -52,7 +52,7 @@ const AddAffirmation = () => {
       toast.success(`Affirmation '${newAffirmation.affirmation}' added!`, {
         position: "bottom-center",
       });
-      navigate("/current");
+      navigate("/affirmations-vite/current");
     }
   };
 
