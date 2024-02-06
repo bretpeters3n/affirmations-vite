@@ -64,7 +64,11 @@ const AffirmationResults = ({
         >
           <div className="d-grid gap-2 p-3 pt-4">
             {!affirmations.length ? (
-              <h3>No Affirmations present</h3>
+              <p className="mb-2">
+                <i>No affirmations present</i>
+                <br />
+                <small class="text-muted">add an affirmation above ^</small>
+              </p>
             ) : (
               affirmations.map(({ affirmation, id }, index) => (
                 <Affirmation
@@ -76,11 +80,13 @@ const AffirmationResults = ({
                 ></Affirmation>
               ))
             )}
-            <div className="pt-3">
-              <p>
-                <i>End of list</i>
-              </p>
-            </div>
+            {affirmations.length ? (
+              <div className="pt-3">
+                <p>
+                  <i>End of list</i>
+                </p>
+              </div>
+            ) : null}
           </div>
           <fieldset
             aria-hidden="true"

@@ -23,18 +23,17 @@ export const requestAndSaveAffirmationsData = () => {
   // define data
   let affirmationsData = [];
   // get data
-  async function readData() {
+  function readDataThenSave() {
     affirmationsData = localStorage.getItem("affirmationsUnique")
       ? JSON.parse(localStorage.getItem("affirmationsUnique"))
       : stockAffirmationsArray;
-  }
-  // save data to localStorage
-  readData().then(() => {
     localStorage.setItem(
       "affirmationsUnique",
       JSON.stringify(affirmationsData)
     );
-  });
+  }
+  // save data to localStorage
+  readDataThenSave();
   // send data
   return affirmationsData;
 };
