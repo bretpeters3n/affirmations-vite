@@ -179,12 +179,14 @@ const AffirmationParams = () => {
             run={() => handleShareAffirmationsClick()}
           />
           <IconButton
+            disableRipple
+            disableFocusRipple
             size="small"
             aria-label="delete"
             className="btnGroupDelete"
-            onClick={() => setShowModal2(true)()}
+            onClick={() => setShowModal2(true)}
           >
-            <DeleteIcon fontSize="small" />
+            <DeleteIcon fontSize="medium" />
           </IconButton>
         </div>
       </div>
