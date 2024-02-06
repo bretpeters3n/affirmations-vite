@@ -19,6 +19,7 @@ import {
   requestGroupAffirmations,
   requestAndSaveAffirmationsData,
   requestCurrentGroupKey,
+  requestCurrentGroupNames,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass"; // Group class
 
@@ -171,9 +172,13 @@ const AffirmationParams = () => {
           className="d-flex justify-content-between pt-2"
           style={{ maxWidth: "500px", margin: "auto" }}
         >
-          <div style={{ visibility: "hidden" }}>
-            <MyButton aria-label="layout spacer" />
-          </div>
+          {/* <div style={{ visibility: "hidden" }}> */}
+          <MyButton
+            text="."
+            aria-label="layout spacer"
+            run={() => requestCurrentGroupNames(affirmationsData)}
+          />
+          {/* </div> */}
           <MyButton
             text="Share Group"
             aria-label="share group"

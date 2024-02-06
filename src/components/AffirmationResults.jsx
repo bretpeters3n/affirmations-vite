@@ -67,7 +67,7 @@ const AffirmationResults = ({
               <p className="mb-2">
                 <i>No affirmations present</i>
                 <br />
-                <small class="text-muted">add an affirmation above ^</small>
+                <small className="text-muted">add an affirmation above ^</small>
               </p>
             ) : (
               affirmations.map(({ affirmation, id }, index) => (

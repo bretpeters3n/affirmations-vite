@@ -90,3 +90,14 @@ export const requestCurrentAffirmationKey = (affirmations, id) => {
 
   return affirmationKey;
 };
+
+export const requestCurrentGroupNames = (affirmationsData) => {
+  // use affirmationsData to return the array of group names
+  let currentGroupNames = [];
+  affirmationsData[0].groups.forEach((entry) => {
+    // const [key, value] = entry;
+    currentGroupNames.push(entry.group);
+  });
+  console.log(currentGroupNames);
+  return currentGroupNames;
+};
