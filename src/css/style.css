@@ -133,13 +133,14 @@ body {
 }
 .btnGroupDelete,
 .btnGroupDelete:focus {
-  padding: 0px 16px !important;
+  padding: 0px 15px !important;
   border-radius: 48px !important;
   margin: unset !important;
   border: #fff 6px solid !important;
 }
 .aff-wrap-gradient {
-  border-color: rgba(0, 0, 0, 0.23) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0.23) !important;
+  border-color: rgba(0, 0, 0, 0.23) !important;
+  border-style: dashed !important;
 
   /* border-image: linear-gradient(
       rgba(0, 0, 0, 0.23),

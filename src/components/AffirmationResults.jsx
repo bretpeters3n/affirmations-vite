@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
+import SouthIcon from "@mui/icons-material/South";
 import MyButton from "./MyButton";
 import Affirmation from "./Affirmation";
 
@@ -31,14 +32,14 @@ const AffirmationResults = ({
 
   return (
     <>
-      <div className="pt-4 pb-4">
-        {/* <p className="pt-3 mb-0">
-          <strong>{currentGroup}</strong>
-        </p> */}
+      <div className="pt-4 pb-0">
         <MyButton
           text="Add Affirmation"
           run={() => handleAddAffirmationClick()}
         />
+      </div>
+      <div className="pt-0 pb-2">
+        <SouthIcon style={{ color: "rgb(150, 150, 150)" }} />
       </div>
       <div
         className="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
