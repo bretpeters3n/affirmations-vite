@@ -9,6 +9,7 @@ import {
   requestAffirmationsDataIfPresent,
   requestAndSaveAffirmationsData,
   postAffirmationsData,
+  requestCurrentGroupNames,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass";
 import AffirmationParams from "./AffirmationParams";
@@ -26,8 +27,6 @@ const SharedAffirmations = (props) => {
   if (existingAffirmationsData) {
     affirmationsData = existingAffirmationsData;
   }
-  console.log("affirmationsData is:");
-  console.log(affirmationsData);
 
   const [sharedAffirmations, setSharedAffirmations] = useState(
     queryParameters.get("query")
@@ -36,21 +35,41 @@ const SharedAffirmations = (props) => {
   const [currentGroup, setCurrentGroup] = useState(
     JSON.parse(sharedAffirmations)[0].group
   );
+  const [currentGroupNames, setCurrentGroupNames] = useState([]);
 
   const handleAcceptAffirmationsClick = () => {
-    if (!affirmationsData) {
-      affirmationsData = requestAndSaveAffirmationsData();
+    // set currentGroupNames
+    affirmationsData = requestAffirmationsDataIfPresent();
+    setCurrentGroupNames(requestCurrentGroupNames(affirmationsData));
+    // console.log("affirmationsData is:");
+    // console.log(affirmationsData);
+    // console.log("currentGroupNames is:");
+    // console.log(currentGroupNames);
+    console.log("currentGroup is:");
+    console.log(currentGroup);
+    if (currentGroupNames.includes(currentGroup)) {
+      alert(
+        "You already have a group with this name. Please rename your group anything else to continue creating it."
+      );
     }
-    const id = affirmationsData[0].groups.length;
-    affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
-    affirmationsData[0].currentGroup = currentGroup;
-    affirmationsData[0].groups[id].id = uid.rnd();
-    postAffirmationsData(affirmationsData);
-    navigate("/affirmations-vite/");
-    toast.success(`Group '${currentGroup}' added!`, {
-      position: "bottom-center",
-    });
+    // if (!affirmationsData) {
+    //   affirmationsData = requestAndSaveAffirmationsData();
+    // }
+    // const id = affirmationsData[0].groups.length;
+    // affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
+    // affirmationsData[0].currentGroup = currentGroup;
+    // affirmationsData[0].groups[id].id = uid.rnd();
+    // postAffirmationsData(affirmationsData);
+    // navigate("/affirmations-vite/");
+    // toast.success(`Group '${currentGroup}' added!`, {
+    //   position: "bottom-center",
+    // });
   };
+
+  console.log("affirmationsData is:");
+  console.log(affirmationsData);
+  console.log("currentGroupNames is:");
+  console.log(currentGroupNames);
 
   /*
   What possibilities exist on the ShareAffirmations page:

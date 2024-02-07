@@ -114,7 +114,7 @@ const AffirmationParams = () => {
 
   const handleShareAffirmationsClick = () => {
     const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-    const PAGE_PATH = `/shared?query=`;
+    const PAGE_PATH = `/affirmations-vite/shared?query=`;
     let affParams = affirmationsData[0].groups[groupKey];
     const affParamArray = [affParams].flat();
     const affParamArrayString = JSON.stringify(affParamArray);

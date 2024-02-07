@@ -92,11 +92,15 @@ export const requestCurrentAffirmationKey = (affirmations, id) => {
 };
 
 export const requestCurrentGroupNames = (affirmationsData) => {
-  // use affirmationsData to return the array of group names
   let currentGroupNames = [];
-  affirmationsData[0].groups.forEach((entry) => {
-    // const [key, value] = entry;
-    currentGroupNames.push(entry.group);
-  });
+  if (!affirmationsData) {
+    // console.log("no data");
+  } else {
+    // use affirmationsData to return the array of group names
+    affirmationsData[0].groups.forEach((entry) => {
+      // const [key, value] = entry;
+      currentGroupNames.push(entry.group);
+    });
+  }
   return currentGroupNames;
 };
