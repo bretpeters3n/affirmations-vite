@@ -35,16 +35,18 @@ const SharedAffirmations = (props) => {
   const [currentGroup, setCurrentGroup] = useState(
     JSON.parse(sharedAffirmations)[0].group
   );
-  const [currentGroupNames, setCurrentGroupNames] = useState([]);
+  const [currentGroupNames, setCurrentGroupNames] = useState(
+    requestCurrentGroupNames(affirmationsData)
+  );
 
   const handleAcceptAffirmationsClick = () => {
     // set currentGroupNames
     affirmationsData = requestAffirmationsDataIfPresent();
-    setCurrentGroupNames(requestCurrentGroupNames(affirmationsData));
-    // console.log("affirmationsData is:");
-    // console.log(affirmationsData);
-    // console.log("currentGroupNames is:");
-    // console.log(currentGroupNames);
+    // setCurrentGroupNames(requestCurrentGroupNames(affirmationsData));
+    console.log("affirmationsData is:");
+    console.log(affirmationsData);
+    console.log("currentGroupNames is:");
+    console.log(currentGroupNames);
     console.log("currentGroup is:");
     console.log(currentGroup);
     if (currentGroupNames.includes(currentGroup)) {
@@ -52,9 +54,10 @@ const SharedAffirmations = (props) => {
         "You already have a group with this name. Please rename your group anything else to continue creating it."
       );
     }
-    // if (!affirmationsData) {
-    //   affirmationsData = requestAndSaveAffirmationsData();
-    // }
+    if (!affirmationsData) {
+      // affirmationsData = requestAndSaveAffirmationsData();
+      console.log("no affirmationsData");
+    }
     // const id = affirmationsData[0].groups.length;
     // affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
     // affirmationsData[0].currentGroup = currentGroup;
@@ -66,10 +69,10 @@ const SharedAffirmations = (props) => {
     // });
   };
 
-  console.log("affirmationsData is:");
-  console.log(affirmationsData);
-  console.log("currentGroupNames is:");
-  console.log(currentGroupNames);
+  // console.log("affirmationsData is:");
+  // console.log(affirmationsData);
+  // console.log("currentGroupNames is:");
+  // console.log(currentGroupNames);
 
   /*
   What possibilities exist on the ShareAffirmations page:
@@ -98,7 +101,7 @@ const SharedAffirmations = (props) => {
           </p>
           <div className="flex">
             <MyButton
-              text="Accept affirmations"
+              text="Accept & view"
               run={() => handleAcceptAffirmationsClick()}
             />
           </div>
