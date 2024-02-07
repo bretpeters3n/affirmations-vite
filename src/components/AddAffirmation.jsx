@@ -69,6 +69,7 @@ const AddAffirmation = () => {
         </div>
         <form className="align-items-center pb-3">
           <textarea
+            autoFocus
             className=""
             id="affirmationText"
             placeholder="Type/paste your affirmation here"

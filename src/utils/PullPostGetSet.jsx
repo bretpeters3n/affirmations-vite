@@ -98,6 +98,5 @@ export const requestCurrentGroupNames = (affirmationsData) => {
     // const [key, value] = entry;
     currentGroupNames.push(entry.group);
   });
-  console.log(currentGroupNames);
   return currentGroupNames;
 };

@@ -36,6 +36,9 @@ const AffirmationParams = () => {
   const [currentGroup, setCurrentGroup] = useState(
     affirmationsData[0].currentGroup
   );
+  const [currentGroupNames, setCurrentGroupNames] = useState(
+    requestCurrentGroupNames(affirmationsData)
+  );
   const [affirmations, setAffirmations] = useState(
     requestGroupAffirmations(affirmationsData, currentGroup)
   );
@@ -55,13 +58,9 @@ const AffirmationParams = () => {
     postAffirmationsData(affirmationsData);
   };
 
-  const handleAddAffirmationClick = () => {
-    navigate("/affirmations-vite/add", {
-      state: {
-        currentGroup: currentGroup,
-        affirmationsData: affirmationsData,
-      },
-    }); // Pass optional second argument
+  const runRequestCurrentGroupNames = () => {
+    setCurrentGroupNames(requestCurrentGroupNames(affirmationsData));
+    // console.log(currentGroupNames);
   };
 
   const handleDeleteGroupClick = () => {
@@ -82,11 +81,17 @@ const AffirmationParams = () => {
 
   useEffect(() => {
     runRequestGroupAffirmations();
+    runRequestCurrentGroupNames();
   }, [currentGroup]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleCreateNewGroup = () => {
     const newGroupName = document.getElementById("name").value;
-    if (!newGroupName) {
+    // console.log(newGroupName);
+    if (currentGroupNames.includes(newGroupName)) {
+      alert(
+        "You already have a group with this name. Please name your group anything else to continue creating it."
+      );
+    } else if (!newGroupName) {
       alert(
         "You have not entered any text. Please name your group to continue creating it."
       );
@@ -172,13 +177,13 @@ const AffirmationParams = () => {
           className="d-flex justify-content-between pt-2"
           style={{ maxWidth: "500px", margin: "auto" }}
         >
-          {/* <div style={{ visibility: "hidden" }}> */}
-          <MyButton
-            text="."
-            aria-label="layout spacer"
-            run={() => requestCurrentGroupNames(affirmationsData)}
-          />
-          {/* </div> */}
+          <div style={{ visibility: "hidden" }}>
+            <MyButton
+              // text="."
+              aria-label="layout spacer"
+              // run={() => runRequestCurrentGroupNames()}
+            />
+          </div>
           <MyButton
             text="Share Group"
             aria-label="share group"
@@ -207,6 +212,7 @@ const AffirmationParams = () => {
                     Enter your new group name:
                   </label>
                   <input
+                    autoFocus
                     className="mb-2"
                     type="text"
                     id="name"
@@ -215,6 +221,7 @@ const AffirmationParams = () => {
                     minLength="1"
                     maxLength="100"
                     size="20"
+                    placeholder="Name your group here"
                   />
                 </form>
                 <MyButton
