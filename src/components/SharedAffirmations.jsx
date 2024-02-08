@@ -40,23 +40,17 @@ const SharedAffirmations = (props) => {
   );
 
   const handleAcceptAffirmationsClick = () => {
-    // set currentGroupNames
     affirmationsData = requestAffirmationsDataIfPresent();
     // setCurrentGroupNames(requestCurrentGroupNames(affirmationsData));
-    console.log("affirmationsData is:");
-    console.log(affirmationsData);
-    console.log("currentGroupNames is:");
-    console.log(currentGroupNames);
-    console.log("currentGroup is:");
-    console.log(currentGroup);
+    if (!affirmationsData) {
+      affirmationsData = requestAndSaveAffirmationsData();
+      // console.log(affirmationsData);
+    }
     if (currentGroupNames.includes(currentGroup)) {
+      // replace this with modal that forces the user to rename the new group they are accepting
       alert(
         "You already have a group with this name. Please rename your group anything else to continue creating it."
       );
-    }
-    if (!affirmationsData) {
-      // affirmationsData = requestAndSaveAffirmationsData();
-      console.log("no affirmationsData");
     }
     // const id = affirmationsData[0].groups.length;
     // affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
