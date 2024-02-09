@@ -233,13 +233,6 @@ const AffirmationParams = () => {
                   text="Create Group"
                   run={() => handleCreateNewGroup()}
                 />
-                {/* <button
-                  onClick={() => {
-                    handleCreateNewGroup();
-                  }}
-                >
-                  Create group
-                </button> */}
               </div>
             </div>
           </Modal>
@@ -304,36 +297,7 @@ const AffirmationParams = () => {
                     );
                   }}
                 />
-                {/* <button
-                  // type="submit"
-                  // value="Submit"
-                  onClick={() => {
-                    navigator.clipboard.writeText(urlFormatted);
-                    toast.success(
-                      `Sharable '${currentGroup}' URL copied to clipboard!`,
-                      {
-                        position: "bottom-center",
-                      }
-                    );
-                    setShowShareModal(false);
-                  }}
-                  // onClick={() => {navigator.clipboard.writeText(this.state.textToCopy)}}
-                >
-                  Copy to clipboard
-                </button> */}
               </div>
-              {/* </form> */}
-              {/* <div className="buttons">
-                <button onClick={() => setShowShareModal(false)}>Cancel</button>
-                <button
-                  onClick={() => {
-                    handleShareAffirmationsClick();
-                    setShowShareModal(false);
-                  }}
-                >
-                  Yes
-                </button>
-              </div> */}
             </div>
           </Modal>
         ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
