@@ -1,52 +1,13 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TextField from "@mui/material/TextField";
-import SouthIcon from "@mui/icons-material/South";
-import MyButton from "./MyButton";
-import AffGroupListResults from "./AffGroupListResults";
+import Affirmation from "./Affirmation";
 
-const AffirmationResults = ({
+const AffGroupListResults = ({
   currentGroup,
   affirmationsData,
   affirmations,
 }) => {
-  const navigate = useNavigate();
-
-  // const [currentGroup, setCurrentGroup] = useState(
-  //   affirmationsData[0].currentGroup
-  // );
-
-  const handleAddAffirmationClick = () => {
-    // console.log("add");
-    navigate("/affirmations-vite/add", {
-      state: {
-        currentGroup: currentGroup,
-        affirmationsData: affirmationsData,
-      },
-    }); // Pass optional second argument
-  };
-
-  // const [currentGroupTitle, setCurrentGroupTitle] = useState(
-  //   "Group: " + currentGroup
-  // );
-
   return (
     <>
-      <div className="pt-4 pb-0">
-        <MyButton
-          text="Add Affirmation"
-          run={() => handleAddAffirmationClick()}
-        />
-      </div>
-      <div className="pt-0 pb-2">
-        <SouthIcon style={{ color: "rgb(150, 150, 150)" }} />
-      </div>
-      <AffGroupListResults
-        affirmationsData={affirmationsData}
-        currentGroup={currentGroup}
-        affirmations={affirmations}
-      />
-      {/* <div
+      <div
         className="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
         style={{
           width: "100%",
@@ -102,9 +63,9 @@ const AffirmationResults = ({
             </legend>
           </fieldset>
         </div>
-      </div> */}
+      </div>
     </>
   );
 };
 
-export default AffirmationResults;
+export default AffGroupListResults;
