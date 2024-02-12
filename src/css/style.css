@@ -153,3 +153,7 @@ body {
   border-style: solid;
   border-radius: 6px; */
 }
+
+main {
+  padding-top: 5.5em;
+}

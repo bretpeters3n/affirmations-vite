@@ -94,7 +94,7 @@ const App = () => {
           </ul>
         </nav>
         {/* <main className="d-flex flex-column justify-content-center pt-4"> */}
-        <main className="pt-4">
+        <main>
           <Routes>
             <Route
               path="/affirmations-vite/"
