@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
-import Modal from "./Modal";
-import MyButton from "./MyButton";
+import Modal from "../components/Modal";
+import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import SharedAffirmationResults from "./SharedAffirmationResults";
+import SharedAffirmationResults from "../components/SharedAffirmationResults";
 import {
   requestAffirmationsDataIfPresent,
   requestAndSaveAffirmationsData,
@@ -13,7 +13,7 @@ import {
   requestCurrentGroupNames,
 } from "../utils/PullPostGetSet";
 import Group from "../utils/groupClass";
-import AffirmationParams from "./AffirmationParams";
+import AffirmationParams from "../components/AffirmationParams";
 import ShortUniqueId from "short-unique-id";
 import stockAffirmationsArray from "../db/stockAffirmations";
 

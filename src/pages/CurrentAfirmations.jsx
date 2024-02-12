@@ -1,4 +1,4 @@
-import AffirmationParams from "./AffirmationParams";
+import AffirmationParams from "../components/AffirmationParams";
 
 const CurrentAffirmations = () => {
   return (

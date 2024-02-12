@@ -8,10 +8,10 @@ import {
   useLocation,
 } from "react-router-dom";
 // import Button from "react-bootstrap/Button";
-import MyButton from "./MyButton";
+import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "./Modal";
+import Modal from "../components/Modal";
 import {
   postAffirmationsData,
   requestCurrentGroupKey,

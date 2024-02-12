@@ -3,12 +3,12 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-import DisplayAffirmations from "./components/DisplayAffirmations";
-import CurrentAffirmations from "./components/CurrentAfirmations";
-import EditAffirmation from "./components/EditAffirmation";
-import AddAffirmation from "./components/AddAffirmation";
-import AboutAffirmations from "./components/AboutAffirmations";
-import SharedAffirmations from "./components/SharedAffirmations";
+import DisplayAffirmations from "./pages/DisplayAffirmations";
+import CurrentAffirmations from "./pages/CurrentAfirmations";
+import EditAffirmation from "./pages/EditAffirmation";
+import AddAffirmation from "./pages/AddAffirmation";
+import AboutAffirmations from "./pages/AboutAffirmations";
+import SharedAffirmations from "./pages/SharedAffirmations";
 import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 import lightModeIcon from "./assets/dark-mode-icon_light.svg";
 import "./css/splide-core.min.css";
