@@ -1,17 +1,31 @@
 import { useState, useEffect } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import { useNavigate } from "react-router-dom";
 import {
   postAffirmationsData,
   requestAndSaveAffirmationsData,
   requestGroupAffirmations,
 } from "../utils/PullPostGetSet";
+import MyButton from "../components/MyButton";
 import testAffirmations from "../db/testAffirmations";
 // import stockAffirmationsArray from "../db/stockAffirmations";
 
 const DisplayAffirmations = () => {
+  const navigate = useNavigate();
+
   const affirmationsData = requestAndSaveAffirmationsData();
   const currentGroup = affirmationsData[0].currentGroup;
   const affirmations = requestGroupAffirmations(affirmationsData, currentGroup);
+
+  const handleAddAffirmationClick = () => {
+    // console.log("add");
+    navigate("/affirmations-vite/add", {
+      state: {
+        currentGroup: currentGroup,
+        affirmationsData: affirmationsData,
+      },
+    }); // Pass optional second argument
+  };
 
   return (
     <>
@@ -31,18 +45,34 @@ const DisplayAffirmations = () => {
           }}
           aria-label="My Affirmation Quotes"
         >
-          {affirmations.map((affirmation) => (
+          {affirmations.length == 0 ? (
+            //
             <SplideSlide
-              id={affirmation.id}
-              key={affirmation.id}
-              value={affirmation.affirmation}
-              data-splide-interval={
-                affirmation.affirmation.length > 60 ? "8000" : "4000"
-              }
+              className="d-flex justify-content-center w-100"
+              style={{ width: "100vw!important" }}
             >
-              <p>{affirmation.affirmation}</p>
+              <p>No affirmations present</p>
+              <div className="pt-0 pb-0 mt-0 mb-0">
+                <MyButton
+                  text="Add Affirmation"
+                  run={() => handleAddAffirmationClick()}
+                />
+              </div>
             </SplideSlide>
-          ))}
+          ) : (
+            affirmations.map((affirmation) => (
+              <SplideSlide
+                id={affirmation.id}
+                key={affirmation.id}
+                value={affirmation.affirmation}
+                data-splide-interval={
+                  affirmation.affirmation.length > 60 ? "8000" : "4000"
+                }
+              >
+                <p>{affirmation.affirmation}</p>
+              </SplideSlide>
+            ))
+          )}
           <div className="splide__progress">
             <div className="splide__progress__bar"></div>
           </div>

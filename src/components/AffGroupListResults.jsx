@@ -59,7 +59,7 @@ const AffGroupListResults = ({
             className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline aff-wrap-gradient"
           >
             <legend className="css-14lo706">
-              <span>Group: Default Affirmations</span>
+              <span>Group: {currentGroup}</span>
             </legend>
           </fieldset>
         </div>

@@ -184,6 +184,7 @@ li {
   height: 100%;
   position: absolute;
   top: 3em;
+  width: 100vw;
 }
 /* mine */
 .app {
