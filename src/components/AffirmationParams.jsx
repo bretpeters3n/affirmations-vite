@@ -208,10 +208,23 @@ const AffirmationParams = () => {
               <h2>Creating new group?</h2>
               <div className="buttons">
                 <form>
-                  <label htmlFor="name" className="w-100 pb-2">
+                  {/* <label htmlFor="name" className="w-100 pb-2">
                     Enter your new group name:
-                  </label>
-                  <input
+                  </label> */}
+                  <TextField
+                    required
+                    autoFocus
+                    className="w-100 mb-2 mt-1"
+                    type="text"
+                    id="name"
+                    label="Group name"
+                    variant="outlined"
+                    name="name"
+                    minLength="1"
+                    maxLength="100"
+                    size="20"
+                  />
+                  {/* <input
                     autoFocus
                     className="mb-2"
                     type="text"
@@ -222,7 +235,7 @@ const AffirmationParams = () => {
                     maxLength="100"
                     size="20"
                     placeholder="Name your group here"
-                  />
+                  /> */}
                 </form>
                 <MyButton
                   text="Cancel"

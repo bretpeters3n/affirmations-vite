@@ -18,14 +18,15 @@ nav {
 nav #menu {
   display: none;
   flex-direction: column;
+  justify-content: center;
   margin: 0;
-  padding: 1em 0 1em 0;
+  /* padding: 1em 0 1em 0; */
   position: fixed;
   z-index: 2;
   top: 60px;
   background-color: var(--backgroundColorOpacity);
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 60px);
 }
 
 .opened {
@@ -45,6 +46,9 @@ nav #appName {
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--primaryColor);
+}
+nav ul li {
+  margin: 1.5em;
 }
 #appName:hover {
   cursor: default;

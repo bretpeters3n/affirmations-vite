@@ -181,9 +181,10 @@ li {
   left: 0;
 }
 .home-slideshow {
-  height: 100%;
-  position: absolute;
-  top: 3em;
+  height: calc(100vh - 60px);
+  position: fixed;
+  top: 30px;
+  bottom: 0px;
   width: 100vw;
 }
 /* mine */

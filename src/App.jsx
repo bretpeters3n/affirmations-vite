@@ -2,7 +2,9 @@ import { useState, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-
+import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import DisplayAffirmations from "./pages/DisplayAffirmations";
 import CurrentAffirmations from "./pages/CurrentAfirmations";
 import EditAffirmation from "./pages/EditAffirmation";
@@ -57,7 +59,7 @@ const App = () => {
                 onClick={handleHamClick}
                 className="theme-switcher"
               >
-                Play
+                <PlayArrowOutlinedIcon fontSize="large" />
               </Link>
             </li>
             <li>
@@ -66,23 +68,15 @@ const App = () => {
                 onClick={handleHamClick}
                 className="theme-switcher"
               >
-                Settings
+                <SettingsOutlinedIcon fontSize="large" />
               </Link>
             </li>
             <li>
               <Link to="/affirmations-vite/about" onClick={handleHamClick}>
-                About
+                <InfoOutlinedIcon fontSize="large" />
               </Link>
             </li>
-            {/* <li>
-              <button
-                className="theme-switcher"
-                onClick={() => toggleModes()}
-                src={isDarkModeActive ? lightModeIcon : darkModeIcon}
-                alt="dark/light mode icon"
-              />
-            </li> */}
-            <li className="lastMenuItemExtend"></li>
+            {/* <li className="lastMenuItemExtend"></li> */}
           </ul>
         </nav>
         <main>
