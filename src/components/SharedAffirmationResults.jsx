@@ -18,22 +18,26 @@ const SharedAffirmationResults = ({
 
   return (
     <>
-      <div>
-        <p>List of {currentGroup} affirmations</p>
+      <div className="pt-3">
+        <p>
+          List of <i>{currentGroup}</i> affirmations
+        </p>
       </div>
-      {!affirmations.length ? (
-        <h1>No Affirmations present</h1>
-      ) : (
-        affirmations.map(({ affirmation, id }, index) => (
-          <AffirmationShared
-            affirmation={affirmation}
-            id={index}
-            key={id}
-            // currentGroup={currentGroup}
-            // affirmationsData={affirmationsData}
-          ></AffirmationShared>
-        ))
-      )}
+      <div className="d-grid gap-2 p-3 pt-1">
+        {!affirmations.length ? (
+          <h1>No Affirmations present</h1>
+        ) : (
+          affirmations.map(({ affirmation, id }, index) => (
+            <AffirmationShared
+              affirmation={affirmation}
+              id={index}
+              key={id}
+              // currentGroup={currentGroup}
+              // affirmationsData={affirmationsData}
+            ></AffirmationShared>
+          ))
+        )}
+      </div>
     </>
   );
 };

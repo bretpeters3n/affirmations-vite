@@ -75,32 +75,22 @@ const App = () => {
               </Link>
             </li>
             {/* <li>
-              <Link id="toggleFullscreen">Toggle fullscreen</Link>
-            </li> */}
-            <li>
               <button
                 className="theme-switcher"
                 onClick={() => toggleModes()}
                 src={isDarkModeActive ? lightModeIcon : darkModeIcon}
                 alt="dark/light mode icon"
               />
-            </li>
-            {/* <li>
-              <Link to="/affirmations-vite/shared" onClick={handleHamClick}>
-                Shared
-              </Link>
             </li> */}
             <li className="lastMenuItemExtend"></li>
           </ul>
         </nav>
-        {/* <main className="d-flex flex-column justify-content-center pt-4"> */}
         <main>
           <Routes>
             <Route
               path="/affirmations-vite/"
               element={<DisplayAffirmations />}
             />
-            {/* <Route path="/" element={<CurrentAffirmations />} /> */}
             <Route
               path="/affirmations-vite/current"
               element={<CurrentAffirmations />}
@@ -118,7 +108,6 @@ const App = () => {
               path="/affirmations-vite/about"
               element={<AboutAffirmations />}
             />
-            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           </Routes>
         </main>
         <ToastContainer />

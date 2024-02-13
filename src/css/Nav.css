@@ -47,7 +47,7 @@ nav #appName {
   color: var(--primaryColor);
 }
 #appName:hover {
-  cursor: pointer;
+  cursor: default;
 }
 nav #appName.appNameDark {
   color: var(--main-bg-color-light);

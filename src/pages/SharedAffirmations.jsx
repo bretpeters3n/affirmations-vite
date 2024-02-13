@@ -5,6 +5,8 @@ import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SharedAffirmationResults from "../components/SharedAffirmationResults";
+import AffGroupListResults from "../components/AffGroupListResults";
+import AffirmationResults from "../components/AffirmationResults";
 import {
   requestAndSaveAffirmationsData,
   postAffirmationsData,
@@ -44,6 +46,10 @@ const SharedAffirmations = (props) => {
     }
   };
 
+  const handleAboutThisSiteClick = () => {
+    navigate("/affirmations-vite/about");
+  };
+
   const handleCreateNewGroup = () => {
     const newGroupName = document.getElementById("name").value;
     if (currentGroupNames.includes(newGroupName)) {
@@ -74,7 +80,8 @@ const SharedAffirmations = (props) => {
         <h1 className="pb-2">Incoming Affirmations</h1>
         <div className="d-flex flex-column justify-content-center">
           <p className="mb-3" style={{ width: "385px", margin: "0 auto" }}>
-            Someone has sent you a list of affirmations titled {currentGroup}.
+            Someone has sent you a list of affirmations titled{" "}
+            <i>{currentGroup}</i>.
           </p>
           <div className="flex">
             <MyButton
@@ -84,6 +91,12 @@ const SharedAffirmations = (props) => {
           </div>
         </div>
         <SharedAffirmationResults sharedAffirmations={sharedAffirmations} />
+        <div className="flex">
+          <MyButton
+            text="About this site"
+            run={() => handleAboutThisSiteClick()}
+          />
+        </div>
       </section>
       {
         showRenameGroupModal ? (
