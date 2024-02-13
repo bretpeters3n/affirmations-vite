@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 // import DeleteIcon from "@mui/icons-material/Delete";
 // import IconButton from "@mui/material/Button";
 import ShortUniqueId from "short-unique-id";
+import { motion } from "framer-motion";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
@@ -163,14 +164,20 @@ const AffirmationParams = () => {
           </MenuItem>
         </TextField>
         <ul className="list-group cards pb-3">
-          <AffirmationResults
-            currentGroup={currentGroup}
-            affirmationsData={affirmationsData}
-            affirmations={affirmations}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: "easeOut", duration: 0.5, delay: 0.125 }}
+          >
+            <AffirmationResults
+              currentGroup={currentGroup}
+              affirmationsData={affirmationsData}
+              affirmations={affirmations}
+            />
+          </motion.div>
         </ul>
         <div
-          className="d-flex justify-content-between pt-2"
+          className="d-flex justify-content-between pt-2 pb-2"
           style={{ maxWidth: "500px", margin: "auto" }}
         >
           <div style={{ visibility: "hidden" }}>
