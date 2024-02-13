@@ -31,7 +31,9 @@ const SharedAffirmations = (props) => {
     requestAndSaveAffirmationsData()
   );
 
-  const sharedAffirmations = queryParameters.get("query");
+  const [sharedAffirmations, setSharedAffirmations] = useState(
+    queryParameters.get("query")
+  );
 
   const currentGroup = JSON.parse(sharedAffirmations)[0].group;
 
@@ -75,14 +77,20 @@ const SharedAffirmations = (props) => {
       );
     } else {
       const id = affirmationsData[0].groups.length;
-      affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
-      affirmationsData[0].currentGroup = currentGroup;
-      affirmationsData[0].groups[id].id = uid.rnd();
-      postAffirmationsData(affirmationsData);
-      navigate("/affirmations-vite/");
-      toast.success(`Group '${currentGroup}' added!`, {
-        position: "bottom-center",
-      });
+      // change sharedAffirmations title to newGroupName
+      setSharedAffirmations(JSON.parse(sharedAffirmations));
+      JSON.parse(sharedAffirmations)[0].group = newGroupName;
+      console.log(JSON.parse(sharedAffirmations));
+
+      // comment out below until above is figured out
+      // affirmationsData[0].groups.push(JSON.parse(sharedAffirmations)[0]);
+      // affirmationsData[0].currentGroup = currentGroup;
+      // affirmationsData[0].groups[id].id = uid.rnd();
+      // postAffirmationsData(affirmationsData);
+      // navigate("/affirmations-vite/");
+      // toast.success(`Group '${currentGroup}' added!`, {
+      //   position: "bottom-center",
+      // });
     }
   };
 
