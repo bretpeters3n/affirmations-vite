@@ -5,6 +5,7 @@ import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SharedAffirmationResults from "../components/SharedAffirmationResults";
+import TextField from "@mui/material/TextField";
 import AffGroupListResults from "../components/AffGroupListResults";
 import AffirmationResults from "../components/AffirmationResults";
 import {
@@ -108,10 +109,23 @@ const SharedAffirmations = (props) => {
               </p>
               <div className="buttons">
                 <form>
-                  <label htmlFor="name" className="w-100 pb-2">
+                  {/* <label htmlFor="name" className="w-100 pb-2">
                     Rename your group to continue:
-                  </label>
-                  <input
+                  </label> */}
+                  <TextField
+                    required
+                    autoFocus
+                    className="w-100 mb-2 mt-1"
+                    type="text"
+                    id="name"
+                    label="Rename group to continue"
+                    variant="outlined"
+                    name="name"
+                    minLength="1"
+                    maxLength="100"
+                    size="20"
+                  />
+                  {/* <input
                     autoFocus
                     className="mb-2"
                     type="text"
@@ -122,7 +136,7 @@ const SharedAffirmations = (props) => {
                     maxLength="100"
                     size="20"
                     placeholder="Name your group here"
-                  />
+                  /> */}
                 </form>
                 <MyButton
                   text="Cancel"

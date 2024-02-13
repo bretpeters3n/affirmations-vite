@@ -120,10 +120,6 @@ const AffirmationParams = () => {
     const affParamArrayString = JSON.stringify(affParamArray);
     setUrlFormatted(`${BASE_URL}${PAGE_PATH}${affParamArrayString}`);
     setShowShareModal(true);
-    // navigate({
-    //   pathname: urlFormatted,
-    //   state: affirmations,
-    // });
   };
 
   return (
@@ -184,11 +180,21 @@ const AffirmationParams = () => {
               // run={() => runRequestCurrentGroupNames()}
             />
           </div>
-          <MyButton
-            text="Share Group"
-            aria-label="share group"
-            run={() => handleShareAffirmationsClick()}
-          />
+          {!affirmations.length == 0 ? (
+            <MyButton
+              text="Share Group"
+              aria-label="share group"
+              run={() => handleShareAffirmationsClick()}
+            />
+          ) : (
+            <div style={{ visibility: "hidden" }}>
+              <MyButton
+                text="Share Group"
+                aria-label="share group"
+                run={() => handleShareAffirmationsClick()}
+              />
+            </div>
+          )}
           <IconButton
             disableRipple
             disableFocusRipple
@@ -224,28 +230,17 @@ const AffirmationParams = () => {
                     maxLength="100"
                     size="20"
                   />
-                  {/* <input
-                    autoFocus
-                    className="mb-2"
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    minLength="1"
-                    maxLength="100"
-                    size="20"
-                    placeholder="Name your group here"
-                  /> */}
                 </form>
-                <MyButton
-                  text="Cancel"
-                  run={() => setShowNewGroupModal(false)}
-                />
-                {/* <button onClick={() => setShowModal(false)}>Cancel</button> */}
-                <MyButton
-                  text="Create Group"
-                  run={() => handleCreateNewGroup()}
-                />
+                <div className="d-flex justify-content-center">
+                  <MyButton
+                    text="Cancel"
+                    run={() => setShowNewGroupModal(false)}
+                  />
+                  <MyButton
+                    text="Create Group"
+                    run={() => handleCreateNewGroup()}
+                  />
+                </div>
               </div>
             </div>
           </Modal>

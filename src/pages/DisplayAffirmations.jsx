@@ -51,7 +51,11 @@ const DisplayAffirmations = () => {
               className="d-flex justify-content-center w-100"
               style={{ width: "100vw!important" }}
             >
-              <p>No affirmations present</p>
+              <p>
+                No affirmations present
+                <br />
+                in <i>{currentGroup}</i> group
+              </p>
               <div className="pt-0 pb-0 mt-0 mb-0">
                 <MyButton
                   text="Add Affirmation"
