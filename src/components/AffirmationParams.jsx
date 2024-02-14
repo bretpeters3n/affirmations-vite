@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 // import DeleteIcon from "@mui/icons-material/Delete";
 // import IconButton from "@mui/material/Button";
 import ShortUniqueId from "short-unique-id";
-import { motion } from "framer-motion";
+import { motion, easeInOut } from "framer-motion";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
@@ -167,7 +167,7 @@ const AffirmationParams = () => {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: "easeOut", duration: 0.5, delay: 0.125 }}
+            transition={{ ease: "easeInOut", duration: 0.5, delay: 0.125 }}
           >
             <AffirmationResults
               currentGroup={currentGroup}

@@ -1,9 +1,15 @@
+import AfLogo from "../assets/Af-logo.svg";
+
 const AboutAffirmation = () => {
   return (
     <>
       {/* <section className="addAffirmation pt-4 pb-4"> */}
       <section className="traditional__layout addAffirmation">
-        <h1 className="font-bold text-purple-600 pb-2">
+        <div>
+          {/* <AfLogo /> */}
+          <img src={AfLogo} alt="Affirmations app SVG logo" />
+        </div>
+        <h1 className="font-bold text-purple-600 pb-2 pt-2">
           About this application
         </h1>
         <div className="about">
