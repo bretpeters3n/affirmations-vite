@@ -19,7 +19,7 @@ const DisplayAffirmations = () => {
 
   const handleAddAffirmationClick = () => {
     // console.log("add");
-    navigate("/affirmations-vite/add", {
+    navigate("/add", {
       state: {
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,

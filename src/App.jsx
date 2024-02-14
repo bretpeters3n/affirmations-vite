@@ -54,17 +54,13 @@ const App = () => {
           </button>
           <ul id="menu" className={isActive ? "opened" : ""}>
             <li>
-              <Link
-                to="/affirmations-vite/"
-                onClick={handleHamClick}
-                className="theme-switcher"
-              >
+              <Link to="/" onClick={handleHamClick} className="theme-switcher">
                 <PlayArrowOutlinedIcon fontSize="large" />
               </Link>
             </li>
             <li>
               <Link
-                to="/affirmations-vite/current"
+                to="/current"
                 onClick={handleHamClick}
                 className="theme-switcher"
               >
@@ -72,7 +68,7 @@ const App = () => {
               </Link>
             </li>
             <li>
-              <Link to="/affirmations-vite/about" onClick={handleHamClick}>
+              <Link to="/about" onClick={handleHamClick}>
                 <InfoOutlinedIcon fontSize="large" />
               </Link>
             </li>
@@ -81,27 +77,12 @@ const App = () => {
         </nav>
         <main>
           <Routes>
-            <Route
-              path="/affirmations-vite/"
-              element={<DisplayAffirmations />}
-            />
-            <Route
-              path="/affirmations-vite/current"
-              element={<CurrentAffirmations />}
-            />
-            <Route path="/affirmations-vite/add" element={<AddAffirmation />} />
-            <Route
-              path="/affirmations-vite/edit"
-              element={<EditAffirmation />}
-            />
-            <Route
-              path="/affirmations-vite/shared"
-              element={<SharedAffirmations />}
-            />
-            <Route
-              path="/affirmations-vite/about"
-              element={<AboutAffirmations />}
-            />
+            <Route path="/" element={<DisplayAffirmations />} />
+            <Route path="current" element={<CurrentAffirmations />} />
+            <Route path="add" element={<AddAffirmation />} />
+            <Route path="edit" element={<EditAffirmation />} />
+            <Route path="shared" element={<SharedAffirmations />} />
+            <Route path="about" element={<AboutAffirmations />} />
           </Routes>
         </main>
         <ToastContainer />

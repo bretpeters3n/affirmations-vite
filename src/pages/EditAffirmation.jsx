@@ -46,7 +46,7 @@ const EditAffirmation = () => {
       position: "bottom-center",
     });
     postAffirmationsData(affirmationsData);
-    navigate("/affirmations-vite/current");
+    navigate("/current");
   };
 
   function handleConfirmEditAffirmationClick() {
@@ -58,7 +58,7 @@ const EditAffirmation = () => {
       toast.info(`No changes were made 🧐 Try again?`, {
         position: "bottom-center",
       });
-      navigate("/affirmations-vite/current");
+      navigate("/current");
     } else {
       affirmationsData[0].groups[groupKey].affirmations[id].affirmation =
         updatedAffirmation;
@@ -66,13 +66,13 @@ const EditAffirmation = () => {
       toast.success(`Update to '${updatedAffirmation}', success!`, {
         position: "bottom-center",
       });
-      navigate("/affirmations-vite/current");
+      navigate("/current");
     }
   }
 
   function handleCancelEditAffirmationClick() {
     // this one is done until you add MODAL or TOAST
-    navigate("/affirmations-vite/current");
+    navigate("/current");
   }
 
   return (
