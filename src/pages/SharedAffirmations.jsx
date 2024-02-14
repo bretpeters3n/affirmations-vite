@@ -48,7 +48,7 @@ const SharedAffirmations = (props) => {
   };
 
   const handleAboutThisSiteClick = () => {
-    navigate("/affirmations-vite/about");
+    navigate("/about");
   };
 
   const handleCreateNewGroup = () => {
@@ -68,7 +68,7 @@ const SharedAffirmations = (props) => {
       affirmationsData[0].groups.push(sharedAffirmationsOBJ[0]);
       affirmationsData[0].groups[id].id = uid.rnd();
       postAffirmationsData(affirmationsData);
-      navigate("/affirmations-vite/");
+      navigate("/");
       toast.success(`Group '${newGroupName}' added. Enjoy!`, {
         position: "bottom-center",
       });

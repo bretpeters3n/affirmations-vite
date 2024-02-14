@@ -52,12 +52,12 @@ const AddAffirmation = () => {
       toast.success(`Affirmation '${newAffirmation.affirmation}' added!`, {
         position: "bottom-center",
       });
-      navigate("/affirmations-vite/current");
+      navigate("/current");
     }
   };
 
   const handleCancelAddAffirmationClick = () => {
-    navigate("/affirmations-vite/current");
+    navigate("/current");
   };
 
   return (

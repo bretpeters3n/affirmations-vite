@@ -2,7 +2,7 @@
   "name": "affirmations-vite",
   "version": "1.0.0",
   "description": "Build, enjoy, and share lists of Affirmations",
-  "homepage": "https://bretpeters3n.github.io/affirmations-vite",
+  "homepage": "https://bretpeters3n.github.io/affirmations-vite/",
   "main": "index.js",
   "scripts": {
     "dev": "vite --port 5173",

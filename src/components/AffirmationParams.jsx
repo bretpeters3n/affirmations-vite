@@ -25,7 +25,6 @@ import {
 import Group from "../utils/groupClass"; // Group class
 
 const uid = new ShortUniqueId();
-const BASE_URL = "localhost:5173";
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
@@ -76,7 +75,7 @@ const AffirmationParams = () => {
     });
     setCurrentGroup(affirmationsData[0].groups[0].group);
     postAffirmationsData(affirmationsData);
-    navigate("/affirmations-vite/current");
+    navigate("/current");
     console.log("this is after the 'navigate' that is being skipped");
   };
 
