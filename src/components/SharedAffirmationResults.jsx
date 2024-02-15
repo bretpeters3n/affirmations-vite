@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AffirmationShared from "./AffirmationShared";
 
 const SharedAffirmationResults = ({

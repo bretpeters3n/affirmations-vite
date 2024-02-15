@@ -1,8 +1,5 @@
-// import { AiFillEdit } from "react-icons/ai";
 import BorderColorSharpIcon from "@mui/icons-material/BorderColorSharp";
-// import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-// import { requestCurrentGroupKey } from "../utils/PullPostGetSet";
 
 const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
   const navigate = useNavigate();
@@ -13,13 +10,9 @@ const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
     navigate("/edit", {
       state: {
         affirmationId: editId,
-        // currentGroup: currentGroup,
-        // affirmationsData: affirmationsData,
       },
     }); // Pass optional second argument
   };
-
-  // let groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
 
   return (
     <li
@@ -38,11 +31,7 @@ const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
             className="theme-switcher edit"
           >
             <BorderColorSharpIcon fontSize="small" style={{ color: "white" }} />
-            {/* <AiFillEdit size={20} className="reactIcons" /> */}
           </button>
-          {/* <a href={`/edit/${groupKey}/${id}`} className="theme-switcher edit">
-            <AiFillEdit size={20} className="reactIcons" />
-          </a> */}
         </div>
       </div>
     </li>

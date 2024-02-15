@@ -1,7 +1,4 @@
-import { AiFillEdit } from "react-icons/ai";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
-import { requestCurrentGroupKey } from "../utils/PullPostGetSet";
 
 const AffirmationShared = ({
   affirmation,

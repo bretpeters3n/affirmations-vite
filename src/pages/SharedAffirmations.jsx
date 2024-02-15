@@ -6,8 +6,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SharedAffirmationResults from "../components/SharedAffirmationResults";
 import TextField from "@mui/material/TextField";
-import AffGroupListResults from "../components/AffGroupListResults";
-import AffirmationResults from "../components/AffirmationResults";
 import {
   requestAndSaveAffirmationsData,
   postAffirmationsData,

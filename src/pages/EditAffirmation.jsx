@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-// import Button from "react-bootstrap/Button";
 import MyButton from "../components/MyButton";
 import Modal from "../components/Modal";
-// import Modal from "react-bootstrap/Modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   postAffirmationsData,
   requestCurrentGroupKey,
-  requestCurrentAffirmationKey,
   requestAndSaveAffirmationsData,
 } from "../utils/PullPostGetSet";
 

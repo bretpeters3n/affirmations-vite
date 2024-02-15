@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  BrowserRouter,
-  useNavigate,
-  Route,
-  Routes,
-  Link,
-  useLocation,
-} from "react-router-dom";
-// import Button from "react-bootstrap/Button";
+import { useNavigate, useLocation } from "react-router-dom";
 import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -80,17 +72,10 @@ const AddAffirmation = () => {
             text="Cancel"
             run={() => handleCancelAddAffirmationClick()}
           />
-          {/* <Button onClick={handleCancelAddAffirmationClick}>Cancel</Button> */}
           <MyButton
             text="Add Affirmation"
             run={() => handleAddAffirmationClick()}
           />
-          {/* <button
-            className="theme-switcher btn btn-outline-primary"
-            onClick={handleAddAffirmationClick}
-          >
-            Add affirmation
-          </button> */}
         </div>
       </section>
       {
@@ -102,7 +87,6 @@ const AddAffirmation = () => {
               <p>Please add text and try again</p>
               <div className="buttons">
                 <MyButton text="Understood" run={() => setShowModal(false)} />
-                {/* <button onClick={() => setShowModal(false)}>Ok</button> */}
               </div>
             </div>
           </Modal>

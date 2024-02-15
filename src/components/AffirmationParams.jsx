@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-// import DeleteIcon from "@mui/icons-material/Delete";
-// import IconButton from "@mui/material/Button";
 import ShortUniqueId from "short-unique-id";
 import { motion, easeInOut } from "framer-motion";
 import TextField from "@mui/material/TextField";
@@ -11,7 +8,6 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Form from "react-bootstrap/Form";
-import "react-toastify/dist/ReactToastify.css";
 import MyButton from "./MyButton";
 import AffirmationResults from "./AffirmationResults";
 import Modal from "./Modal";

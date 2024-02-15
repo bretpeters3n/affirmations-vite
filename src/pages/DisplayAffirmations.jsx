@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { useNavigate } from "react-router-dom";
 import {
-  postAffirmationsData,
   requestAndSaveAffirmationsData,
   requestGroupAffirmations,
 } from "../utils/PullPostGetSet";
 import MyButton from "../components/MyButton";
-import testAffirmations from "../db/testAffirmations";
-// import stockAffirmationsArray from "../db/stockAffirmations";
 
 const DisplayAffirmations = () => {
   const navigate = useNavigate();
