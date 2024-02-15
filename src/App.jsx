@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <nav className="theme-switcher btm-gradient">
           <div id="appName" className="theme-switcher">
             Affirmations
