@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <BrowserRouter>
         <nav className="theme-switcher btm-gradient">
           <div id="appName" className="theme-switcher">
             Affirmations
@@ -83,6 +83,7 @@ const App = () => {
             <Route path="edit" element={<EditAffirmation />} />
             <Route path="shared" element={<SharedAffirmations />} />
             <Route path="about" element={<AboutAffirmations />} />
+            <Route path="*" element={<p>Path not resolved</p>} />
           </Routes>
         </main>
         <ToastContainer />
@@ -94,7 +95,7 @@ const App = () => {
 const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
-  // <StrictMode>
-  <App />
-  // </StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
