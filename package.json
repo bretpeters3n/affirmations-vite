@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Build, enjoy, and share lists of Affirmations",
   "homepage": "https://bretpeters3n.github.io/affirmations-vite/",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vite --port 5173",
     "predeploy": "npm run build",

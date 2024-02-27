@@ -2,6 +2,7 @@ import { useState, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import "dotenv";
 import PlayArrowOutlinedIcon from "@mui/icons-material/PlayArrowOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -20,6 +21,9 @@ import "./css/Nav.css";
 const App = () => {
   const [isActive, setIsActive] = useState(false);
   const [isDarkModeActive, setIsDarkModeActive] = useState(false);
+
+  const BASE_URL = import.meta.env.BASE_URL;
+  console.log(BASE_URL);
 
   const handleHamClick = () => {
     // 👇️ toggle isActive state on click
@@ -54,13 +58,17 @@ const App = () => {
           </button>
           <ul id="menu" className={isActive ? "opened" : ""}>
             <li>
-              <Link to="/" onClick={handleHamClick} className="theme-switcher">
+              <Link
+                to={`${BASE_URL}`}
+                onClick={handleHamClick}
+                className="theme-switcher"
+              >
                 <PlayArrowOutlinedIcon fontSize="large" />
               </Link>
             </li>
             <li>
               <Link
-                to="/current"
+                to={`${BASE_URL}current`}
                 onClick={handleHamClick}
                 className="theme-switcher"
               >
@@ -68,7 +76,7 @@ const App = () => {
               </Link>
             </li>
             <li>
-              <Link to="/about" onClick={handleHamClick}>
+              <Link to={`${BASE_URL}about`} onClick={handleHamClick}>
                 <InfoOutlinedIcon fontSize="large" />
               </Link>
             </li>
@@ -77,12 +85,18 @@ const App = () => {
         </nav>
         <main>
           <Routes>
-            <Route path="/" element={<DisplayAffirmations />} />
-            <Route path="current" element={<CurrentAffirmations />} />
-            <Route path="add" element={<AddAffirmation />} />
-            <Route path="edit" element={<EditAffirmation />} />
-            <Route path="shared" element={<SharedAffirmations />} />
-            <Route path="about" element={<AboutAffirmations />} />
+            <Route path={`${BASE_URL}`} element={<DisplayAffirmations />} />
+            <Route
+              path={`${BASE_URL}current`}
+              element={<CurrentAffirmations />}
+            />
+            <Route path={`${BASE_URL}add`} element={<AddAffirmation />} />
+            <Route path={`${BASE_URL}edit`} element={<EditAffirmation />} />
+            <Route
+              path={`${BASE_URL}shared`}
+              element={<SharedAffirmations />}
+            />
+            <Route path={`${BASE_URL}about`} element={<AboutAffirmations />} />
             <Route path="*" element={<p>Path not resolved</p>} />
           </Routes>
         </main>
