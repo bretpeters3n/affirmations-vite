@@ -63,19 +63,26 @@ const AffirmationParams = () => {
   };
 
   const handleDeleteGroupClick = () => {
-    let updatedGroupList = affirmationsData[0].groups;
-    const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-    updatedGroupList = updatedGroupList
-      .slice(0, Number(groupKey))
-      .concat(updatedGroupList.slice(Number(groupKey) + 1));
-    affirmationsData[0].groups = updatedGroupList;
-    toast.success(`Group '${currentGroup}' deleted!`, {
-      position: "bottom-center",
-    });
-    setCurrentGroup(affirmationsData[0].groups[0].group);
-    postAffirmationsData(affirmationsData);
-    navigate(`${BASE_URL}current`);
-    console.log("this is after the 'navigate' that is being skipped");
+    if (currentGroup === "Default Affirmations") {
+      alert(
+        "This is the only group you cannot delete. Sorry for the inconvenience!"
+      );
+    } else {
+      let updatedGroupList = affirmationsData[0].groups;
+      const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+      updatedGroupList = updatedGroupList
+        .slice(0, Number(groupKey))
+        .concat(updatedGroupList.slice(Number(groupKey) + 1));
+      affirmationsData[0].groups = updatedGroupList;
+      toast.success(`Group '${currentGroup}' deleted!`, {
+        position: "bottom-center",
+      });
+      setShowDeleteGroupModal(false);
+      setCurrentGroup(affirmationsData[0].groups[0].group);
+      postAffirmationsData(affirmationsData);
+      navigate(`${BASE_URL}current`);
+      // console.log("this is after the 'navigate' that is being skipped");
+    }
   };
 
   useEffect(() => {
