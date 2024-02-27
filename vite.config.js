@@ -35,5 +35,5 @@ export default defineConfig({
   //   },
   // },
   // plugins: [react(), splitVendorChunkPlugin()],
-  // root: "src",
+  root: "src",
 });

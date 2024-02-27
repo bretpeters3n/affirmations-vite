@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Build, enjoy, and share lists of Affirmations",
   "homepage": "https://bretpeters3n.github.io/affirmations-vite/",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
     "dev": "vite --port 5173",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d src/dist",
     "build": "vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,7 +17,6 @@
   "author": "Bret Petersen",
   "license": "MIT",
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.5.2",
     "@vitejs/plugin-react": "^2.1.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
