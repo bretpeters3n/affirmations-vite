@@ -1,13 +1,14 @@
+import "dotenv";
 import BorderColorSharpIcon from "@mui/icons-material/BorderColorSharp";
 import { useNavigate } from "react-router-dom";
 
 const Affirmation = ({ affirmation, id, currentGroup, affirmationsData }) => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const handleEditAffirmationClick = (e) => {
     let editEl = e.target.closest("li");
     let editId = editEl.getAttribute("id");
-    navigate("/edit", {
+    navigate(`${BASE_URL}edit`, {
       state: {
         affirmationId: editId,
       },

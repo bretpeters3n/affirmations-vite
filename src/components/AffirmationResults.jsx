@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "dotenv";
 import SouthIcon from "@mui/icons-material/South";
 import MyButton from "./MyButton";
 import AffGroupListResults from "./AffGroupListResults";
@@ -9,10 +10,10 @@ const AffirmationResults = ({
   affirmations,
 }) => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const handleAddAffirmationClick = () => {
     // console.log("add");
-    navigate("/add", {
+    navigate(`${BASE_URL}add`, {
       state: {
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,

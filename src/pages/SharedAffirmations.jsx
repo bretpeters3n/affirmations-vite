@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "dotenv";
 import Modal from "../components/Modal";
 import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
@@ -17,7 +18,7 @@ const uid = new ShortUniqueId();
 
 const SharedAffirmations = (props) => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const [showImportedGroupModal, setShowImportedGroupModal] = useState(false);
   const [showRenameGroupModal, setShowRenameGroupModal] = useState(false);
 
@@ -46,7 +47,7 @@ const SharedAffirmations = (props) => {
   };
 
   const handleAboutThisSiteClick = () => {
-    navigate("/about");
+    navigate(`${BASE_URL}about`);
   };
 
   const handleCreateNewGroup = () => {
@@ -66,7 +67,7 @@ const SharedAffirmations = (props) => {
       affirmationsData[0].groups.push(sharedAffirmationsOBJ[0]);
       affirmationsData[0].groups[id].id = uid.rnd();
       postAffirmationsData(affirmationsData);
-      navigate("/");
+      navigate(`${BASE_URL}`);
       toast.success(`Group '${newGroupName}' added. Enjoy!`, {
         position: "bottom-center",
       });

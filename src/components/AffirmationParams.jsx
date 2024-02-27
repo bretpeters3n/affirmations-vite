@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "dotenv";
 import { toast } from "react-toastify";
 import ShortUniqueId from "short-unique-id";
 import { motion, easeInOut } from "framer-motion";
@@ -24,7 +25,9 @@ const uid = new ShortUniqueId();
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
+  const PUBLIC_URL = `https://bretpeters3n.github.io/affirmations-vite/`;
+  // console.log(PUBLIC_URL);
   const [affirmationsData, setAffirmationsData] = useState(
     requestAndSaveAffirmationsData()
   );
@@ -71,7 +74,7 @@ const AffirmationParams = () => {
     });
     setCurrentGroup(affirmationsData[0].groups[0].group);
     postAffirmationsData(affirmationsData);
-    navigate("/current");
+    navigate(`${BASE_URL}current`);
     console.log("this is after the 'navigate' that is being skipped");
   };
 
@@ -110,11 +113,11 @@ const AffirmationParams = () => {
 
   const handleShareAffirmationsClick = () => {
     const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-    const PAGE_PATH = `/affirmations-vite/shared?query=`;
+    const PAGE_PATH = `shared?query=`;
     let affParams = affirmationsData[0].groups[groupKey];
     const affParamArray = [affParams].flat();
     const affParamArrayString = JSON.stringify(affParamArray);
-    setUrlFormatted(`${BASE_URL}${PAGE_PATH}${affParamArrayString}`);
+    setUrlFormatted(`${PUBLIC_URL}${PAGE_PATH}${affParamArrayString}`);
     setShowShareModal(true);
   };
 

@@ -1,3 +1,4 @@
+import "dotenv";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,14 +9,14 @@ import MyButton from "../components/MyButton";
 
 const DisplayAffirmations = () => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const affirmationsData = requestAndSaveAffirmationsData();
   const currentGroup = affirmationsData[0].currentGroup;
   const affirmations = requestGroupAffirmations(affirmationsData, currentGroup);
 
   const handleAddAffirmationClick = () => {
     // console.log("add");
-    navigate("/add", {
+    navigate(`${BASE_URL}`, {
       state: {
         currentGroup: currentGroup,
         affirmationsData: affirmationsData,
