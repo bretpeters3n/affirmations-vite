@@ -11,7 +11,7 @@ const DisplayAffirmations = () => {
   const navigate = useNavigate();
   const BASE_URL = import.meta.env.BASE_URL;
   const affirmationsData = requestAndSaveAffirmationsData();
-  const currentGroup = affirmationsData[0].currentGroup;
+  let currentGroup = affirmationsData[0].currentGroup;
   const affirmations = requestGroupAffirmations(affirmationsData, currentGroup);
 
   const handleAddAffirmationClick = () => {
