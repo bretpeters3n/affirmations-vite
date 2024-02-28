@@ -14,21 +14,36 @@ export default defineConfig({
   base: "/affirmations-vite/",
   // build section added to stop size warnings during deploy processes
   // consider changing in the future, as this is a temporary fix
+  // build: {
+  //   sourcemap: false,
+  //   chunkSizeWarningLimit: 100,
+  //   rollupOptions: {
+  //     output: {
+  //       manualChunks: {
+  //         vendor: ["react", "react-router-dom", "react-dom"],
+  //         ...renderChunks(dependencies),
+  //       },
+  //     },
+  //     onwarn(warning, warn) {
+  //       if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
+  //         return;
+  //       }
+  //       warn(warning);
+  //     },
+  //   },
+  // },
   build: {
-    sourcemap: false,
-    chunkSizeWarningLimit: 100,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-router-dom", "react-dom"],
-          ...renderChunks(dependencies),
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
+          }
         },
-      },
-      onwarn(warning, warn) {
-        if (warning.code === "MODULE_LEVEL_DIRECTIVE") {
-          return;
-        }
-        warn(warning);
       },
     },
   },

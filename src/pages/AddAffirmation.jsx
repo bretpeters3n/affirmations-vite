@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import "dotenv";
 import MyButton from "../components/MyButton";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,7 +14,7 @@ import ShortUniqueId from "short-unique-id";
 
 const AddAffirmation = () => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const location = useLocation();
 
   const uid = new ShortUniqueId();
@@ -44,12 +45,12 @@ const AddAffirmation = () => {
       toast.success(`Affirmation '${newAffirmation.affirmation}' added!`, {
         position: "bottom-center",
       });
-      navigate("/current");
+      navigate(`${BASE_URL}current`);
     }
   };
 
   const handleCancelAddAffirmationClick = () => {
-    navigate("/current");
+    navigate(`${BASE_URL}current`);
   };
 
   return (

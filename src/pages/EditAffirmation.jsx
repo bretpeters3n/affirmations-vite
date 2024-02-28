@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import "dotenv";
 import MyButton from "../components/MyButton";
 import Modal from "../components/Modal";
 import { toast } from "react-toastify";
@@ -12,7 +13,7 @@ import {
 
 const EditAffirmation = () => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const location = useLocation();
 
   const [showModal, setShowModal] = useState(false);
@@ -43,7 +44,7 @@ const EditAffirmation = () => {
       position: "bottom-center",
     });
     postAffirmationsData(affirmationsData);
-    navigate("/current");
+    navigate(`${BASE_URL}current`);
   };
 
   function handleConfirmEditAffirmationClick() {
@@ -55,7 +56,7 @@ const EditAffirmation = () => {
       toast.info(`No changes were made 🧐 Try again?`, {
         position: "bottom-center",
       });
-      navigate("/current");
+      navigate(`${BASE_URL}current`);
     } else {
       affirmationsData[0].groups[groupKey].affirmations[id].affirmation =
         updatedAffirmation;
@@ -63,13 +64,13 @@ const EditAffirmation = () => {
       toast.success(`Update to '${updatedAffirmation}', success!`, {
         position: "bottom-center",
       });
-      navigate("/current");
+      navigate(`${BASE_URL}current`);
     }
   }
 
   function handleCancelEditAffirmationClick() {
     // this one is done until you add MODAL or TOAST
-    navigate("/current");
+    navigate(`${BASE_URL}current`);
   }
 
   return (

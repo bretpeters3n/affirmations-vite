@@ -1,5 +1,6 @@
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { useNavigate } from "react-router-dom";
+import "dotenv";
 import {
   requestAndSaveAffirmationsData,
   requestGroupAffirmations,
@@ -8,16 +9,18 @@ import MyButton from "../components/MyButton";
 
 const DisplayAffirmations = () => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const affirmationsData = requestAndSaveAffirmationsData();
-  const currentGroup = affirmationsData[0].currentGroup;
-  const affirmations = requestGroupAffirmations(affirmationsData, currentGroup);
+  const currentGroupDisplay = affirmationsData[0].currentGroup;
+  const affirmations = requestGroupAffirmations(
+    affirmationsData,
+    currentGroupDisplay
+  );
 
   const handleAddAffirmationClick = () => {
-    // console.log("add");
-    navigate("/add", {
+    navigate(`${BASE_URL}add`, {
       state: {
-        currentGroup: currentGroup,
+        currentGroup: currentGroupDisplay,
         affirmationsData: affirmationsData,
       },
     }); // Pass optional second argument
@@ -50,7 +53,7 @@ const DisplayAffirmations = () => {
               <p>
                 No affirmations present
                 <br />
-                in <i>{currentGroup}</i> group
+                in <i>{currentGroupDisplay}</i> group
               </p>
               <div className="pt-0 pb-0 mt-0 mb-0">
                 <MyButton

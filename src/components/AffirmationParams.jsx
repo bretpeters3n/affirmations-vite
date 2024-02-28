@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "dotenv";
 import { toast } from "react-toastify";
 import ShortUniqueId from "short-unique-id";
 import { motion, easeInOut } from "framer-motion";
@@ -24,7 +25,7 @@ const uid = new ShortUniqueId();
 
 const AffirmationParams = () => {
   const navigate = useNavigate();
-
+  const BASE_URL = import.meta.env.BASE_URL;
   const [affirmationsData, setAffirmationsData] = useState(
     requestAndSaveAffirmationsData()
   );
@@ -42,6 +43,7 @@ const AffirmationParams = () => {
   const [showNewGroupModal, setShowNewGroupModal] = useState(false);
   const [showDeleteGroupModal, setShowDeleteGroupModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showFutureFeatureModal, setShowFutureFeatureModal] = useState(false);
 
   const [urlFormatted, setUrlFormatted] = useState("");
 
@@ -60,19 +62,27 @@ const AffirmationParams = () => {
   };
 
   const handleDeleteGroupClick = () => {
-    let updatedGroupList = affirmationsData[0].groups;
-    const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-    updatedGroupList = updatedGroupList
-      .slice(0, Number(groupKey))
-      .concat(updatedGroupList.slice(Number(groupKey) + 1));
-    affirmationsData[0].groups = updatedGroupList;
-    toast.success(`Group '${currentGroup}' deleted!`, {
-      position: "bottom-center",
-    });
-    setCurrentGroup(affirmationsData[0].groups[0].group);
-    postAffirmationsData(affirmationsData);
-    navigate("/current");
-    console.log("this is after the 'navigate' that is being skipped");
+    if (currentGroup === "Default Affirmations") {
+      alert(
+        "Sorry, you cannot delete group 'Default Affirmations' as it is crutial to the application functioning correctly at this time. Sorry for any inconvenience."
+      );
+      setShowDeleteGroupModal(false);
+    } else {
+      let updatedGroupList = affirmationsData[0].groups;
+      const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+      updatedGroupList = updatedGroupList
+        .slice(0, Number(groupKey))
+        .concat(updatedGroupList.slice(Number(groupKey) + 1));
+      affirmationsData[0].groups = updatedGroupList;
+      toast.success(`Group '${currentGroup}' deleted!`, {
+        position: "bottom-center",
+      });
+      setShowDeleteGroupModal(false);
+      setCurrentGroup(affirmationsData[0].groups[0].group);
+      postAffirmationsData(affirmationsData);
+      navigate(`${BASE_URL}current`);
+      // console.log("this is after the 'navigate' that is being skipped");
+    }
   };
 
   useEffect(() => {
@@ -109,13 +119,23 @@ const AffirmationParams = () => {
   };
 
   const handleShareAffirmationsClick = () => {
-    const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-    const PAGE_PATH = `/affirmations-vite/shared?query=`;
-    let affParams = affirmationsData[0].groups[groupKey];
-    const affParamArray = [affParams].flat();
-    const affParamArrayString = JSON.stringify(affParamArray);
-    setUrlFormatted(`${BASE_URL}${PAGE_PATH}${affParamArrayString}`);
-    setShowShareModal(true);
+    // Share feature that you still need to get working on gh-pages
+    // const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+    // const SHARE_PATH = `shared?query=`;
+    // const CURRENT_URL = window.location.href;
+    // const CURRENT_URL_TRIMS = CURRENT_URL.split(BASE_URL, 2);
+
+    // console.log("hi");
+    // console.log(CURRENT_URL_TRIMS[0]);
+
+    // let affParams = affirmationsData[0].groups[groupKey];
+    // const affParamArray = [affParams].flat();
+    // const affParamArrayString = JSON.stringify(affParamArray);
+    // setUrlFormatted(
+    //   `${CURRENT_URL_TRIMS[0]}${BASE_URL}${SHARE_PATH}${affParamArrayString}`
+    // );
+    // setShowShareModal(true);
+    setShowFutureFeatureModal(true);
   };
 
   return (
@@ -306,6 +326,22 @@ const AffirmationParams = () => {
                       }
                     );
                   }}
+                />
+              </div>
+            </div>
+          </Modal>
+        ) : null // you have to remove this semi-colon, my auto-formatter adds it back if I delete it
+      }
+      {
+        showFutureFeatureModal ? (
+          <Modal>
+            <div className="modal-container">
+              <h2>Feature coming soon!</h2>
+              <p>Sorry for the inconvenience.</p>
+              <div className="buttons">
+                <MyButton
+                  text="Close"
+                  run={() => setShowFutureFeatureModal(false)}
                 />
               </div>
             </div>

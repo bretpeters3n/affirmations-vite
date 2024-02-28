@@ -12,18 +12,18 @@ import EditAffirmation from "./pages/EditAffirmation";
 import AddAffirmation from "./pages/AddAffirmation";
 import AboutAffirmations from "./pages/AboutAffirmations";
 import SharedAffirmations from "./pages/SharedAffirmations";
-import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
-import lightModeIcon from "./assets/dark-mode-icon_light.svg";
-import "./css/splide-core.min.css";
-import "./css/App.css";
-import "./css/Nav.css";
+// import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
+// import lightModeIcon from "./assets/dark-mode-icon_light.svg";
+// import "./css/splide-core.min.css";
+// import "./css/App.css";
+// import "./css/Nav.css";
 
 const App = () => {
   const [isActive, setIsActive] = useState(false);
-  const [isDarkModeActive, setIsDarkModeActive] = useState(false);
+  // const [isDarkModeActive, setIsDarkModeActive] = useState(false);
 
   const BASE_URL = import.meta.env.BASE_URL;
-  console.log(BASE_URL);
+  // console.log(BASE_URL);
 
   const handleHamClick = () => {
     // 👇️ toggle isActive state on click
