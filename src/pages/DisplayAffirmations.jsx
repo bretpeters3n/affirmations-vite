@@ -1,3 +1,4 @@
+import "dotenv";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { useNavigate } from "react-router-dom";
 import "dotenv";
