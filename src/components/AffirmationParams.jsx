@@ -120,22 +120,24 @@ const AffirmationParams = () => {
 
   const handleShareAffirmationsClick = () => {
     // Share feature that you still need to get working on gh-pages
-    // const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
-    // const SHARE_PATH = `shared?query=`;
-    // const CURRENT_URL = window.location.href;
-    // const CURRENT_URL_TRIMS = CURRENT_URL.split(BASE_URL, 2);
+    const groupKey = requestCurrentGroupKey(affirmationsData, currentGroup);
+    const SHARE_PATH = `shared?query=`;
+    const CURRENT_URL = window.location.href;
+    const CURRENT_URL_TRIMS = CURRENT_URL.split(BASE_URL, 2);
 
-    // console.log("hi");
-    // console.log(CURRENT_URL_TRIMS[0]);
+    console.log("hi");
+    console.log(CURRENT_URL_TRIMS[0]);
 
-    // let affParams = affirmationsData[0].groups[groupKey];
-    // const affParamArray = [affParams].flat();
-    // const affParamArrayString = JSON.stringify(affParamArray);
-    // setUrlFormatted(
-    //   `${CURRENT_URL_TRIMS[0]}${BASE_URL}${SHARE_PATH}${affParamArrayString}`
-    // );
-    // setShowShareModal(true);
-    setShowFutureFeatureModal(true);
+    let affParams = affirmationsData[0].groups[groupKey];
+    const affParamArray = [affParams].flat();
+    const affParamArrayString = JSON.stringify(affParamArray);
+    setUrlFormatted(
+      `${CURRENT_URL_TRIMS[0]}${BASE_URL}${SHARE_PATH}${affParamArrayString}`
+    );
+    setShowShareModal(true);
+
+    // Share feature: Coming soon message
+    // setShowFutureFeatureModal(true);
   };
 
   return (

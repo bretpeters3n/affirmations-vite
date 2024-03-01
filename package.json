@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --port 5173",
     "predeploy": "npm run build",
-    "deploy": "gh-pages-clean gh-pages -d src/dist",
+    "deploy": "gh-pages -d src/dist",
     "build": "vite build",
     "preview": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",

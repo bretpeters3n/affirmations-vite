@@ -14,9 +14,9 @@ import AboutAffirmations from "./pages/AboutAffirmations";
 import SharedAffirmations from "./pages/SharedAffirmations";
 // import darkModeIcon from "./assets/dark-mode-icon_dark.svg";
 // import lightModeIcon from "./assets/dark-mode-icon_light.svg";
-// import "./css/splide-core.min.css";
-// import "./css/App.css";
-// import "./css/Nav.css";
+import "./css/splide-core.min.css";
+import "./css/App.css";
+import "./css/Nav.css";
 
 const App = () => {
   const [isActive, setIsActive] = useState(false);
@@ -24,6 +24,14 @@ const App = () => {
 
   const BASE_URL = import.meta.env.BASE_URL;
   // console.log(BASE_URL);
+
+  const Page404 = ({ location }) => (
+    <div>
+      <h2>
+        No match found for <code>{location.pathname}</code>
+      </h2>
+    </div>
+  );
 
   const handleHamClick = () => {
     // 👇️ toggle isActive state on click
@@ -97,7 +105,8 @@ const App = () => {
               element={<SharedAffirmations />}
             />
             <Route path={`${BASE_URL}about`} element={<AboutAffirmations />} />
-            <Route path="*" element={<p>Path not resolved</p>} />
+            {/* <Route path="*" element={<p>Path not resolved</p>} /> */}
+            <Route component={Page404} />
           </Routes>
         </main>
         <ToastContainer />

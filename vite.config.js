@@ -1,6 +1,8 @@
 // import { splitVendorChunkPlugin } from "vite";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import "dotenv";
+
 // import { dependencies } from "./package.json";
 // function renderChunks(deps) {
 //   let chunks = {};
@@ -13,7 +15,8 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/affirmations-vite/",
+  base: import.meta.env.BASE_URL,
+  // base: "/affirmations-vite/",
   // build section added to stop size warnings during deploy processes
   // consider changing in the future, as this is a temporary fix
   // build: {
@@ -49,6 +52,6 @@ export default defineConfig({
       },
     },
   },
-  plugins: [react(), splitVendorChunkPlugin()],
+  // plugins: [react(), splitVendorChunkPlugin()],
   root: "src",
 });
