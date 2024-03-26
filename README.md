@@ -47,11 +47,11 @@
     <img src="./src/assets/affirmations-readMe-titleImage.jpg" alt="logo" height="582"/>
 </p>
 
-`Budgety` is an opensource platform to create and share affirmations with an easy-to-use interface. You can create affirmation groups and share them with your friends. You can also create a slideshow of affirmations to help you stay motivated.
+`Affirmations` is an opensource platform to create and share affirmations with an easy-to-use interface. You can create affirmation groups and share them with your friends. You can also create a slideshow of affirmations to help you stay motivated.
 
 # 🔥 Features
 
-`Budgety` comes with a bundle of features already. You can do the followings with it:
+`Affirmations` comes with a bundle of features already. You can do the followings with it:
 
 ## 🏗️ Add, Edit, Erase, and Save
 
@@ -132,7 +132,7 @@ This project is licensed under the MIT License - see the [`LICENSE`](LICENSE) fi
 
 # 🦄 Upcoming Features
 
-`Budgety` has all the potential to grow further. Here are some of the upcoming features planned(not in any order),
+`Affirmations` has all the potential to grow further. Here are some of the upcoming features planned(not in any order),
 
 - ✔️ Create API for affirmation stock groups a User can load into their slideshow
 - ✔️ Add a database so the User doesn't have to rely on localStorage to run this project
