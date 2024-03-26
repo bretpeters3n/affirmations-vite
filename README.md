@@ -10,7 +10,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <p align="center">
-    <img src="./src/assets/budgety_logo.png" alt="logo" width="192"/>
+    <img src="./src/assets/Af-logo_reverse.png" alt="logo" width="192"/>
 <p/>
 
 <h4 align="center">This application gives you an editable slideshow of affirmations for your inspirational viewing pleasure. Keep yourself inspired!</h4>
