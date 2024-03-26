@@ -17,6 +17,7 @@ import SharedAffirmations from "./pages/SharedAffirmations";
 import "./css/splide-core.min.css";
 import "./css/App.css";
 import "./css/Nav.css";
+// import { loadEnv } from "vite";
 
 const App = () => {
   const [isActive, setIsActive] = useState(false);
@@ -37,6 +38,9 @@ const App = () => {
     // 👇️ toggle isActive state on click
     setIsActive((current) => !current);
   };
+
+  // const env = loadEnv(mode, process.cwd());
+  // console.log(env.VITE_BASE_URL);
 
   return (
     <>
@@ -106,7 +110,8 @@ const App = () => {
             />
             <Route path={`${BASE_URL}about`} element={<AboutAffirmations />} />
             {/* <Route path="*" element={<p>Path not resolved</p>} /> */}
-            <Route component={Page404} />
+            <Route path={`${BASE_URL}*`} element={<DisplayAffirmations />} />
+            {/* <Route component={Page404} /> */}
           </Routes>
         </main>
         <ToastContainer />

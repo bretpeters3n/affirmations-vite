@@ -4,7 +4,7 @@
   "description": "Build, enjoy, and share lists of Affirmations",
   "homepage": "https://bretpeters3n.github.io/affirmations-vite/",
   "scripts": {
-    "dev": "vite --port 5173",
+    "dev": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d src/dist",
     "build": "vite build",
@@ -33,6 +33,7 @@
     "@mui/material": "^5.15.7",
     "@splidejs/react-splide": "^0.7.12",
     "dotenv": "^16.4.4",
+    "express": "^4.18.3",
     "framer-motion": "^11.0.5",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.0",
