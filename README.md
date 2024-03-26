@@ -34,6 +34,8 @@
 </p>
 
 <p align="center">
+    <a href="https://bretpeters3n.github.io/affirmations-vite/">Demo</a>
+    ·
     <a href="https://github.com/bretpeters3n/affirmations-vite/issues/new/choose">Report Bug</a>
     ·
     <a href="https://github.com/bretpeters3n/affirmations-vite/issues/new/choose">Request Feature</a>
@@ -42,9 +44,7 @@
 # 👋 Introducing `Affirmations`
 
 <p align="center">
-    <a href="https://Budgety.vercel.app" target="blank"/>
-        <img src="./src/assets/affirmations-readMe-titleImage.jpg" alt="logo" height="582"/>
-    </a>
+    <img src="./src/assets/affirmations-readMe-titleImage.jpg" alt="logo" height="582"/>
 </p>
 
 `Budgety` is an opensource platform to create and share affirmations with an easy-to-use interface. You can create affirmation groups and share them with your friends. You can also create a slideshow of affirmations to help you stay motivated.
